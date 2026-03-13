@@ -84,7 +84,9 @@
                          </ul>
                         </div>
                       
-                        <a href="#" class="cta"> <span> Download Resume </span> </a>
+                       <a href="assets/Resume/sayantan-ghosh-resume.pdf" class="cta header-resume" target="_blank" rel="noopener">
+						<span> Download Resume </span>
+						</a>
                         
                         <!-- Navbar Toggler -->
                         <div class="navbar-toggler">
@@ -524,7 +526,22 @@ jQuery('.right-button-box-mobile-top a').on('click',function(){
 })
 </script>
 
+<script>
 
+window.addEventListener("scroll", function(){
+
+var resumeBtn = document.querySelector(".header-resume");
+
+if(window.scrollY > 200){
+resumeBtn.classList.add("show");
+}else{
+resumeBtn.classList.remove("show");
+}
+
+});
+
+</script>
 </body>
+
 
 </html>
