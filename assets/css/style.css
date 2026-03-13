@@ -2808,12 +2808,9 @@ footer.grey-bg-footer .footer-copyright .back-to-top:hover {
 }
 
 .header-resume{
-opacity:0;
-visibility:hidden;
-transition:0.3s;
+display:none;
 }
 
 .header-resume.show{
-opacity:1;
-visibility:visible;
+display:inline-block;
 }
