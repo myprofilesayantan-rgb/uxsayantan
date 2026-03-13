@@ -559,7 +559,7 @@ header .header-nav .nav-container .menu-items ul li a {
 }
 
 .site-logo{
-    margin-right: 220px;
+    margin-right: 0px;
 }
 
 @media (max-width: 1599px) {
