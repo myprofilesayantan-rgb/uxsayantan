@@ -2806,3 +2806,14 @@ footer.grey-bg-footer .footer-copyright .back-to-top:hover {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.header-resume{
+opacity:0;
+visibility:hidden;
+transition:0.3s;
+}
+
+.header-resume.show{
+opacity:1;
+visibility:visible;
+}
