@@ -1,0 +1,98 @@
+/* ====================================
+HERO BUTTON ONLY
+==================================== */
+
+.banner-section-three .btn-primary-consistent{
+
+display:inline-flex;
+align-items:center;
+justify-content:center;
+
+padding:18px 36px;
+
+background:#4A70FA;
+color:#ffffff !important;
+
+border:none !important;
+border-radius:10px;
+
+font-size:16px;
+font-weight:600;
+
+text-decoration:none;
+
+transition:all .25s ease;
+
+}
+
+/* Hover */
+
+.banner-section-three .btn-primary-consistent:hover{
+
+background:#3556D4;
+color:#ffffff !important;
+
+transform:translateY(-2px);
+
+box-shadow:0 8px 18px rgba(0,0,0,0.12);
+
+}
+
+/* ====================================
+ICON SWAP ON HOVER
+==================================== */
+
+.right-button-box .icon{
+position:relative;
+display:inline-block;
+width:18px;
+height:18px;
+margin-right:6px;
+vertical-align:middle;
+}
+
+/* both icons stacked */
+
+.right-button-box .icon img{
+position:absolute;
+left:0;
+top:0;
+width:100%;
+height:auto;
+transition:opacity .25s ease;
+}
+
+/* default icon visible */
+
+.right-button-box .icon-default{
+opacity:1;
+}
+
+/* hover icon hidden */
+
+.right-button-box .icon-hover{
+opacity:0;
+}
+
+/* swap on hover */
+
+.right-button-box a:hover .icon-default{
+opacity:0;
+}
+
+.right-button-box a:hover .icon-hover{
+opacity:1;
+}
+
+.linkgen
+{
+
+color:#4A70FA;
+}
+
+.linkgen:hover
+{
+
+color:#334893;
+
+}

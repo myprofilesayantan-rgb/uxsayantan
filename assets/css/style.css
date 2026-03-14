@@ -2,10 +2,6 @@
 /*=======  COMMON CSS  =======*/
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-html{
-scroll-behavior:smooth;
-}
-
 body {
   font-family: "Inter", sans-serif;
   font-weight: 600;
@@ -15,7 +11,9 @@ body {
   font-size: 15px;
   line-height: 1.4;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 @media (max-width: 575px) {
   body {
     font-size: 16px;
@@ -538,7 +536,7 @@ header .header-nav .nav-container .menu-items ul li.has-submemu::after {
 header .header-nav .nav-container .menu-items ul li a {
   color: #14212b;
   padding: 0 15px;
-  margin: 0 15px;
+/*  margin: 0 15px;*/
   line-height: 100px;
   position: relative;
   font-weight: 700;
@@ -559,7 +557,16 @@ header .header-nav .nav-container .menu-items ul li a {
 }
 
 .site-logo{
-    margin-right: 0px;
+    margin-right: 220px;
+}
+
+@media (max-width: 1920px) {
+
+.site-logo {
+    margin-right: 280px;
+}
+
+
 }
 
 @media (max-width: 1599px) {
@@ -568,6 +575,8 @@ header .header-nav .nav-container .menu-items ul li a {
     margin: 0 5px;
   }
 }
+
+
 
 @media (max-width: 1199px) {
   header .header-nav .nav-container .menu-items ul li a {
@@ -1231,7 +1240,7 @@ header.sticky-on .site-logo{
 .banner-content .banner-btn a {
     padding: 8px 20px;
     border-radius: 6px;
-    border: 1px #161515 solid;
+    
     font-size: 14px;
     font-weight: 600;
     color: #161515;
@@ -1239,12 +1248,10 @@ header.sticky-on .site-logo{
 }
 .banner-content .banner-btn a.banner-btn-1 {
     background: #4A70FA;
-    border: 1px #4A70FA solid;
     color: #fff;
 }
 .banner-content .banner-btn a.banner-btn-1:hover {
-    background: #5dd4d7;
-    border: 1px #5dd4d7 solid;
+    background: #161515;
     color: #fff;
 }
 .banner-content .banner-btn a:hover {
@@ -2150,7 +2157,7 @@ header.sticky-on .site-logo{
 }
 .right-button-box a:hover {
     color: #fff;
-    background: #4A70FA;
+    background: #161515;
 }
 .right-button-box{
     float:right;
@@ -2161,7 +2168,7 @@ header.sticky-on .site-logo{
 }
 .right-button-box a.first-active:hover{
     color: #fff;
-    background: #5dd4d7;
+    background: #161515;
 }
 .flex-content-box {
     align-items: center;
@@ -2740,23 +2747,46 @@ footer.grey-bg-footer .footer-copyright .back-to-top:hover {
 .footer-bottom p{
     font-size: 12px;
 }
-
-
+footer{
+    position: relative;
+}
+footer  .back-to-top {
+    border-color: #dddddd;
+    background-color: #fff;
+}
+footer .back-to-top {
+    position: absolute;
+    left: auto;
+    right: 35px;
+    bottom: 35px;
+    top: auto;
+    height: 40px;
+    width: 40px;
+    line-height: 35px;
+    border-radius: 50%;
+    border: 2px solid #4a70fa;
+    line-height: 22px;
+    color: #3ab9fe;
+    text-align: center;
+    background-color: #4a70fa;
+    padding: 8px;
+    color: #fff;
+}
 
 .cta {
     position: relative;
-    padding: 12px 25px;
+    padding: 12px 18px;
     border-radius: 9px;
     /* background: #0b0b0f; */
     color: #222;
     font-size: 12px;
-    border: 2px solid #dbdbdb;
+    border: 1px solid #CFC6C6;
     cursor: pointer;
 }
 .cta:hover{
-    background: #4970fa;
+    background: #161515;
     color: #fff;
-    border: 2px solid #dbdbdb;
+   
 }
 .cta span {
   position: relative;
@@ -2779,6 +2809,12 @@ footer.grey-bg-footer .footer-copyright .back-to-top:hover {
     #6aa7ff 350deg,
     transparent 360deg
   );
+
+#contact-section{
+    position: relative;
+}
+
+
 
   animation: move 2.8s linear infinite;
 
@@ -2805,12 +2841,4 @@ footer.grey-bg-footer .footer-copyright .back-to-top:hover {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-.header-resume{
-display:none;
-}
-
-.header-resume.show{
-display:inline-block;
 }
