@@ -237,40 +237,13 @@ SENTINEL FINAL STRUCTURE
   align-items: stretch;
 }
 
-/* LEFT SIDE */
-
-.sentinel-left {
-  display: flex;
-  align-items: center;
-}
-
-.sentinel-left-inner {
-  font-size: 14px;
-  opacity: 0.9;
-  max-width: 240px;
-}
-
-
-.animate-item,
-.animate-fade {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 1.4s cubic-bezier(0.25, 0.1, 0.25, 1);
-}
-
-.animate-item.show,
-.animate-fade.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-
 
 /* Keep layout clean */
 
 .sentinel-image {
   display: flex;
-  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
 }
 
 .sentinel-image img {
@@ -323,31 +296,6 @@ SENTINEL FINAL STRUCTURE
 }
 
 /* IMAGE */
-.sentinel-image {
-  display: flex;
-  justify-content: flex-start;
-}
-.sentinel-image img {
-  width: 120%;
-  max-width: none;
-}
-
-.animate-item {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: all 1.4s ease;
-}
-
-.animate-item.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.sentinel-image.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
 .sentinel-right::before {
   animation: pulse 4s infinite ease-in-out;
 }
@@ -356,6 +304,63 @@ SENTINEL FINAL STRUCTURE
   0%, 100% { opacity: 0.2; }
   50% { opacity: 0.4; }
 }
+
+
+
+/* Sentinel New*/
+
+.sentinel-highlight {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #161515;
+}
+
+/* FIX SLIDER LAYOUT */
+
+.sentinel-slider {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* Give natural height using first image */
+
+.sentinel-slider img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Stack slides */
+
+.sentinel-slider .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.sentinel-slider-section {
+  background: #ffffff !important;
+}
+
+
+
+/* Active slide visible */
+
+.sentinel-slider .slide.active {
+  opacity: 1;
+  position: relative;
+}
+
+/* Sentinel New Open*/
+
 
 /* MOBILE */
 
@@ -383,7 +388,218 @@ SENTINEL FINAL STRUCTURE
     font-size: 22px;
   }
 }
+/* ================================
+SLIDER CONTROLS POSITION FIX
+================================ */
+/* CONTROL BAR */
 
+.slider-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 28px;
+  gap: 20px;
+}
+
+/* ARROWS */
+
+.slider-controls .arrow {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background: #f3f5f9;
+  color: #4A70FA;
+
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.slider-controls .arrow:hover {
+  background: #4A70FA;
+  color: #fff;
+}
+
+/* CTA IN CENTER */
+
+.slider-cta {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4A70FA;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: all 0.25s ease;
+}
+
+.slider-cta:hover {
+  background: #4A70FA;
+  color: #fff;
+}
+.sentinel-image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Controls wrapper */
+
+.slider-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 24px;   /* space below laptop */
+}
+
+/* Arrow style */
+
+.slider-controls .arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  border-radius: 50%;
+  background: #f3f5f9;
+
+  font-size: 18px;
+  color: #4A70FA;
+
+  cursor: pointer;
+  margin: 0 10px;
+
+  transition: all 0.25s ease;
+}
+
+/*ani laptop*/
+.sentinel-slider .slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+
+  pointer-events: none;
+}
+
+.sentinel-slider .slide.active {
+  opacity: 1;
+  position: relative;
+  pointer-events: auto;
+}
+
+
+/* RC Open */
+.rummy-game-img {
+  max-width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+#work-section .bg-blue {
+  align-items: flex-start !important;
+}
+
+#work-section .bg-blue .col-lg-6 {
+  padding-top: 0 !important;
+}
+
+/* remove extra space above image */
+
+#work-section .bg-blue img {
+  margin-top: 0 !important;
+}
+/* RUMMY CARD */
+
+.rummy-card .work-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.rummy-card .row {
+  align-items: flex-start !important;
+}
+
+/* Logo */
+
+.rummy-logo img {
+  height: 32px;
+}
+
+/* Role highlight */
+
+.rummy-role {
+  margin-top: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Gameplay image polish */
+
+.rummy-card img {
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+}
+
+/* RC Close */
+
+/* back to top */
+
+/* BACK TO TOP FIX */
+
+.back-to-top {
+  position: fixed;
+  right: 25px;
+  bottom: 25px;
+
+  width: 45px;
+  height: 45px;
+
+  background: #4A70FA;
+  color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  font-size: 18px;
+
+  z-index: 99999; /* VERY IMPORTANT */
+
+  opacity: 0;
+  visibility: hidden;
+
+  transition: all 0.3s ease;
+}
+
+#work-section .treated-content-box p {
+  font-weight: 400 !important;
+  color: #555;
+}
+#work-section p {
+  font-weight: 400 !important;
+}
+
+/* back to top */
+/* Hover */
+
+.slider-controls .arrow:hover {
+  background: #4A70FA;
+  color: #fff;
+  transform: translateY(-2px);
+}
 
 /* Mobile */
 
@@ -402,6 +618,8 @@ SENTINEL FINAL STRUCTURE
     margin-bottom: 30px;
   }
 }
+
+
 
 @keyframes bgShift {
   0% {
