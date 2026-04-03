@@ -203,60 +203,60 @@
   <!-- WHITE SECTION -->
   <div class="sentinel-intro animate-fade">
     <div class="container text-center">
-      <h2>Execution failures don’t start as failures</h2>
+      <h2>Execution failures don’t start where you think</h2>
       <p>
-        They begin as small, unnoticed signals. Hidden dependencies between workflows, silent blockers within teams,
-        and misaligned decisions often go undetected.
-      </p>
+  They begin as small, unnoticed signals. Hidden dependencies, silent blockers, and misaligned decisions go undetected until delays are already in motion.
+  <span class="sentinel-highlight">Before teams are built. Before work begins.</span>
+</p>
     </div>
   </div>
 
-  <!-- BLUE SECTION -->
-  <div class="sentinel-bg">
-    <div class="container">
+  <div class="sentinel-slider-section animate-item">
+  <div class="container text-center">
 
-      <div class="row sentinel-main">
+    <!-- Header -->
+       <!-- Laptop Slider -->
+    <div class="sentinel-image">
 
-        <!-- LEFT SIDE (FULL HEIGHT) -->
-        <div class="col-lg-4 sentinel-left">
-          <div class="sentinel-left-inner">
-            <p class="sentinel-question">
-  What if these signals could be detected before they impact execution?
-</p>
-          </div>
-        </div>
+      <div class="sentinel-slider">
 
-        <!-- RIGHT SIDE (HEADER + IMAGE TOGETHER) -->
-        <div class="col-lg-8 sentinel-right">
-
-          <div class="sentinel-right-inner">
-
-            <!-- HEADER INSIDE RIGHT -->
-            <div class="sentinel-header animate-item">
-              <h2>Detecting hidden risks early. Guiding clear decisions.</h2>
-              <p>
-                It analyzes workflow patterns, dependencies, and team signals to surface risks before they escalate.
-              </p>
-            </div>
-
-            <!-- IMAGE -->
-            <div class="sentinel-image animate-item">
-              <img src="assets/img/sentinel-ui.png" alt="Sentinel UI">
-            </div>
-
-          </div>
-
-        </div>
+        <!-- Slides -->
+        <img src="assets/img/S1.png" class="slide active" alt="Sentinel Screen 1">
+        <img src="assets/img/S2.jpg" class="slide" alt="Sentinel Screen 2">
+        <img src="assets/img/S3.jpg" class="slide" alt="Sentinel Screen 3">
+        <img src="assets/img/S4.jpg" class="slide" alt="Sentinel Screen 4">
+        <img src="assets/img/S5.jpg" class="slide" alt="Sentinel Screen 5">
+        <img src="assets/img/S6.jpg" class="slide" alt="Sentinel Screen 6">
+        <img src="assets/img/S7.jpg" class="slide" alt="Sentinel Screen 7">
 
       </div>
 
+      <!-- Controls -->
+      <div class="slider-controls">
+
+  <span class="arrow left">&#8592;</span>
+
+  <a href="https://medium.com/@myprofile.sayantan/designing-ai-for-project-management-a-ux-approach-to-replacing-friction-3e406d5e3635?postPublishedType=repub" class="slider-cta" target="_blank">
+    Read Thinking
+  </a>
+
+  <span class="arrow right">&#8594;</span>
+
+</div>
+
     </div>
+
   </div>
+</div>
+
 
 </section>
 <!--====== Sentinel Section end ======-->
+
+
+
     <!--====== Work (Tracto) Section Start ======-->
-    <section id="work-section" class="matters-section section-gap">
+    <section id="work-section" class="matters-section section-gap" style="margin-top:40px">
         <div class="container">
             <div class="row">
                 
@@ -269,7 +269,46 @@
               
                 </div>
             </div>
+<!-- RUMMY SECTION -->
 
+    <section class="matters-section section-gap">
+        <div class="container">
+
+            <div class="row bg-blue border-round">
+                
+                 <div class="col-lg-6 col-md-6 text-left">
+                    <span class="image-round-1 mb-30"> <img src="assets/img/rummy-logo.png"> </span>
+                     <img src="assets/img/gametable.png">
+                 </div>
+
+                <div class="col-lg-6 col-md-6">
+                   <div class="right-button-box">
+                     <a href="https://medium.com/@myprofile.sayantan/improving-gameplay-clarity-in-a-real-money-rummy-platform-f82098bce5fd" target="blank" class="btn">
+						<span class="icon">
+						<img src="assets/img/Medium_Black.svg" class="icon-default">
+						<img src="assets/img/Medium_white.svg" class="icon-hover">
+						</span>Read on Medium</a>
+                   </div>
+                   <div class="flex-col-content">
+                     <div class="treated-content-box">
+                    
+                      <h3 class="pb-3"> Designing gameplay for a  real-money platform used by millions </h3>
+					  <p style="padding-bottom:10px;">Real product · Gameplay UX · High-stakes environment</p>
+                      <p>I was the sole UX designer working on the gameplay experience for a real-money platform used by millions. <br/><br/>With real money involved, even small moments of confusion could affect user trust. I focused on making gameplay decisions clearer and helping users feel in control while playing. <br/></p>
+                     </div>
+					 
+                    </div>
+					
+                </div>
+				</div>
+
+        </div>
+    </section>
+
+<!-- ====== RUMMY SECTION END ====== -->
+
+<!--Tractop Open -->
+<section class="matters-section section-gap">
             <div class="row bg-blue border-round">
                 
                 <div class="col-lg-6 col-md-6">
@@ -610,7 +649,7 @@
         </div>
       </div>
 
-<a href="#" class="back-to-top"><i class="far fa-angle-up"></i></a>
+
 
 </footer>
   <!--======Footer Section End ======-->
@@ -659,6 +698,84 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll(".sentinel-wrapper .animate-item, .sentinel-wrapper .animate-fade").forEach((el, index) => {
   observer.observe(el);
   el.style.transitionDelay = `${index * 0.3}s`;
+});
+</script>
+
+<script>
+const slides = document.querySelectorAll(".sentinel-slider .slide");
+const next = document.querySelector(".arrow.right");
+const prev = document.querySelector(".arrow.left");
+
+let current = 0;
+
+/* Show slide */
+function showSlide(index) {
+  slides.forEach((slide) => {
+    slide.classList.remove("active");
+  });
+
+  slides[index].classList.add("active");
+}
+
+/* Next slide */
+function nextSlide() {
+  current = (current + 1) % slides.length;
+  showSlide(current);
+}
+
+/* Previous slide */
+function prevSlide() {
+  current = (current - 1 + slides.length) % slides.length;
+  showSlide(current);
+}
+
+/* Auto play (5 seconds) */
+let autoSlide = setInterval(nextSlide, 5000);
+
+/* Arrow controls */
+next.addEventListener("click", () => {
+  clearInterval(autoSlide);
+  nextSlide();
+  autoSlide = setInterval(nextSlide, 5000);
+});
+
+prev.addEventListener("click", () => {
+  clearInterval(autoSlide);
+  prevSlide();
+  autoSlide = setInterval(nextSlide, 5000);
+});
+
+/* Pause on hover (very important UX) */
+const slider = document.querySelector(".sentinel-slider");
+
+slider.addEventListener("mouseenter", () => {
+  clearInterval(autoSlide);
+});
+
+slider.addEventListener("mouseleave", () => {
+  autoSlide = setInterval(nextSlide, 5000);
+});
+</script>
+
+<script>
+const backToTop = document.querySelector(".back-to-top");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTop.style.opacity = "1";
+    backToTop.style.visibility = "visible";
+  } else {
+    backToTop.style.opacity = "0";
+    backToTop.style.visibility = "hidden";
+  }
+});
+
+backToTop.addEventListener("click", function(e) {
+  e.preventDefault();
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
 });
 </script>
 </body>
