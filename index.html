@@ -229,6 +229,15 @@
     <div class="moxo-card"><img src="assets/img/story7.png"></div>
     <div class="moxo-card"><img src="assets/img/story8.png"></div>
     <div class="moxo-card"><a href="#laptop_section"><img src="assets/img/story9.png"></a></div>
+	<div class="moxo-card"><img src="assets/img/story1.png"></div>
+    <div class="moxo-card"><img src="assets/img/story2.png"></div>
+    <div class="moxo-card"><img src="assets/img/story3.png"></div>
+    <div class="moxo-card"><img src="assets/img/story4.png"></div>
+    <div class="moxo-card"><img src="assets/img/story5.png"></div>
+    <div class="moxo-card"><img src="assets/img/story6.png"></div>
+    <div class="moxo-card"><img src="assets/img/story7.png"></div>
+    <div class="moxo-card"><img src="assets/img/story8.png"></div>
+    <div class="moxo-card"><a href="#laptop_section"><img src="assets/img/story9.png"></a></div>
 
   </div>
 
@@ -696,7 +705,115 @@
 
 <script src="assets/js/storyslider.js"></script>
 
+<script type="text/javascript">
 
+$('.show-btn').hide()
+jQuery('.right-button-box-mobile-top a').on('click',function(){
+  jQuery('.show-btn').toggle();
+})
+
+</script>
+
+
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+
+      setTimeout(() => {
+        entry.target.classList.add("show");
+      }, 400);
+
+    }
+  });
+}, {
+  threshold: 0.6
+});
+
+document.querySelectorAll(".sentinel-wrapper .animate-item, .sentinel-wrapper .animate-fade").forEach((el, index) => {
+  observer.observe(el);
+  el.style.transitionDelay = `${index * 0.3}s`;
+});
+</script>
+
+<script>
+const slides = document.querySelectorAll(".sentinel-slider .slide");
+const next = document.querySelector(".arrow.right");
+const prev = document.querySelector(".arrow.left");
+
+let current = 0;
+
+/* Show slide */
+function showSlide(index) {
+  slides.forEach((slide) => {
+    slide.classList.remove("active");
+  });
+
+  slides[index].classList.add("active");
+}
+
+/* Next slide */
+function nextSlide() {
+  current = (current + 1) % slides.length;
+  showSlide(current);
+}
+
+/* Previous slide */
+function prevSlide() {
+  current = (current - 1 + slides.length) % slides.length;
+  showSlide(current);
+}
+
+/* Auto play (5 seconds) */
+let autoSlide = setInterval(nextSlide, 5000);
+
+/* Arrow controls */
+next.addEventListener("click", () => {
+  clearInterval(autoSlide);
+  nextSlide();
+  autoSlide = setInterval(nextSlide, 5000);
+});
+
+prev.addEventListener("click", () => {
+  clearInterval(autoSlide);
+  prevSlide();
+  autoSlide = setInterval(nextSlide, 5000);
+});
+
+/* Pause on hover (very important UX) */
+const slider = document.querySelector(".sentinel-slider");
+
+slider.addEventListener("mouseenter", () => {
+  clearInterval(autoSlide);
+});
+
+slider.addEventListener("mouseleave", () => {
+  autoSlide = setInterval(nextSlide, 5000);
+});
+</script>
+
+<script>
+const backToTop = document.querySelector(".back-to-top");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 300) {
+    backToTop.style.opacity = "1";
+    backToTop.style.visibility = "visible";
+  } else {
+    backToTop.style.opacity = "0";
+    backToTop.style.visibility = "hidden";
+  }
+});
+
+backToTop.addEventListener("click", function(e) {
+  e.preventDefault();
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
+</script>
 </body>
 
 </html>
