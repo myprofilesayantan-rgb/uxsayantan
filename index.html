@@ -39,6 +39,12 @@
     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
 })(window, document, "clarity", "script", "wft5af44a0");
 </script>
+  <!-- Internal user tagging -->
+<script>
+if (localStorage.getItem("isInternalUser") === "true") {
+  clarity("set", "role", "internal");
+}
+</script>
 </head>
 
 <body>
