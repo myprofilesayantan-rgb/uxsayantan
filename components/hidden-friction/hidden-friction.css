@@ -1,0 +1,225 @@
+/* ==========================================================================
+   Hidden Friction Slider — Layout & Animation
+   ========================================================================= */
+
+.friction-slider-section {
+  width: 100%;
+  padding: 60px 0; /* 60px — section container margin from consistency.png */
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.friction-slider-viewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Track: fixed height driven by JS (avoids jerk on slide change) */
+.friction-slider-track {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  /* min-height set by JS on init to the tallest slide */
+}
+
+/* ALL slides: always absolutely stacked — never change position */
+.friction-slide {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* top-aligned so caption gap is consistent */
+  box-sizing: border-box;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  /* No position switch on active — eliminates height-jump jerk */
+}
+
+.friction-slide.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* ── Container ────────────────────────────────────────────────── */
+.friction-slider-container {
+  position: relative;
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-sizing: border-box;
+}
+
+/* ── Media Wrapper — UNIFIED height: all 3 slides fill ~95%+ of this box ── */
+.slide-media-wrapper {
+  height: 360px; /* teapots fill 100%, cars fill 98%, apple fills 94% — all consistent */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+.slide-media-wrapper.double-media {
+  gap: clamp(40px, 6vw, 76px);
+}
+
+/* ── Teapot Containers ────────────────────────────────────────── */
+.teapot-container {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Base styles for slide images — teapot fills the full wrapper height */
+.slide-media-img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.45));
+}
+
+/* ALL images fill the wrapper height identically — no exceptions */
+/* Teapots: height:100% from .slide-media-img is enough               */
+/* Cars & Apple: must also fill 100% — width scales automatically     */
+.car-img,
+.apple-img {
+  height: 100%; /* same as teapots — fills the 360px wrapper */
+  width: auto;
+}
+
+/* ── Slide 1: Teapots ─────────────────────────────────────────── */
+/* Teapots use height:100% naturally — gap already from .double-media */
+
+/* Hot teapot warm-pulse animation */
+.teapot-hot {
+  position: relative;
+  z-index: 2;
+  animation: teapot-warmth 3s ease-in-out infinite;
+}
+
+@keyframes teapot-warmth {
+  0%, 100% {
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.45)) saturate(1.1) brightness(1.0);
+  }
+  50% {
+    filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.45)) saturate(1.65) brightness(1.2);
+  }
+}
+
+/* ── Slide 2: Cars ────────────────────────────────────────────── */
+/* Two 354px circles + 48px gap = 756px total — centred in 1080px container */
+.friction-slide[data-slide-index="1"] .slide-media-wrapper {
+  gap: 48px;
+}
+
+.friction-slide[data-slide-index="1"] .car-img {
+  /* height:100% already set — fills 360px wrapper like teapots
+     SVG scales to: 360px tall × (315÷316) = 358px wide — perfect circles */
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* ── Slide 3: Apple ───────────────────────────────────────────── */
+/* 1328×804 landscape → 340px height centres in the 360px wrapper with 10px gap each side */
+.friction-slide[data-slide-index="2"] .apple-img {
+  /* height:100% already set — fills 360px wrapper like teapots
+     Image scales to: 360px tall × (1328÷804) = 595px wide — centred */
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.55));
+}
+
+/* ── Caption Text ─────────────────────────────────────────────── */
+.teapot-caption-box {
+  margin-top: 0;
+  padding-top: 36px; /* consistent image-to-text gap across all slides */
+  width: 100%;
+  max-width: var(--content-max-width);
+  text-align: center;
+  z-index: 3;
+}
+
+.teapot-caption {
+  font-family: var(--font-family);
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--color-text-white);
+  text-align: center;
+  margin: 0;
+}
+
+.teapot-caption .highlight-red {
+  color: var(--color-text-red);
+}
+
+/* ── Pagination Dots ──────────────────────────────────────────── */
+.teapot-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 24px; /* 24px — extra small gap from consistency.png */
+  z-index: 3;
+  /* Padding at the bottom of the fixed-height track */
+  padding-bottom: 4px;
+}
+
+.pagination-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.pagination-dot.active {
+  background-color: var(--color-primary-blue);
+  transform: scale(1.2);
+}
+
+/* ── Responsive ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .friction-slider-section {
+    padding: 60px 0;
+  }
+
+  /* All slides: same height on mobile — images fill 100% of wrapper automatically */
+  .slide-media-wrapper { height: 160px; }
+
+  .friction-slide[data-slide-index="1"] .slide-media-wrapper { gap: 16px; }
+
+  .teapot-caption-box {
+    padding-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .teapot-caption {
+    font-size: 20px;
+    line-height: 1.35;
+  }
+}

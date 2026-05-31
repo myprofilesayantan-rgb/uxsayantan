@@ -1,0 +1,198 @@
+/* Collapsible About Section Styles */
+
+.about-section {
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 90; /* Sits underneath sticky header links but above main page content */
+  will-change: height;
+  transition: height 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.about-wrapper {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--side-padding-fluid);
+  padding-top: calc(var(--header-height, 80px) + var(--gap-section)); /* Extra top padding to clear sticky header links */
+  padding-bottom: var(--gap-section);
+  box-sizing: border-box;
+}
+
+/* Two-column layout grid */
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) 2.2fr;
+  gap: var(--gap-component);
+  align-items: start;
+}
+
+/* Left Column Styling */
+.about-left-col {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Rounded Card Container */
+.about-card {
+  background-color: #f6f6f4;
+  border-radius: 16px;
+  padding: var(--gap-element);
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap-element);
+}
+
+/* Individual Card Items */
+.about-card-item {
+  display: flex;
+  align-items: start;
+  gap: var(--gap-micro);
+}
+
+.about-card-icon {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  color: #151512;
+  margin-top: 2px;
+}
+
+.about-card-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.about-card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-item-title {
+  font-family: var(--font-family);
+  font-size: 18px;
+  font-weight: 500; /* Medium weight */
+  color: #151512; /* Dark website BG color */
+  margin-bottom: 6px;
+  letter-spacing: -0.01em;
+}
+
+.card-item-desc {
+  font-family: var(--font-family);
+  font-size: 16px; /* Details at 16px */
+  font-weight: 400;
+  line-height: 1.45;
+  color: #5d5d5a;
+}
+
+/* Contact Details box underneath the card */
+.about-contact-box {
+  margin-top: var(--gap-element);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding-left: 4px;
+}
+
+.about-contact-item {
+  font-family: var(--font-family);
+  font-size: 16px; /* Contact text at 16px */
+  font-weight: 500;
+  color: #151512; /* Dark website BG color */
+  letter-spacing: -0.01em;
+}
+
+.about-contact-item a.contact-link {
+  color: #151512; /* Dark website BG color */
+  text-decoration: underline;
+  transition: color 0.3s ease;
+}
+
+.about-contact-item a.contact-link:hover {
+  color: var(--color-primary-blue);
+}
+
+/* Right Column: High-impact editorial paragraph */
+.about-right-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.about-editorial-text {
+  font-family: var(--font-family);
+  font-size: clamp(18px, 2.6vw, 30px); /* Reduced by 6px (capping at 30px on desktop) */
+  font-weight: 400;
+  line-height: 1.4;
+  color: #52524B;
+  letter-spacing: -0.02em; /* -2% letter spacing */
+  margin: 0;
+}
+
+/* ── Active State Header Link Toggles ───────────────────────────────────── */
+
+/* Add smooth transition to the header's background mask */
+#section-header::before {
+  transition: background 0.5s ease, backdrop-filter 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* When the About panel is open, header transitions to white theme */
+body.about-open #section-header::before {
+  background: rgba(255, 255, 255, 0.98) !important;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05); /* Subtle bottom divider line */
+}
+
+/* Navigation link states in white-theme header */
+body.about-open .header-logo,
+body.about-open .header-phone {
+  color: #151512 !important; /* Brand logo and phone link become dark */
+}
+
+body.about-open .header-phone:hover {
+  color: #151512 !important;
+}
+
+body.about-open .header-link {
+  color: #151512 !important; /* Default dark color for links on white backdrop */
+}
+
+body.about-open .header-link:hover {
+  color: #151512 !important; /* Remains dark on hover */
+}
+
+body.about-open .header-link::after,
+body.about-open .header-phone::after {
+  background-color: #151512 !important; /* Dark hover underline indicator */
+}
+
+/* The active 'About' link remains dark and underline expanded */
+body.about-open .header-link[href="#about"]::after {
+  transform: translateX(-50%) scaleX(1) !important;
+}
+
+/* ── Mobile Layout Adjustments (≤768px) ────────────────────────────────── */
+@media (max-width: 768px) {
+  .about-wrapper {
+    padding-top: calc(var(--header-height, 80px) + var(--gap-section-mobile, 40px));
+    padding-bottom: var(--gap-section-mobile, 40px);
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr; /* Single column stack */
+    gap: var(--gap-component-mobile, 40px);
+  }
+
+  .about-card {
+    padding: var(--gap-element-mobile, 24px);
+    gap: var(--gap-element-mobile, 24px);
+  }
+
+  .about-contact-box {
+    margin-top: var(--gap-element-mobile, 24px);
+  }
+
+  .about-editorial-text {
+    line-height: 1.35;
+  }
+}

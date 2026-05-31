@@ -1,0 +1,187 @@
+/* Scoped Credibility Logos Styles */
+
+.logos-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 75px;
+  width: 100%;
+  padding: 0; /* section-container owns the vertical gap — do not add top/bottom here */
+}
+
+/* Solo logos and combined blocks alignment */
+.logo-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0; /* Animated by GSAP on load with stagger */
+}
+
+.logo-group.solo {
+  align-self: flex-end;
+  padding-bottom: 3px; /* Statically align solos with bottom of combined logo text */
+}
+
+.logo-group.combined {
+  align-items: center;
+  position: relative;
+  padding-top: 2.2rem; /* Make room for the absolutely positioned label */
+}
+
+/* Header label above combined groups */
+.group-label {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  font-family: var(--font-family);
+  font-size: 0.62rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.35);
+  letter-spacing: 0.08em;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Thin dividing line under text */
+  width: max-content;
+  text-align: center;
+}
+
+.group-logos {
+  display: flex;
+  align-items: center;
+  gap: clamp(1.8rem, 4vw, 2.5rem); /* Increased spacing inside the logo groups */
+}
+
+/* Scoped logo list container item */
+.logo-item {
+  position: relative;
+  display: inline-flex;
+  height: clamp(30px, 4.4vw, 35px); /* Increased size by 25% to scale 2x assets */
+  cursor: pointer;
+}
+
+.logo-img {
+  height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Transition setup: cross-fade between B&W and color states on hover */
+.logo-img.bw {
+  position: relative;
+  z-index: 1;
+  opacity: 0.75;
+  transition: opacity 0.35s ease;
+}
+
+.logo-img.color {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+/* Hover behaviors */
+.logo-item:hover .logo-img.bw {
+  opacity: 0;
+}
+
+.logo-item:hover .logo-img.color {
+  opacity: 1;
+}
+
+/* Logo widths are auto-calculated by the browser based on their image aspect ratios at the set height */
+
+/* Centered Mouse Scroll Indicator Component */
+.scroll-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2.5rem 0;
+  opacity: 0; /* Animated by GSAP on load */
+}
+
+.scroll-icon {
+  width: 24px;
+  height: auto;
+  animation: scroll-icon-bounce 2s ease-in-out infinite;
+}
+
+/* Soft breathing bounce micro-animation for the scroll icon */
+@keyframes scroll-icon-bounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 0.8;
+  }
+}
+
+/* Layout adaptation for small screens */
+@media (max-width: 768px) {
+  .logos-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    touch-action: pan-x; /* Explicitly enable touch panning/swipe scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth touch inertia scrolling on iOS */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    gap: 40px; /* Uniform horizontal gap on scroll track */
+    margin-left: calc(-1 * var(--side-padding-fluid)); /* Shift to left screen edge */
+    padding-left: var(--side-padding-fluid); /* Align starting item with text grid */
+    padding-right: var(--side-padding-fluid); /* Allow padding at scroll end */
+    width: 100vw; /* Hard limit container width to viewport to force inner scrolling */
+  }
+
+  .logos-wrapper::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for Chrome/Safari */
+  }
+
+  .logo-group {
+    flex-shrink: 0; /* Prevent logos from compressing horizontally on scroll track */
+  }
+
+  .logo-group.solo {
+    align-self: flex-end;
+  }
+}
+
+/* Height-based media queries for compact viewports (Desktop only) */
+@media screen and (min-width: 769px) and (max-height: 850px) {
+  .scroll-indicator {
+    padding: 1.25rem 0;
+  }
+  .logos-wrapper {
+    gap: 45px;
+  }
+  .logo-item {
+    height: 28px;
+  }
+  .logo-group.combined {
+    padding-top: 1.8rem;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-height: 720px) {
+  .scroll-indicator {
+    padding: 0.75rem 0;
+  }
+  .logos-wrapper {
+    gap: 30px;
+  }
+  .logo-item {
+    height: 23px;
+  }
+  .logo-group.combined {
+    padding-top: 1.4rem;
+  }
+}

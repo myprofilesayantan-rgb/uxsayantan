@@ -1,0 +1,206 @@
+/* Scoped Hero Component Styles */
+
+.hero-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 100%;
+  padding: 0; /* section-container owns the vertical gap — do not add top/bottom here */
+}
+
+.hero-main-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: clamp(1.5rem, 4vw, 2.5rem); /* Fluid spacing between avatar and content */
+  width: 100%;
+}
+
+/* Avatar container & scaling (handling 2x high-density PNG asset) */
+.hero-avatar-box {
+  flex: 0 0 auto;
+  width: clamp(70px, 8vw, 90px); /* Responsive sizing for avatar */
+}
+
+.hero-avatar {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  opacity: 0; /* Animated by GSAP on load */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Content block with fluid typography */
+.hero-content {
+  flex: 1 1 280px; /* Intrinsic responsiveness - wrap when width drops below 280px */
+  max-width: 820px; /* Align text layout with design mockup proportions */
+}
+
+.hero-heading {
+  font-family: var(--font-family);
+  font-size: clamp(1.5rem, 3.8vw, 2.35rem); /* Beautiful fluid typography sizing */
+  font-weight: 400; /* Clean, light weight matching mockup */
+  line-height: 1.45;
+  color: var(--color-text-white);
+  letter-spacing: -0.01em;
+  margin: 0;
+  opacity: 0; /* Animated by GSAP on load */
+}
+
+/* Signature block (handling 2x PNG asset) */
+.hero-signature-box {
+  margin-top: clamp(1.2rem, 3vh, 2rem);
+  opacity: 0; /* Animated by GSAP on load */
+}
+
+.hero-signature {
+  width: 100%;
+  max-width: clamp(140px, 15vw, 175px); /* Programmatic scale limit for signature */
+  height: auto;
+  display: block;
+}
+
+/* Call to Action Button Row — holds primary CTA + Download CV side by side */
+.hero-cta-box {
+  margin-top: clamp(2rem, 4.5vh, 2.8rem);
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0; /* Animated by GSAP on load */
+}
+
+/* Subtle breathing glow at rest — draws attention without distracting */
+@keyframes cta-breathe {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(90, 164, 249, 0.0),  0 0 0 0 rgba(90, 164, 249, 0.0); }
+  50%       { box-shadow: 0 0 14px 2px rgba(90, 164, 249, 0.22), 0 0 0 0 rgba(90, 164, 249, 0.0); }
+}
+
+/* Shimmer sweep — left to right on hover */
+@keyframes cta-shimmer {
+  0%   { left: -100%; }
+  100% { left: 160%;  }
+}
+
+.hero-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1.1rem 2.8rem;
+  font-size: clamp(1.1rem, 2.5vw, 1.3rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: 3rem;
+  position: relative;
+  overflow: hidden;
+  animation: cta-breathe 3.5s ease-in-out infinite;
+  transition: background-color 0.4s ease, color 0.4s ease,
+              box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+/* Shimmer layer */
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    105deg,
+    transparent 20%,
+    rgba(255, 255, 255, 0.18) 50%,
+    transparent 80%
+  );
+  pointer-events: none;
+}
+
+.hero-cta:hover {
+  background-color: var(--color-primary-blue);
+  color: var(--color-bg-dark);
+  border-color: var(--color-primary-blue);
+  box-shadow: 0 0 28px rgba(90, 164, 249, 0.5), 0 6px 20px rgba(90, 164, 249, 0.25);
+  animation: none;
+}
+
+.hero-cta:hover::before {
+  animation: cta-shimmer 0.65s ease forwards;
+}
+
+.hero-cta-arrow {
+  font-size: 1.25em;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.hero-cta:hover .hero-cta-arrow {
+  transform: translateY(4px);
+}
+
+/* Download CV — secondary ghost button */
+.hero-cv-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1.1rem 2rem;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  border-radius: 3rem;
+  color: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: transparent;
+  text-decoration: none;
+  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+.hero-cv-btn:hover {
+  color: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 255, 255, 0.32);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/* Typing cursor styling */
+.hero-cursor {
+  color: var(--color-primary-blue);
+  font-weight: 300;
+  margin-left: 4px;
+}
+
+/* Height-based media queries for compact viewports */
+@media screen and (min-width: 769px) and (max-height: 850px) {
+  .hero-heading {
+    font-size: clamp(1.4rem, 3.2vw, 2.1rem);
+  }
+  .hero-signature-box {
+    margin-top: 1rem;
+  }
+  .hero-cta-box {
+    margin-top: 1.8rem;
+  }
+  .hero-avatar-box {
+    width: 75px;
+  }
+}
+
+@media screen and (min-width: 769px) and (max-height: 720px) {
+  .hero-heading {
+    font-size: clamp(1.2rem, 2.8vw, 1.8rem);
+    line-height: 1.4;
+  }
+  .hero-signature-box {
+    margin-top: 0.75rem;
+  }
+  .hero-cta-box {
+    margin-top: 1.2rem;
+  }
+  .hero-avatar-box {
+    width: 65px;
+  }
+}

@@ -1,0 +1,139 @@
+/* Scoped Header & Navigation Styles */
+
+.header-nav {
+  display: flex;
+  justify-content: space-between; /* Brand on left, phone on right */
+  align-items: center;
+  width: 100%;
+  max-width: var(--content-max-width, 1080px); /* 1080px container constraint */
+  margin: 0 auto; /* Centered in viewport */
+  padding: 0 var(--side-padding-fluid); /* Side paddings aligning with content wrapper */
+  height: var(--header-height, 80px);
+  position: relative;
+  z-index: 10;
+}
+
+/* Left Brand Name Logo styling */
+.header-logo {
+  font-family: var(--font-family);
+  font-size: clamp(1.1rem, 2.5vw, 1.25rem); /* Responsive fluid logo sizing */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #DED5D5; /* Index off-white theme default */
+  text-decoration: none;
+  opacity: 0; /* Managed by GSAP staggered entrance on load */
+  transition: opacity 0.3s ease, color 0.3s ease;
+}
+
+.header-logo:hover {
+  opacity: 0.85;
+}
+
+/* Center Links Wrapper (True absolute horizontal centering on desktop) */
+@media (min-width: 769px) {
+  .header-links {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: clamp(1.2rem, 3.5vw, 2.2rem); /* Responsive spacing between navigation anchors */
+  }
+}
+
+@media (max-width: 768px) {
+  .header-links {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.8rem, 2vw, 1.5rem);
+  }
+}
+
+/* Navigation anchors styling */
+.header-link {
+  font-family: var(--font-family);
+  font-size: clamp(0.9rem, 2.2vw, 1.02rem); /* Fluid responsive font sizing */
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #DED5D5; /* Index off-white theme default */
+  text-transform: capitalize;
+  text-decoration: none;
+  opacity: 0; /* Managed by GSAP staggered entrance on load */
+  transition: color 0.3s ease;
+  position: relative;
+  padding: 0.5rem 0;
+}
+
+/* Text color remains #DED5D5 on hover - just micro-animation underline triggers */
+.header-link:hover {
+  color: #DED5D5;
+}
+
+/* Subtle micro-animation underline transition on hover */
+.header-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 100%;
+  height: 1px;
+  background-color: #DED5D5; /* Underline matches the text color */
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+.header-link:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+/* Right Phone Link styling */
+.header-phone {
+  font-family: var(--font-family);
+  font-size: clamp(0.9rem, 2.2vw, 1.02rem); /* Fluid responsive font sizing */
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: #DED5D5; /* Index off-white theme default */
+  text-decoration: none;
+  opacity: 0; /* Managed by GSAP staggered entrance on load */
+  transition: color 0.3s ease;
+  position: relative;
+  padding: 0.5rem 0;
+  display: flex;
+  align-items: center; /* Flex-align receiver icon and text */
+  gap: 6px;
+}
+
+.header-phone:hover {
+  color: #DED5D5;
+}
+
+/* Phone SVG Icon specific properties */
+.header-phone .phone-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  stroke: currentColor;
+  stroke-width: 2.2px;
+  display: block;
+}
+
+/* Subtle micro-animation underline transition on hover for phone */
+.header-phone::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%) scaleX(0);
+  width: 100%;
+  height: 1px;
+  background-color: #DED5D5;
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+.header-phone:hover::after {
+  transform: translateX(-50%) scaleX(1);
+}
+
+

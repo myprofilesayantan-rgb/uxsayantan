@@ -1,0 +1,43 @@
+/* Scoped Scrolling Marquee Component Styles */
+
+.marquee-wrapper {
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding: 0; /* section-container owns the vertical gap — do not add top/bottom here */
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+
+  -webkit-mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) clamp(30px, 6vw, 80px));
+  mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) clamp(30px, 6vw, 80px));
+}
+
+.marquee-track {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+  will-change: transform;
+  align-items: center;
+}
+
+.marquee-item {
+  font-family: var(--font-family);
+  font-size: clamp(2rem, 10vw, 128px); /* Fluid size: exactly 10vw at 1280px screen width (128px), clamping at 128px */
+  font-weight: 900; /* Black weight as specified in Figma screen capture */
+  color: var(--color-text-gray); /* Sleek HSL-muted gray #AA9D9D */
+  white-space: pre-wrap; /* Preserves double-space formatting */
+  letter-spacing: 0; /* Normal letter spacing as specified in Figma (0%) */
+  line-height: 1.1; /* Auto line-height representation */
+  flex-shrink: 0;
+  padding-right: clamp(4rem, 10vw, 8rem); /* Spacing gap between repetitions */
+}
+
+/* Specific red highlight color for the problem word only */
+.marquee-item .highlight {
+  color: var(--color-text-red); /* High-contrast red #ED2121 */
+  font-weight: 900;
+  display: inline-block;
+  position: relative;
+}

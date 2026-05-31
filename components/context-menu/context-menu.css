@@ -1,0 +1,75 @@
+/* ==========================================================================
+   Apple-Style Custom Context Menu
+   ========================================================================= */
+
+.apple-context-menu {
+  display: none;
+  position: absolute;
+  min-width: 195px;
+  background-color: rgba(30, 30, 30, 0.72); /* macOS Ventura Dark Glass */
+  backdrop-filter: blur(20px) saturate(185%);
+  -webkit-backdrop-filter: blur(20px) saturate(185%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 6px;
+  z-index: 99999;
+  box-sizing: border-box;
+  user-select: none;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro", "Helvetica Neue", sans-serif;
+  transform-origin: top left;
+  will-change: transform, opacity;
+}
+
+.context-menu-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5px;
+}
+
+.context-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 11px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 13px;
+  font-weight: 400;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.1s ease, color 0.1s ease;
+  box-sizing: border-box;
+}
+
+/* Accent highlight color matching macOS active selection */
+.context-menu-item:hover {
+  background-color: #007AFF; /* macOS Blue */
+  color: #ffffff;
+}
+
+.context-menu-item:active {
+  background-color: #0062CC;
+}
+
+.menu-icon {
+  font-size: 13px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  opacity: 0.85;
+}
+
+.context-menu-item:hover .menu-icon {
+  opacity: 1;
+}
+
+.context-menu-divider {
+  height: 1px;
+  background-color: rgba(255, 255, 255, 0.08);
+  margin: 5px 6px;
+}
