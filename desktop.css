@@ -1,0 +1,207 @@
+/* Desktop‑first stylesheet – baseline layout */
+@import url('tokens.css');
+
+/* Reset & base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  color: var(--color-text-gray);
+  background-color: var(--color-bg-dark);
+  overflow-x: hidden;
+  scroll-behavior: smooth; /* Enable smooth scrolling globally */
+}
+
+body {
+  background-color: var(--color-bg-dark);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Main app container */
+#app {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--side-padding-fluid);
+  position: relative;
+  z-index: 2; /* Sits above background grid lines */
+}
+
+/* ── Equal section gap rule ─────────────────────────────────────────────
+   Every content section gets the same vertical breathing room.
+   Individual component wrappers should NOT add their own top/bottom padding
+   on top of this — they control only their internal layout spacing.
+   ────────────────────────────────────────────────────────────────────── */
+.section-container {
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+}
+
+/* Exception: hidden-friction is LOCKED.
+   Its inner .friction-slider-section already owns padding: 80px 0.
+   We zero out the section-container padding to avoid double-spacing.  */
+#section-featured {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .section-container {
+    padding-top: var(--section-gap-mobile);
+    padding-bottom: var(--section-gap-mobile);
+  }
+  #section-featured {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+
+/* Fluid typography defaults */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--color-text-white);
+  font-weight: 600;
+}
+
+h1 { font-size: clamp(2rem, 5.5vw, 4.5rem); }
+h2 { font-size: clamp(1.5rem, 4vw, 3rem); }
+
+/* Global helper classes */
+.text-center { text-align: center; }
+.mt-1 { margin-top: 0.5rem; }
+.mt-2 { margin-top: 1rem; }
+.mt-4 { margin-top: 2rem; }
+.mb-4 { margin-bottom: 2rem; }
+
+/* Default buttons & links using primary blue */
+a {
+  color: var(--color-primary-blue);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  background-color: transparent;
+  color: var(--color-primary-blue);
+  border: 1px solid var(--color-primary-blue);
+  border-radius: 2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-blue);
+  color: var(--color-bg-dark);
+}
+
+/* Lazy loading image transition support */
+img.lazy-load {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  will-change: opacity;
+}
+
+img.lazy-load.lazy-loaded {
+  opacity: 1;
+}
+
+/* Sticky top navigation layout - 100% wide, fully transparent and borderless */
+#section-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+  background: transparent;
+}
+
+#section-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px; /* extends below the header to create a smooth fade transition */
+  background: linear-gradient(
+    to bottom,
+    rgba(21, 21, 18, 0.95) 0%,
+    rgba(21, 21, 18, 0.85) var(--header-height, 80px),
+    rgba(21, 21, 18, 0) 100%
+  );
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  pointer-events: none; /* click and scroll through the overlay */
+  z-index: -1; /* sits behind links but above scrolling page contents */
+}
+
+/* Above the fold layout constraints to fit hero and logos in 100vh/100dvh (excluding sticky header) without scroll */
+@media (min-width: 769px) {
+  .above-fold-container {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - var(--header-height, 80px));
+    height: calc(100dvh - var(--header-height, 80px));
+    justify-content: space-between;
+    gap: clamp(1rem, 3vh, 2.5rem); /* Guarantees hero and logos never touch on small viewport heights */
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .above-fold-container .section-container {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  .above-fold-container #section-hero {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .above-fold-container {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - var(--header-height, 80px));
+    min-height: calc(100dvh - var(--header-height, 80px));
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+  }
+  
+  .above-fold-container .section-container {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  
+  .above-fold-container #section-hero {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    width: 100%;
+  }
+}
+
+/* Hidden Friction SVG Image initial state for scroll-triggered entrance */
+#section-hidden-friction-image img {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+
+

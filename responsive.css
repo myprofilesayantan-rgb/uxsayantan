@@ -1,0 +1,14 @@
+/* Responsive overrides – minimal, applied after desktop.css */
+
+/* Fluid typography already handled in desktop.css via clamp() */
+
+/* Example media query as last resort (optional) */
+@media (max-width: 768px) {
+  #app {
+    padding: 1rem;
+    gap: 1rem;
+  }
+  .header {
+    padding: 0.75rem 1rem;
+  }
+}

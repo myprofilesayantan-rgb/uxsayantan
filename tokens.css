@@ -1,0 +1,81 @@
+/* Design Tokens & Theme Variables */
+:root {
+  /* Colors */
+  --color-bg-dark: #151512;
+  --color-bg-light: #ffffff;
+  --color-primary-blue: #5AA4F9;
+  --color-text-gray: #AA9D9D;
+  --color-text-red: #ED2121;
+  --color-text-white: #ffffff;
+  --color-text-dark: #1e1e1e;
+
+  /* Typography */
+  --font-family: 'SF Pro', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  --font-size-base: 16px;
+  
+  /* Sizing Constraints (based on 1080px work area in 1280px total width) */
+  --container-max-width: 1280px;
+  --content-max-width: 1080px;
+  --side-padding: 100px;
+  --side-padding-fluid: clamp(1rem, 7.8vw, 100px); /* Responsive scaling from 100px at 1280px to 16px on mobile */
+
+  /* Background Grid Lines */
+  --grid-line-color: rgba(255, 255, 255, 0.05);
+
+  /* Section Spacing — equal vertical gap above and below every content section */
+  --section-gap: 60px;          /* desktop default — from consistency.png reference */
+  --section-gap-mobile: 40px;   /* ≤768px          */
+  --header-height: 80px;        /* navigation block height */
+
+  /* ── Spacing Design System (consistency.png — Section 7 of rules.md) ──────
+     These four tokens are the backbone of all layout spacing.
+     Apply them to every component. Never use 3-digit px values for spacing.
+     ──────────────────────────────────────────────────────────────────────── */
+  --gap-section:    60px;   /* 🟠 Section container top & bottom padding (each side) */
+  --gap-component:  60px;   /* 🔵 Between major components / objects within a section */
+  --gap-element:    36px;   /* 🟢 Between related elements (heading→tabs, image→caption) */
+  --gap-micro:      24px;   /* 🟣 Between tightly paired elements (eyebrow→sub-label, caption→dots) */
+}
+
+/* Background Texture Lines */
+.bg-grid-lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(24, 1fr); /* Equal gap between each vertical line */
+  pointer-events: none;
+  z-index: 1;
+  
+  /* Fade out at the bottom */
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+}
+
+.bg-grid-line {
+  width: 1px;
+  height: 100%;
+  /* Brighter white grid line with a more distinct moving blue sweep */
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.06) 35%,
+    rgba(90, 164, 249, 0.45) 50%,
+    rgba(255, 255, 255, 0.06) 65%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  background-size: 100% 200%;
+  background-repeat: no-repeat;
+  animation: grid-light-sweep 12s ease-in-out infinite;
+}
+
+@keyframes grid-light-sweep {
+  0% {
+    background-position: 0% -100%;
+  }
+  50%, 100% {
+    background-position: 0% 200%;
+  }
+}
