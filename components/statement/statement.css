@@ -7,66 +7,6 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  position: relative; /* Contain absolute background elements */
-  overflow: hidden; /* Prevent bleed of soft aurora glow */
-}
-
-/* Ambient Aurora Glow Backplate (Uses Blue & Green site palette) */
-.statement-aurora-glow {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 480px;
-  height: 280px;
-  background: radial-gradient(
-    circle,
-    rgba(90, 164, 249, 0.16) 0%,
-    rgba(126, 242, 157, 0.06) 50%,
-    rgba(21, 21, 18, 0) 70%
-  );
-  filter: blur(90px);
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0;
-  transition: opacity 2.5s cubic-bezier(0.25, 1, 0.5, 1);
-  animation: statementAuroraPulse 9s ease-in-out infinite alternate;
-}
-
-/* When component becomes active in viewport, bloom the background ambient light */
-.component-statement.active .statement-aurora-glow {
-  opacity: 1;
-}
-
-@keyframes statementAuroraPulse {
-  0% {
-    transform: translate(-50%, -50%) scale(0.9) rotate(0deg);
-    background: radial-gradient(
-      circle,
-      rgba(90, 164, 249, 0.18) 0%,
-      rgba(126, 242, 157, 0.05) 55%,
-      rgba(21, 21, 18, 0) 70%
-    );
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.1) rotate(45deg);
-    background: radial-gradient(
-      circle,
-      rgba(126, 242, 157, 0.16) 0%,
-      rgba(90, 164, 249, 0.06) 55%,
-      rgba(21, 21, 18, 0) 70%
-    );
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(0.9) rotate(90deg);
-    background: radial-gradient(
-      circle,
-      rgba(90, 164, 249, 0.14) 0%,
-      rgba(126, 242, 157, 0.10) 55%,
-      rgba(21, 21, 18, 0) 70%
-    );
-  }
 }
 
 .statement-wrapper {
@@ -79,8 +19,6 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: relative;
-  z-index: 1; /* Sit above the aurora glow */
 }
 
 /* Container to prevent height jumping during typewriting */
@@ -100,74 +38,7 @@
   display: inline;
   white-space: pre-line; /* Honors newlines */
   letter-spacing: -0.02em;
-
-  /* Premium Shifting Gradient from Site Palette:
-     Warm Silver (#DED5D5) -> Primary Blue (#5AA4F9) -> Healthcare Green (#7EF29D) */
-  background: linear-gradient(
-    90deg,
-    #DED5D5 0%,
-    #DED5D5 20%,
-    #5AA4F9 45%,
-    #7EF29D 65%,
-    #5AA4F9 85%,
-    #DED5D5 100%
-  );
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  
-  /* Fallback defaults before states are bound by JS */
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  
-  /* Highly fluid cubic bezier for high-end text color bloom */
-  transition: -webkit-text-fill-color 1.5s cubic-bezier(0.25, 1, 0.5, 1),
-              color 1.5s cubic-bezier(0.25, 1, 0.5, 1),
-              filter 1.5s cubic-bezier(0.25, 1, 0.5, 1);
-
-  filter: drop-shadow(0 0 15px rgba(90, 164, 249, 0.15));
-}
-
-/* 1. TYPING STATE: Hot, laser-etched neon white character fill */
-.statement-heading.is-typing {
-  -webkit-text-fill-color: #ffffff;
-  color: #ffffff;
-  /* Strong high-energy emission glow while typing */
-  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.95)) 
-          drop-shadow(0 0 4px var(--color-primary-blue, #5AA4F9));
-}
-
-/* 2. COMPLETED STATE: Dissolves hot white fill to bloom full site gradient flow */
-.statement-heading.is-completed {
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  animation: statementGradientFlow 10s ease infinite, statementGlowPulse 6s ease-in-out infinite alternate;
-}
-
-@keyframes statementGradientFlow {
-  0% {
-    background-position: 0% center;
-  }
-  50% {
-    background-position: 100% center;
-  }
-  100% {
-    background-position: 0% center;
-  }
-}
-
-/* Ambient dynamic text glow breathing cycle */
-@keyframes statementGlowPulse {
-  0% {
-    filter: drop-shadow(0 0 8px rgba(90, 164, 249, 0.22));
-  }
-  50% {
-    filter: drop-shadow(0 0 22px rgba(126, 242, 157, 0.42)) 
-            drop-shadow(0 0 4px rgba(90, 164, 249, 0.25));
-  }
-  100% {
-    filter: drop-shadow(0 0 12px rgba(90, 164, 249, 0.32));
-  }
+  color: #DED5D5; /* Clean solid warm silver off-white (site palette) */
 }
 
 /* Blinking Typewriter Cursor */

@@ -41,16 +41,6 @@ window.PortfolioStatement = {
   startTyping() {
     this.currentIndex = 0;
     this.textElement.innerHTML = "";
-    
-    // Add typing state for hot white laser glow effect
-    this.textElement.classList.remove('is-completed');
-    this.textElement.classList.add('is-typing');
-    
-    // Activate component state to smoothly trigger background aurora glow
-    if (this.container) {
-      this.container.classList.add('active');
-    }
-    
     this.typeNextCharacter();
   },
 
@@ -70,11 +60,7 @@ window.PortfolioStatement = {
         this.typeNextCharacter();
       }, this.typingSpeed);
     } else {
-      // ── Typing Complete: Release Laser Glow to bloom the Site Gradient ──
-      this.textElement.classList.remove('is-typing');
-      this.textElement.classList.add('is-completed');
-
-      // Polished Cursor Fade-out
+      // ── Typing Complete: Polished Cursor Fade-out ───────────────────────
       setTimeout(() => {
         if (this.cursorElement) {
           this.cursorElement.style.opacity = '0';
