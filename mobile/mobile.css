@@ -1089,14 +1089,15 @@ body, html {
    ========================================================================== */
 .ai-chat-input-wrapper {
   width: 100%;
-  height: 156px; /* Fixed height matching the reference card aspect ratio */
-  min-height: 156px;
+  height: 150px; /* Fixed height matching the reference card aspect ratio */
+  min-height: 150px;
+  flex-shrink: 0; /* CRITICAL: Prevent Flexbox squishing on mobile viewports */
   background: rgba(26, 26, 25, 0.96) !important; /* Deep luxury dark charcoal */
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px; /* Generous rounded corners matching reference */
-  padding: 18px 18px 16px 20px; /* Ergonomic card margins */
+  padding: 20px 20px 16px 20px; /* Spacious card padding */
   box-sizing: border-box;
   margin-bottom: 12px;
   z-index: 10;
@@ -1135,8 +1136,8 @@ body, html {
 /* 🏷️ Custom Rich HTML Placeholder Overlay styles */
 .ai-chat-input-placeholder {
   position: absolute;
-  top: 18px;
-  left: 20px;
+  top: 20px; /* In sync with wrapper top padding */
+  left: 20px; /* In sync with wrapper left padding */
   right: 20px;
   pointer-events: none;
   z-index: 1; /* Sits exactly behind text space */
