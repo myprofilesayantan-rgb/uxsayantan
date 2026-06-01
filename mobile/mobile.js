@@ -68,13 +68,23 @@ window.MobileAiAssistant = {
     this.chatThread = container.querySelector('#ai-chat-thread');
     this.chatInputWrapper = container.querySelector('#ai-chat-input-wrapper');
 
-    // Bind Chat send button and enter keypress
+    // Bind Chat send button, keydown, and auto-grow height
     if (this.chatSend && this.chatInput) {
       this.chatSend.addEventListener('click', () => this.handleChatSubmit());
-      this.chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
+      
+      // Submit on Enter key (unless Shift is pressed for multiline typing)
+      this.chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && !e.shiftKey) {
+          e.preventDefault(); // Stop default newline insertion
           this.handleChatSubmit();
         }
+      });
+
+      // Auto-grow textarea height dynamically
+      this.chatInput.addEventListener('input', () => {
+        this.chatInput.style.height = '24px'; // Reset to baseline height
+        const newHeight = Math.min(this.chatInput.scrollHeight - 8, 120); // Cap scroll height padding
+        this.chatInput.style.height = newHeight + 'px';
       });
     }
 
@@ -175,8 +185,9 @@ window.MobileAiAssistant = {
     const text = this.chatInput.value.trim();
     if (!text) return;
 
-    // 1. Clear input field
+    // 1. Clear input field and reset its auto-grow height
     this.chatInput.value = '';
+    this.chatInput.style.height = '24px';
 
     // 2. Add User message bubble to viewport
     this.addChatBubble('user', text);

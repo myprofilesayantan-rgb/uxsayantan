@@ -684,6 +684,8 @@ body, html {
 /* ── 📱 Responsive Bezel-Bypass for All Mobile & Android Screens ── */
 @media (max-width: 767px) {
   body, html {
+    display: block !important;
+    position: fixed !important;
     align-items: stretch;
   }
   
@@ -1088,13 +1090,13 @@ body, html {
 .ai-chat-input-wrapper {
   width: 100%;
   display: flex;
-  align-items: center;
+  align-items: flex-end; /* Align elements to the bottom like ChatGPT */
   background: rgba(22, 22, 22, 0.92);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 28px;
-  padding: 4px 6px 4px 16px;
+  border-radius: 20px; /* ChatGPT style rounded box instead of capsule pill */
+  padding: 10px 10px 10px 16px; /* spacious taller padding */
   box-sizing: border-box;
   margin-bottom: 12px;
   z-index: 10;
@@ -1115,8 +1117,14 @@ body, html {
   outline: none;
   color: #ffffff;
   font-family: var(--font-family);
-  font-size: 0.86rem;
-  padding: 8px 0;
+  font-size: 0.92rem;
+  padding: 4px 0;
+  resize: none; /* Disable manual drag-resizing */
+  height: 24px; /* Set baseline row height */
+  max-height: 120px; /* Cap maximum auto-grow height */
+  line-height: 1.4;
+  margin-right: 10px;
+  overflow-y: auto;
 }
 
 #ai-chat-input::placeholder {
@@ -1239,6 +1247,8 @@ body, html {
 /* 2. Real Mobile Screen Breakpoint Overrides (True standalone borderless viewport) */
 @media (max-width: 768px) {
   body, html {
+    display: block !important; /* Override flexbox centering on real mobile */
+    position: fixed !important; /* Lock the viewport layout to prevent iOS Safari keyboard scrolling shifts */
     width: 100%;
     height: 100%;
     min-height: 100dvh;
@@ -1277,7 +1287,7 @@ body, html {
    🍔 Modern Premium Navigation Menu Overlay (Phase 13)
    ======================================================================= */
 .ai-menu-overlay {
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
@@ -1288,6 +1298,8 @@ body, html {
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s;
+  border-radius: inherit; /* Align rounded mockup frames */
+  overflow: hidden; /* Restrict elements inside mockup bezel */
 }
 
 .ai-menu-overlay.active {
