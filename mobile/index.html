@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Set viewport-fit=cover to extend layout under phone notch and status bar -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  
+  <!-- 📱 PWA Meta tags for true standalone full-screen web app experience -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  
+  <!-- Primary SEO Metadata for Mobile Portfolio -->
+  <title>Sayantan Ghosh | Conversational AI Assistant Portfolio</title>
+  <meta name="description" content="Experience the conversational AI assistant portfolio of Sayantan Ghosh, Senior UX & Product Designer. Voice over, interaction models, and expert QA insights." />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Load Isolated Mobile Stylesheet -->
+  <link rel="stylesheet" href="mobile.css?v=1.2" />
+  
+  <!-- ⚡ GSAP for ultra-premium spring/physics path morphing and text sync animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+</head>
+<body>
+
+  <!-- =======================================================================
+       🤖 Conversational AI Assistant Full-Screen Panel
+       ======================================================================= -->
+  <main class="ai-assistant-container state-intro" id="ai-assistant-panel">
+    
+    <!-- 🌐 Dynamic Background Grid Sweep Lines (Stage 1 Intro) -->
+    <div class="ai-bg-grid-lines">
+      <div class="ai-bg-grid-line"></div>
+      <div class="ai-bg-grid-line"></div>
+      <div class="ai-bg-grid-line"></div>
+      <div class="ai-bg-grid-line"></div>
+      <div class="ai-bg-grid-line"></div>
+      <div class="ai-bg-grid-line"></div>
+    </div>
+    
+    <!-- Branding Header -->
+    <header class="ai-mobile-header">
+      <!-- Spacer for perfect central alignment of title -->
+      <div class="ai-header-spacer" aria-hidden="true"></div>
+      
+      <div class="ai-mobile-title">
+        <h1 class="ai-mobile-logo" id="header-logo">AI UX</h1>
+        <span class="ai-mobile-sub" id="header-sub">Sayantan Ghosh</span>
+      </div>
+      
+      <!-- Material Design SVG Hamburger Menu Button -->
+      <button class="ai-mobile-menu" aria-label="Open deflection menu">
+        <svg class="material-menu-icon" viewBox="0 0 24 24">
+          <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+        </svg>
+      </button>
+    </header>
+    
+    <!-- 🎛️ Conversational Mode Tab Switcher (Slick Apple/Tracto Style) -->
+    <div class="ai-tab-container" id="ai-tab-container">
+      <div class="mockup-tab-switcher">
+        <button class="switcher-btn" data-mode="voice">Voice</button>
+        <button class="switcher-btn active" data-mode="chat">Chat</button>
+      </div>
+    </div>
+
+    <!-- Viewport Container for Progressive Screens -->
+    <div class="ai-content-viewport">
+      
+      <!-- STAGE 1: Screen Intro Mob (Splash Intro) -->
+      <section class="ai-screen-panel ai-screen-intro active" id="ai-screen-intro">
+        <div class="ai-intro-avatar-box">
+          <img src="../images/sayantan_pic.png" alt="Sayantan Ghosh" class="ai-intro-avatar" />
+        </div>
+        <p class="ai-intro-quote">
+          In the age of AI, designers must think beyond screens. From research to UI to production-ready experiences.
+        </p>
+        <img src="../images/signature.png" alt="Sayantan Ghosh Signature" class="ai-intro-signature" />
+      </section>
+
+      <!-- STAGE 2: Unified Voice Mode Teleprompter Screen -->
+      <section class="ai-screen-panel ai-screen-voice" id="ai-screen-voice">
+        <div class="ai-voice-feed-container" id="ai-voice-feed">
+          
+          <!-- Dialogue 1: Sayantan's Welcome Voice (Focal Big Text Prompter) -->
+          <div class="ai-voice-block" id="ai-voice-welcome-block">
+            <div class="ai-voice-avatar-wrapper ai-voice-ai-avatar">
+              <img src="../images/sayantan_pic.png" alt="Sayantan Ghosh" class="ai-voice-avatar" />
+            </div>
+            <p class="ai-voice-text" id="ai-welcome-message">
+              Hi, I am Sayantan. How can I help you with UX? Ask me about my...
+            </p>
+            
+            <!-- suggestion chips stacked in rows for ergonomic thumb clicks -->
+            <nav class="ai-qa-stack active" id="ai-suggestion-chips" aria-label="Topics Navigation">
+              <div class="ai-qa-row">
+                <button class="ai-capsule-chip" data-topic="Professional">Professional</button>
+                <button class="ai-capsule-chip" data-topic="Educational">Educational</button>
+                <button class="ai-capsule-chip" data-topic="Personal">Personal</button>
+              </div>
+              <div class="ai-qa-row">
+                <button class="ai-capsule-chip" data-topic="Skill">Skill</button>
+                <button class="ai-capsule-chip" data-topic="Thinking">Thinking</button>
+                <button class="ai-capsule-chip" data-topic="Projects">Projects</button>
+              </div>
+              <div class="ai-qa-row">
+                <button class="ai-capsule-chip" data-topic="Communication">Communication</button>
+              </div>
+            </nav>
+          </div>
+
+        </div>
+      </section>
+      
+      <!-- STAGE 5: Text Chat Mode Screen (Slide up in Chat Mode) -->
+      <section class="ai-screen-panel ai-screen-chat" id="ai-screen-chat">
+        <div class="ai-chat-thread" id="ai-chat-thread">
+          <!-- AI Welcome greeting bubble (Clean iPhone Slick Chat bubble) -->
+          <div class="ai-chat-bubble ai-bubble-ai" id="ai-chat-welcome-bubble">
+            <div class="ai-bubble-content">
+              <p>Hi! I am Sayantan. How can I help you with UX? Ask me anything, or select a topic below!</p>
+              
+              <!-- Quick Chat Chips (Moved inside the speech bubble) -->
+              <div class="ai-chat-chips-container">
+                <div class="ai-chat-chip-row">
+                  <button class="ai-chat-chip" data-topic="Professional">Professional</button>
+                  <button class="ai-chat-chip" data-topic="Educational">Educational</button>
+                  <button class="ai-chat-chip" data-topic="Personal">Personal</button>
+                </div>
+                <div class="ai-chat-chip-row">
+                  <button class="ai-chat-chip" data-topic="Skill">Skill</button>
+                  <button class="ai-chat-chip" data-topic="Thinking">Thinking</button>
+                  <button class="ai-chat-chip" data-topic="Projects">Projects</button>
+                </div>
+                <div class="ai-chat-chip-row">
+                  <button class="ai-chat-chip" data-topic="Communication">Communication</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+
+    </div>
+
+    <!-- Bottom Controls Panel (Tactile Siri / Gemini Orb) -->
+    <footer class="ai-bottom-controls">
+      
+      <!-- 🌊 Google/Apple Siri Horizontal Active Listening Waveform -->
+      <div class="ai-siri-horizontal-wave" id="ai-siri-horizontal-wave">
+        <svg class="ai-wave-svg" viewBox="0 0 100 20" preserveAspectRatio="none">
+          <path class="ai-wave-line ai-wave-line-1" d="M 0 10 Q 25 10 50 10 T 100 10" />
+          <path class="ai-wave-line ai-wave-line-2" d="M 0 10 Q 25 10 50 10 T 100 10" />
+          <path class="ai-wave-line ai-wave-line-3" d="M 0 10 Q 25 10 50 10 T 100 10" />
+          <path class="ai-wave-line ai-wave-line-4" d="M 0 10 Q 25 10 50 10 T 100 10" />
+        </svg>
+      </div>
+      
+      <div class="ai-siri-outer-wrapper">
+        <!-- 🌈 Organic Morphing Rainbow Voice Wave Blob (Flares out in Idle/Ready) -->
+        <div class="ai-siri-wave-glow" id="ai-siri-wave-glow">
+          <div class="ai-siri-wave-glow-inner"></div>
+        </div>
+        
+        <!-- ⚪ Central White Circle Button -->
+        <button class="ai-siri-inner-circle" id="ai-siri-orb" aria-label="Voice Interaction Control" tabindex="0">
+          <!-- 🎤 Black Microphone Icon (Idle/Ready state) -->
+          <svg class="ai-mic-icon" id="ai-mic-icon" viewBox="0 0 24 24">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8"/>
+          </svg>
+          <!-- 🔴 Red Stop Dot (Speaking/Pause state) -->
+          <div class="ai-stop-dot" id="ai-stop-dot"></div>
+        </button>
+      </div>
+      
+      <!-- Caption state feedback -->
+      <span class="ai-orb-caption" id="ai-orb-caption">Press to start conversation</span>
+      
+      <!-- Small Circular Close Button with "X" (Directly below main controls) -->
+      <button class="ai-back-pill" id="ai-back-pill" aria-label="Close Assistant">
+        <svg viewBox="0 0 24 24">
+          <path d="M18 6L6 18M6 6l12 12"></path>
+        </svg>
+      </button>
+      
+      <!-- 💬 Chat Mode Input bar controls (Slides up only in Chat Mode) -->
+      <div class="ai-chat-input-wrapper" id="ai-chat-input-wrapper">
+        <input type="text" id="ai-chat-input" placeholder="Ask about Sayantan..." aria-label="Type your question" />
+        <button id="ai-chat-send" aria-label="Send message">
+          <svg viewBox="0 0 24 24" width="20" height="20">
+            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/>
+          </svg>
+        </button>
+      </div>
+      
+    </footer>
+
+  </main>
+
+  <!-- Load Isolated Mobile Controller Script -->
+  <script src="mobile.js?v=1.2"></script>
+  
+  <!-- Boot Assistant Module -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      MobileAiAssistant.init(document.getElementById('ai-assistant-panel'));
+      
+      // Bind header menu toggle to instant Communication deflection card
+      const headerMenu = document.querySelector('.ai-mobile-menu');
+      if (headerMenu) {
+        headerMenu.addEventListener('click', function() {
+          MobileAiAssistant.selectTopic('Communication');
+        });
+      }
+    });
+  </script>
+</body>
+</html>
