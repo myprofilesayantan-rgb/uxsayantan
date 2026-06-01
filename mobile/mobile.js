@@ -155,42 +155,64 @@ window.MobileAiAssistant = {
       }, 300);
     });
 
-    // 2. Fullscreen Manager: request fullscreen on first user touch/tap to hide address bar
-    const triggerFullscreen = () => {
-      const el = document.documentElement;
-      if (el.requestFullscreen) {
-        el.requestFullscreen();
-      } else if (el.webkitRequestFullscreen) {
-        el.webkitRequestFullscreen();
-      } else if (el.msRequestFullscreen) {
-        el.msRequestFullscreen();
-      }
-      
-      // Clean up listeners to prevent repeated execution
-      container.removeEventListener('click', triggerFullscreen);
-      container.removeEventListener('touchstart', triggerFullscreen);
-    };
-    container.addEventListener('click', triggerFullscreen);
-    container.addEventListener('touchstart', triggerFullscreen);
-
-    // 3. Exit Fullscreen Manager: exit fullscreen on exactly 2-finger touch start to reveal address bar
-    container.addEventListener('touchstart', (e) => {
-      if (e.touches && e.touches.length === 2) {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
-        }
+    // 2. Fullscreen Button Controller: manual high-fidelity fullscreen toggle
+    const fsBtn = container.querySelector('#ai-fullscreen-btn');
+    if (fsBtn) {
+      fsBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
         
-        // Rebind fullscreen trigger to allow re-entering on next single tap
-        setTimeout(() => {
-          container.addEventListener('click', triggerFullscreen);
-          container.addEventListener('touchstart', triggerFullscreen);
-        }, 1000);
+        // Detect iOS devices
+        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+        
+        if (isIOS) {
+          // iOS Safari doesn't support the HTML5 Fullscreen API on iPhone. Show gorgeous iOS-native toast instructions!
+          this.showToast("For fullscreen app mode: Tap Safari's 'Share' & select 'Add to Home Screen'!");
+          return;
+        }
+
+        const el = document.documentElement;
+        const isFS = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+
+        if (!isFS) {
+          if (el.requestFullscreen) {
+            el.requestFullscreen();
+          } else if (el.webkitRequestFullscreen) {
+            el.webkitRequestFullscreen();
+          } else if (el.msRequestFullscreen) {
+            el.msRequestFullscreen();
+          }
+        } else {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          }
+        }
+      });
+    }
+
+    // 3. Sync Fullscreen Icon and document status
+    const updateFsIcon = () => {
+      const isFS = document.fullscreenElement || document.webkitFullscreenElement || document.msFullscreenElement;
+      const enterPath = container.querySelector('#ai-fullscreen-btn .enter-fs');
+      const exitPath = container.querySelector('#ai-fullscreen-btn .exit-fs');
+      
+      if (enterPath && exitPath) {
+        if (isFS) {
+          enterPath.style.display = 'none';
+          exitPath.style.display = 'block';
+        } else {
+          enterPath.style.display = 'block';
+          exitPath.style.display = 'none';
+        }
       }
-    }, { passive: true });
+    };
+    
+    document.addEventListener('fullscreenchange', updateFsIcon);
+    document.addEventListener('webkitfullscreenchange', updateFsIcon);
+    document.addEventListener('msfullscreenchange', updateFsIcon);
 
     // Clean up Speech Synthesis on unload
     window.addEventListener('beforeunload', () => this.stopSpeaking());
@@ -257,6 +279,32 @@ window.MobileAiAssistant = {
       this.screens.voice.classList.add('active');
       this.orbCaption.innerText = "Listening... Speak now";
     }
+  },
+
+  /**
+   * Display dynamic glassmorphic notification toasts
+   */
+  showToast(message) {
+    let toast = this.container.querySelector('.ai-toast-notification');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.className = 'ai-toast-notification';
+      this.container.appendChild(toast);
+    }
+    toast.innerText = message;
+    
+    // Trigger animation frame classes
+    toast.classList.remove('show');
+    void toast.offsetWidth; // Force DOM style reflow
+    toast.classList.add('show');
+    
+    // Autohide after 4.5 seconds
+    if (this.toastTimeout) {
+      clearTimeout(this.toastTimeout);
+    }
+    this.toastTimeout = setTimeout(() => {
+      toast.classList.remove('show');
+    }, 4500);
   },
 
   handleOrbTap() {

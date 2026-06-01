@@ -1,0 +1,21 @@
+{
+  "short_name": "Sayantan AI",
+  "name": "Sayantan Ghosh — Conversational AI Assistant",
+  "icons": [
+    {
+      "src": "../images/sayantan_pic.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "../images/sayantan_pic.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "index.html",
+  "background_color": "#0c0c0b",
+  "theme_color": "#0c0c0b",
+  "display": "standalone",
+  "orientation": "portrait"
+}

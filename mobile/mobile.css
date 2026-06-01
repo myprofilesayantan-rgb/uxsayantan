@@ -1318,7 +1318,6 @@ body, html {
    💬 Chat Input Control Bar
    ========================================================================== */
 .ai-chat-input-wrapper {
-  position: relative; /* Anchor for the dynamic pseudo-element border */
   width: 100%;
   display: none; /* Shown only in Chat Mode */
   align-items: center;
@@ -1333,41 +1332,14 @@ body, html {
   transform: translateY(12px) scale(0.96);
   transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1),
               transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
-              border-color 0.4s ease;
+              border-color 0.3s ease,
+              box-shadow 0.3s ease;
 }
 
-/* Gorgeous rotating border stroke representing the active AI thinking core */
-.ai-chat-input-wrapper::before {
-  content: '';
-  position: absolute;
-  top: -1.5px;
-  left: -1.5px;
-  right: -1.5px;
-  bottom: -1.5px;
-  border-radius: 28px;
-  background: linear-gradient(135deg, #5AA4F9, #a47ef2, #f27ec4, #5AA4F9);
-  background-size: 300% 300%;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.4s ease;
-  pointer-events: none;
-}
-
-/* Sweep and scale highlights upon active selection */
+/* Elegant high-contrast glow and border highlight upon active focus selection */
 .ai-chat-input-wrapper:focus-within {
-  border-color: transparent !important;
-  box-shadow: 0 8px 24px rgba(90, 164, 249, 0.15);
-}
-
-.ai-chat-input-wrapper:focus-within::before {
-  opacity: 1;
-  animation: chatInputGradientSweep 4s linear infinite;
-}
-
-@keyframes chatInputGradientSweep {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  border-color: var(--color-primary-blue) !important;
+  box-shadow: 0 0 14px rgba(90, 164, 249, 0.35);
 }
 
 /* Reveal in Chat Mode classes (excl. Intro Splash) */
@@ -1505,3 +1477,143 @@ body, html {
 .ai-answer-btn.secondary svg {
   stroke: #ffffff !important; /* Clean white email icon */
 }
+
+/* ==========================================================================
+   ⛶ Fullscreen Button & High-End Visual Immersion
+   ========================================================================== */
+.ai-mobile-fullscreen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  outline: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  transition: background-color 0.3s;
+}
+
+.ai-mobile-fullscreen:active {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.fullscreen-icon {
+  width: 20px;
+  height: 20px;
+  stroke: var(--color-text-light);
+  opacity: 0.65;
+  transition: opacity 0.3s, stroke 0.8s, transform 0.2s;
+}
+
+.fullscreen-icon:hover {
+  opacity: 1;
+}
+
+.ai-mobile-fullscreen:active .fullscreen-icon {
+  transform: scale(0.9);
+}
+
+/* Dark stroke transition when header ambient light glow is active */
+.ai-assistant-container.state-intro .fullscreen-icon,
+.ai-assistant-container.state-welcome .fullscreen-icon,
+.ai-assistant-container.state-qa .fullscreen-icon,
+.ai-assistant-container.state-answer .fullscreen-icon,
+.ai-assistant-container.mode-chat .fullscreen-icon {
+  stroke: rgba(21, 28, 36, 0.82) !important;
+}
+
+/* Sleek glassmorphic iOS toast banner */
+.ai-toast-notification {
+  position: absolute;
+  bottom: 110px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: rgba(22, 22, 22, 0.94);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  padding: 12px 20px;
+  border-radius: 16px;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-align: center;
+  z-index: 9999;
+  width: 86%;
+  max-width: 360px;
+  pointer-events: none;
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.ai-toast-notification.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ==========================================================================
+   📱 Borderless App-Like Experience (Media Queries & Fullscreen API)
+   ========================================================================== */
+
+/* 1. HTML5 Fullscreen Monitor Overrides (Desktop Testing) */
+:fullscreen .ai-assistant-container,
+:-webkit-full-screen .ai-assistant-container,
+:-moz-full-screen .ai-assistant-container,
+:-ms-fullscreen .ai-assistant-container {
+  width: 100vw !important;
+  height: 100vh !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+:fullscreen body, html,
+:-webkit-full-screen body, html {
+  width: 100% !important;
+  height: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 2. Real Mobile Screen Breakpoint Overrides (True standalone borderless viewport) */
+@media (max-width: 768px) {
+  body, html {
+    width: 100%;
+    height: 100%;
+    min-height: 100dvh;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  .ai-assistant-container {
+    width: 100% !important;
+    height: 100% !important;
+    height: 100dvh !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Safe notches padding calculations */
+  .ai-mobile-header {
+    padding-top: max(20px, env(safe-area-inset-top));
+  }
+  
+  .ai-bottom-controls {
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+  }
+  
+  /* Slide input bar slightly higher to accommodate iOS home swipe bar */
+  .ai-chat-input-wrapper {
+    margin-bottom: max(8px, env(safe-area-inset-bottom));
+  }
+}
+

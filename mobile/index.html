@@ -10,6 +10,8 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="mobile-web-app-capable" content="yes">
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="../images/sayantan_pic.png">
   
   <!-- Primary SEO Metadata for Mobile Portfolio -->
   <title>Sayantan Ghosh | Conversational AI Assistant Portfolio</title>
@@ -41,8 +43,15 @@
     
     <!-- Branding Header -->
     <header class="ai-mobile-header">
-      <!-- Spacer for perfect central alignment of title -->
-      <div class="ai-header-spacer" aria-hidden="true"></div>
+      <!-- Fullscreen Toggle Button instead of blank spacer for true native app immersion -->
+      <button class="ai-mobile-fullscreen" id="ai-fullscreen-btn" aria-label="Toggle Fullscreen Mode">
+        <svg class="fullscreen-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Enter fullscreen path -->
+          <path class="enter-fs" d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+          <!-- Exit fullscreen path -->
+          <path class="exit-fs" d="M4 14h6v6m10-6h-6v6M4 10h6V4m10 6h-6V4" style="display: none;" />
+        </svg>
+      </button>
       
       <div class="ai-mobile-title">
         <h1 class="ai-mobile-logo" id="header-logo">AI UX</h1>
