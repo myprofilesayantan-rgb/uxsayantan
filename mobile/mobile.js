@@ -68,7 +68,7 @@ window.MobileAiAssistant = {
     this.chatThread = container.querySelector('#ai-chat-thread');
     this.chatInputWrapper = container.querySelector('#ai-chat-input-wrapper');
 
-    // Bind Chat send button, keydown, and auto-grow height
+    // Bind Chat send button and enter keypress inside the card
     if (this.chatSend && this.chatInput) {
       this.chatSend.addEventListener('click', () => this.handleChatSubmit());
       
@@ -79,13 +79,19 @@ window.MobileAiAssistant = {
           this.handleChatSubmit();
         }
       });
+    }
 
-      // Auto-grow textarea height dynamically
-      this.chatInput.addEventListener('input', () => {
-        this.chatInput.style.height = '24px'; // Reset to baseline height
-        const newHeight = Math.min(this.chatInput.scrollHeight - 8, 120); // Cap scroll height padding
-        this.chatInput.style.height = newHeight + 'px';
-      });
+    // Dynamic greeting based on time of day (reference matched UX)
+    const greetingEl = document.getElementById('placeholder-greeting');
+    if (greetingEl) {
+      const hour = new Date().getHours();
+      let greeting = "Good morning";
+      if (hour >= 12 && hour < 17) {
+        greeting = "Good afternoon";
+      } else if (hour >= 17) {
+        greeting = "Good evening";
+      }
+      greetingEl.innerText = greeting;
     }
 
     // Bind Quick Chat suggestion chips
@@ -185,9 +191,8 @@ window.MobileAiAssistant = {
     const text = this.chatInput.value.trim();
     if (!text) return;
 
-    // 1. Clear input field and reset its auto-grow height
+    // 1. Clear input field
     this.chatInput.value = '';
-    this.chatInput.style.height = '24px';
 
     // 2. Add User message bubble to viewport
     this.addChatBubble('user', text);
