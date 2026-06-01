@@ -18,6 +18,9 @@ window.MobileAiAssistant = {
   chatThread: null,
   chatInputWrapper: null,
   toastTimeout: null,
+  menuOverlay: null,
+  menuCloseBtn: null,
+  menuCloseArea: null,
 
   // Knowledge base containing response content for suggested topics
   knowledgeBase: {
@@ -77,6 +80,38 @@ window.MobileAiAssistant = {
 
     // Bind Quick Chat suggestion chips
     this.bindChatChips(container);
+
+    // Bind Menu Overlay elements
+    this.menuOverlay = document.getElementById('ai-menu-overlay');
+    this.menuCloseBtn = document.getElementById('ai-menu-close-btn');
+    this.menuCloseArea = document.getElementById('ai-menu-close-area');
+
+    const headerMenu = container.querySelector('.ai-mobile-menu');
+    if (headerMenu) {
+      headerMenu.addEventListener('click', () => this.openMenu());
+    }
+    if (this.menuCloseBtn) {
+      this.menuCloseBtn.addEventListener('click', () => this.closeMenu());
+    }
+    if (this.menuCloseArea) {
+      this.menuCloseArea.addEventListener('click', () => this.closeMenu());
+    }
+
+    // Bind interactive menu link buttons
+    const menuLinks = document.querySelectorAll('.ai-menu-link-btn');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        const topic = e.currentTarget.getAttribute('data-topic');
+        this.closeMenu();
+        if (topic) {
+          // If we are currently in intro screen, switch to chat
+          if (this.container.classList.contains('state-intro')) {
+            this.transitionTo('chat');
+          }
+          this.handleChatChipClick(topic);
+        }
+      });
+    });
 
     // Initial Splash Screen boot setup
     this.transitionTo('intro');
@@ -332,5 +367,23 @@ window.MobileAiAssistant = {
       top: this.chatThread.scrollHeight,
       behavior: 'smooth'
     });
+  },
+
+  /**
+   * Open the side navigation drawer menu
+   */
+  openMenu() {
+    if (this.menuOverlay) {
+      this.menuOverlay.classList.add('active');
+    }
+  },
+
+  /**
+   * Close the side navigation drawer menu
+   */
+  closeMenu() {
+    if (this.menuOverlay) {
+      this.menuOverlay.classList.remove('active');
+    }
   }
 };
