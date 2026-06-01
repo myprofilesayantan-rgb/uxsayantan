@@ -198,33 +198,14 @@ body, html {
 .material-menu-icon {
   width: 24px;
   height: 24px;
-  fill: var(--color-text-light); /* Start white on dark background */
-  transition: fill 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  fill: var(--color-text-charcoal) !important;
 }
 
-/* Header dark color transitions for light top gradient in all screen states */
-.ai-assistant-container.state-intro .ai-mobile-logo,
-.ai-assistant-container.state-welcome .ai-mobile-logo,
-.ai-assistant-container.state-qa .ai-mobile-logo,
-.ai-assistant-container.state-answer .ai-mobile-logo,
-.ai-assistant-container.mode-chat .ai-mobile-logo {
-  color: var(--color-text-charcoal);
-}
-
-.ai-assistant-container.state-intro .ai-mobile-sub,
-.ai-assistant-container.state-welcome .ai-mobile-sub,
-.ai-assistant-container.state-qa .ai-mobile-sub,
-.ai-assistant-container.state-answer .ai-mobile-sub,
-.ai-assistant-container.mode-chat .ai-mobile-sub {
-  color: rgba(21, 28, 36, 0.65);
-}
-
-.ai-assistant-container.state-intro .material-menu-icon,
-.ai-assistant-container.state-welcome .material-menu-icon,
-.ai-assistant-container.state-qa .material-menu-icon,
-.ai-assistant-container.state-answer .material-menu-icon,
-.ai-assistant-container.mode-chat .material-menu-icon {
-  fill: var(--color-text-charcoal); /* Morph to dark charcoal on light gradient */
+.fullscreen-icon {
+  width: 20px;
+  height: 20px;
+  stroke: var(--color-text-charcoal) !important;
+  opacity: 0.75;
 }
 
 /* ── 3. Content Viewport Switchers ── */
@@ -263,7 +244,7 @@ body, html {
   transform: translateY(0);
 }
 
-/* ── STAGE A: Screen Intro Mob ── */
+/* ── STAGE 1: Screen Intro Mob ── */
 .ai-screen-intro {
   text-align: center;
   transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
@@ -359,88 +340,9 @@ body, html {
   100% { transform: translateY(0); }
 }
 
-/* ── STAGE B & C: Screen Welcome & QA Options Stack ── */
-.ai-screen-welcome {
-  text-align: center;
-  justify-content: flex-start;
-  padding-top: 10vh;
-}
-
-.ai-welcome-hi {
-  font-size: clamp(72px, 18vw, 96px);
-  font-weight: 100;
-  color: var(--color-text-light);
-  margin: 0 0 16px 0;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  text-shadow: 0 4px 20px rgba(0,0,0,0.15);
-}
-
-.ai-welcome-text {
-  font-size: 0.96rem;
-  font-weight: 300;
-  line-height: 1.68;
-  color: var(--color-text-light);
-  max-width: 270px;
-  margin: 0;
-}
-
-/* Stacked Capsule Suggestion pills in three neat rows */
-.ai-qa-stack {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  margin-top: 32px;
-  width: 100%;
-  
-  /* Initial hidden state for progressive Welcome -> QA transition */
-  opacity: 0;
-  transform: translateY(20px);
-  pointer-events: none;
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* Show Suggestion Chips when transitioned into the QA Options state */
-.ai-assistant-container.state-qa .ai-qa-stack {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.ai-qa-row {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-}
-
-.ai-capsule-chip {
-  font-size: 0.82rem;
-  font-weight: 500;
-  color: var(--color-text-light);
-  /* Solid dark charcoal/black backgrounds to contrast beautifully with top ambient light gradient */
-  background: rgba(22, 22, 22, 0.86);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 10px 18px;
-  border-radius: 24px;
-  cursor: pointer;
-  white-space: nowrap;
-  user-select: none;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.ai-capsule-chip:active {
-  background: #111111;
-  border-color: var(--color-primary-blue);
-  transform: scale(0.95);
-}
-
-/* ── STAGE D: Unified Voice Mode Teleprompter Screen ── */
-.ai-screen-voice {
-  display: flex;
+/* ── STAGE 2: Text Chat Screen (Pure Immersive Layout) ── */
+.ai-screen-chat {
+  display: none;
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
@@ -449,121 +351,18 @@ body, html {
   box-sizing: border-box;
 }
 
-/* Hide speech-only viewport screen in Chat Mode */
-.ai-assistant-container.mode-chat:not(.state-intro) .ai-screen-voice {
-  display: none !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
-}
-
-/* Voice feed container styled as a cinematic fading viewport */
-.ai-voice-feed-container {
-  flex: 1;
-  width: 100%;
-  overflow-y: auto;
-  padding: 30px 0 100px;
+.ai-screen-chat.active {
   display: flex;
-  flex-direction: column;
-  gap: 40px;
-  box-sizing: border-box;
-  scrollbar-width: none; /* Hide scrollbars */
-  
-  /* Fade out at extreme top & bottom edges */
-  mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 78%, rgba(0,0,0,0) 100%);
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 78%, rgba(0,0,0,0) 100%);
+  opacity: 1;
+  pointer-events: auto;
+  animation: chatEntranceFade 0.6s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-.ai-voice-feed-container::-webkit-scrollbar {
-  display: none;
+@keyframes chatEntranceFade {
+  0% { opacity: 0; transform: translateY(16px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Individual Dialogue Blocks */
-.ai-voice-block {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 16px;
-  width: 100%;
-  box-sizing: border-box;
-  animation: voiceBlockEntrance 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-/* Beautiful dynamic fading out of past voice blocks for kinetic scrolling */
-.ai-voice-block.inactive-block {
-  opacity: 0.35;
-  filter: blur(0.3px);
-  transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1),
-              filter 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-/* Keep suggestion chips clickable but slightly faded when welcome block becomes inactive */
-.ai-voice-block.inactive-block #ai-suggestion-chips {
-  opacity: 0.6 !important;
-  pointer-events: auto !important;
-  transform: scale(0.98);
-  transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-@keyframes voiceBlockEntrance {
-  0% { opacity: 0; transform: translateY(24px) scale(0.96); filter: blur(4px); }
-  100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
-}
-
-/* Avatar inside voice block */
-.ai-voice-avatar-wrapper {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  overflow: hidden;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  flex-shrink: 0;
-}
-
-.ai-voice-avatar {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Grey circular theme for Sayantan's avatar in Voice Mode */
-.ai-voice-ai-avatar {
-  background: rgba(255, 255, 255, 0.05);
-  border: 2px solid #5a6b73; /* Grey themed border */
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-}
-
-/* Blue circular theme for User's avatar in Voice Mode */
-.ai-voice-user-avatar {
-  background: rgba(90, 164, 249, 0.1);
-  border: 2px solid var(--color-primary-blue); /* Neon Blue border */
-  box-shadow: 0 4px 16px rgba(90, 164, 249, 0.25);
-}
-
-/* User avatar placeholder graphic */
-.ai-voice-user-graphic {
-  width: 20px;
-  height: 20px;
-  fill: var(--color-primary-blue);
-}
-
-/* Huge focal prompter typography */
-.ai-voice-text {
-  font-family: var(--font-family);
-  font-size: 1.55rem;
-  font-weight: 300;
-  line-height: 1.5;
-  color: rgba(255, 255, 255, 0.28); /* Faded by default */
-  max-width: 380px; /* Expanded for natural flow and no premature breaks */
-  margin: 0;
-  transition: color 0.3s ease;
-}
-
-/* Special color for User spoken text */
 .ai-voice-user-text {
   color: var(--color-primary-blue);
   font-weight: 400;
@@ -1112,27 +911,17 @@ body, html {
   box-sizing: border-box;
 }
 
-/* Reveal chat panels inside Chat Mode classes (excl. Intro Splash) */
-.ai-assistant-container.mode-chat:not(.state-intro) .ai-screen-chat {
+.ai-screen-chat.active {
   display: flex;
   opacity: 1;
   pointer-events: auto;
-  transform: translateY(0);
-}
-
-/* Hide speech-only viewport screens inside Chat Mode classes (excl. Intro Splash) */
-.ai-assistant-container.mode-chat:not(.state-intro) .ai-screen-welcome,
-.ai-assistant-container.mode-chat:not(.state-intro) .ai-screen-answer {
-  display: none !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
 }
 
 .ai-chat-thread {
   flex: 1;
   width: 100%;
   overflow-y: auto;
-  padding: 24px 14px 32px; /* Ergonomic visual safety margin away from edges */
+  padding: 24px 14px 16px; /* Optimized ergonomic padding gap */
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -1155,7 +944,7 @@ body, html {
 }
 
 .ai-chat-bubble {
-  max-width: 76%;
+  max-width: 78%;
   padding: 10px 16px;
   border-radius: 20px;
   font-size: 0.88rem;
@@ -1173,7 +962,7 @@ body, html {
 /* AI response bubble layout (left-aligned) — iPhone Frosted iMessage Gray */
 .ai-bubble-ai {
   align-self: flex-start;
-  background: rgba(255, 255, 255, 0.05); /* Softer, highly-blended premium iMessage gray */
+  background: rgba(255, 255, 255, 0.05); /* Frosted premium glassmorphic grey */
   color: #ffffff;
   border-top-left-radius: 20px;
   border-bottom-left-radius: 4px; /* iMessage sharp tail corner */
@@ -1207,15 +996,6 @@ body, html {
   color: #11110e;
 }
 
-/* Contrast adjustments for AI bubbles on top light gradients (excl. Chat Mode) */
-.ai-assistant-container.state-welcome:not(.mode-chat) .ai-bubble-ai,
-.ai-assistant-container.state-qa:not(.mode-chat) .ai-bubble-ai {
-  background: rgba(255, 255, 255, 0.85);
-  border-color: rgba(21, 28, 36, 0.08);
-  color: #2c3c43;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
-}
-
 /* User response bubble layout (right-aligned) — iPhone Slick Vibrant iMessage Blue */
 .ai-bubble-user {
   align-self: flex-end;
@@ -1239,12 +1019,6 @@ body, html {
   display: flex;
   gap: 5px;
   align-items: center;
-}
-
-.ai-assistant-container.state-welcome:not(.mode-chat) .ai-bubble-typing,
-.ai-assistant-container.state-qa:not(.mode-chat) .ai-bubble-typing {
-  background: rgba(255, 255, 255, 0.8);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
 }
 
 .ai-bubble-typing span {
@@ -1273,11 +1047,6 @@ body, html {
   border-top: 1px solid rgba(255,255,255,0.06);
   box-sizing: border-box;
   width: 100%;
-}
-
-.ai-assistant-container.state-welcome .ai-chat-chips-container,
-.ai-assistant-container.state-qa .ai-chat-chips-container {
-  border-color: rgba(21, 28, 36, 0.08);
 }
 
 .ai-chat-chip-row {
@@ -1319,43 +1088,25 @@ body, html {
    ========================================================================== */
 .ai-chat-input-wrapper {
   width: 100%;
-  display: none; /* Shown only in Chat Mode */
+  display: flex;
   align-items: center;
-  background: rgba(22, 22, 22, 0.95);
-  border: 1.5px solid rgba(255, 255, 255, 0.08);
+  background: rgba(22, 22, 22, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 28px;
   padding: 4px 6px 4px 16px;
   box-sizing: border-box;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
   z-index: 10;
-  opacity: 0;
-  transform: translateY(12px) scale(0.96);
-  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1),
-              transform 0.5s cubic-bezier(0.25, 1, 0.5, 1),
-              border-color 0.3s ease,
-              box-shadow 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 /* Elegant high-contrast glow and border highlight upon active focus selection */
 .ai-chat-input-wrapper:focus-within {
   border-color: var(--color-primary-blue) !important;
   box-shadow: 0 0 14px rgba(90, 164, 249, 0.35);
-}
-
-/* Reveal in Chat Mode classes (excl. Intro Splash) */
-.ai-assistant-container.mode-chat:not(.state-intro) .ai-chat-input-wrapper {
-  display: flex;
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* Hide siri button caption, outer-wrapper, and back close pill in Chat Mode classes (excl. Intro Splash) */
-.ai-assistant-container.mode-chat:not(.state-intro) .ai-siri-outer-wrapper,
-.ai-assistant-container.mode-chat:not(.state-intro) .ai-orb-caption,
-.ai-assistant-container.mode-chat:not(.state-intro) .ai-back-pill {
-  display: none !important;
-  opacity: 0 !important;
-  pointer-events: none !important;
 }
 
 #ai-chat-input {
@@ -1478,106 +1229,12 @@ body, html {
   stroke: #ffffff !important; /* Clean white email icon */
 }
 
-/* ==========================================================================
-   ⛶ Fullscreen Button & High-End Visual Immersion
-   ========================================================================== */
-.ai-mobile-fullscreen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  outline: none;
+/* Spacer for perfect mathematical centering of title */
+.ai-header-spacer {
   width: 36px;
   height: 36px;
-  border-radius: 50%;
-  transition: background-color 0.3s;
-}
-
-.ai-mobile-fullscreen:active {
-  background-color: rgba(255, 255, 255, 0.08);
-}
-
-.fullscreen-icon {
-  width: 20px;
-  height: 20px;
-  stroke: var(--color-text-light);
-  opacity: 0.65;
-  transition: opacity 0.3s, stroke 0.8s, transform 0.2s;
-}
-
-.fullscreen-icon:hover {
-  opacity: 1;
-}
-
-.ai-mobile-fullscreen:active .fullscreen-icon {
-  transform: scale(0.9);
-}
-
-/* Dark stroke transition when header ambient light glow is active */
-.ai-assistant-container.state-intro .fullscreen-icon,
-.ai-assistant-container.state-welcome .fullscreen-icon,
-.ai-assistant-container.state-qa .fullscreen-icon,
-.ai-assistant-container.state-answer .fullscreen-icon,
-.ai-assistant-container.mode-chat .fullscreen-icon {
-  stroke: rgba(21, 28, 36, 0.82) !important;
-}
-
-/* Sleek glassmorphic iOS toast banner */
-.ai-toast-notification {
-  position: absolute;
-  bottom: 110px;
-  left: 50%;
-  transform: translateX(-50%) translateY(20px);
-  background: rgba(22, 22, 22, 0.94);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6);
-  color: #ffffff;
-  padding: 12px 20px;
-  border-radius: 16px;
-  font-size: 0.82rem;
-  font-weight: 500;
-  text-align: center;
-  z-index: 9999;
-  width: 86%;
-  max-width: 360px;
-  pointer-events: none;
   opacity: 0;
-  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.ai-toast-notification.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-/* ==========================================================================
-   📱 Borderless App-Like Experience (Media Queries & Fullscreen API)
-   ========================================================================== */
-
-/* 1. HTML5 Fullscreen Monitor Overrides (Desktop Testing) */
-:fullscreen .ai-assistant-container,
-:-webkit-full-screen .ai-assistant-container,
-:-moz-full-screen .ai-assistant-container,
-:-ms-fullscreen .ai-assistant-container {
-  width: 100vw !important;
-  height: 100vh !important;
-  max-width: 100% !important;
-  max-height: 100% !important;
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-}
-
-:fullscreen body, html,
-:-webkit-full-screen body, html {
-  width: 100% !important;
-  height: 100% !important;
-  padding: 0 !important;
-  margin: 0 !important;
+  pointer-events: none;
 }
 
 /* 2. Real Mobile Screen Breakpoint Overrides (True standalone borderless viewport) */
