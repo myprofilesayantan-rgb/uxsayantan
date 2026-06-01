@@ -161,19 +161,18 @@ body, html {
 .ai-mobile-logo {
   font-size: 1.15rem;
   font-weight: 700;
-  color: var(--color-text-light);
+  color: #ffffff !important; /* Premium high-contrast solid white logo */
   letter-spacing: 0.05em;
   margin: 0;
-  transition: color 0.8s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .ai-mobile-sub {
   font-size: 0.72rem;
   font-weight: 400;
-  color: var(--color-text-muted);
+  color: #ffffff !important; /* Premium high-contrast solid white subtitle name */
   letter-spacing: 0.02em;
   margin-top: 2px;
-  transition: color 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+  opacity: 0.85; /* Elegant visual hierarchy */
 }
 
 /* Material Design Menu Button */
@@ -198,7 +197,7 @@ body, html {
 .material-menu-icon {
   width: 24px;
   height: 24px;
-  fill: var(--color-text-charcoal) !important;
+  fill: #ffffff !important; /* Unified clean white header menu icon */
 }
 
 .fullscreen-icon {
