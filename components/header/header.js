@@ -9,8 +9,46 @@ window.PortfolioHeader = {
     if (!container) return;
     const logo = container.querySelector('.header-logo');
     const links = container.querySelectorAll('.header-link');
-    const phone = container.querySelector('.header-phone');
+    const actions = container.querySelector('.header-actions');
     
+    // Theme Toggle Logic
+    const toggleBtn = container.querySelector('#theme-toggle');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        const isLight = document.documentElement.classList.toggle('light-mode');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        
+        // Add a nice rotation pop micro-interaction on the active SVG icon
+        const activeIcon = document.querySelector('html.light-mode') 
+          ? toggleBtn.querySelector('.sun-icon') 
+          : toggleBtn.querySelector('.moon-icon');
+          
+        if (typeof gsap !== 'undefined' && activeIcon) {
+          gsap.fromTo(activeIcon,
+            { rotate: -45, scale: 0.7 },
+            { rotate: 0, scale: 1, duration: 0.5, ease: 'back.out(1.8)' }
+          );
+        }
+      });
+    }
+
+    // Scroll-revealed navigation CTA button logic
+    const navCta = container.querySelector('.header-nav-cta');
+    if (navCta) {
+      // Toggle visibility based on scroll position
+      const toggleNavCtaVisibility = () => {
+        if (window.scrollY > 150) {
+          navCta.classList.add('visible');
+        } else {
+          navCta.classList.remove('visible');
+        }
+      };
+
+      window.addEventListener('scroll', toggleNavCtaVisibility);
+      // Run once on load to catch initial page scroll states
+      toggleNavCtaVisibility();
+    }
+
     if (typeof gsap !== 'undefined') {
       const tl = gsap.timeline();
       
@@ -49,9 +87,9 @@ window.PortfolioHeader = {
         );
       }
 
-      // 3. Reveal phone from the right
-      if (phone) {
-        tl.fromTo(phone,
+      // 3. Reveal actions (toggle + phone) from the right
+      if (actions) {
+        tl.fromTo(actions,
           {
             opacity: 0,
             x: 20
@@ -68,7 +106,7 @@ window.PortfolioHeader = {
     } else {
       // Fallback if GSAP is not loaded
       if (logo) logo.style.opacity = '1';
-      if (phone) phone.style.opacity = '1';
+      if (actions) actions.style.opacity = '1';
       links.forEach(link => {
         link.style.opacity = '1';
       });
