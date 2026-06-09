@@ -4,7 +4,7 @@
 
 .friction-slider-section {
   width: 100%;
-  padding: 60px 0; /* 60px — section container margin from consistency.png */
+  padding: var(--gap-section) 0; /* Align with standard section spacing */
   background-color: transparent;
   display: flex;
   align-items: center;
@@ -92,20 +92,20 @@
   justify-content: center;
 }
 
-/* Base styles for slide images — teapot fills the full wrapper height */
+/* Base styles for slide images — teapots are sized to 86% to leave breathing room for drop shadows */
 .slide-media-img {
-  height: 100%;
+  height: 86%;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.45));
 }
 
 /* ALL images fill the wrapper height identically — no exceptions */
-/* Teapots: height:100% from .slide-media-img is enough               */
-/* Cars & Apple: must also fill 100% — width scales automatically     */
+/* Teapots: height:86% from .slide-media-img is enough               */
+/* Cars & Apple: must also fill 86% — width scales automatically     */
 .car-img,
 .apple-img {
-  height: 100%; /* same as teapots — fills the 360px wrapper */
+  height: 86%; /* same as teapots — leaves breathing room for drop shadows */
   width: auto;
 }
 
@@ -144,8 +144,7 @@
 /* ── Slide 3: Apple ───────────────────────────────────────────── */
 /* 1328×804 landscape → 340px height centres in the 360px wrapper with 10px gap each side */
 .friction-slide[data-slide-index="2"] .apple-img {
-  /* height:100% already set — fills 360px wrapper like teapots
-     Image scales to: 360px tall × (1328÷804) = 595px wide — centred */
+  height: 76%; /* Sized smaller to accommodate the larger 40px blur drop shadow */
   max-width: 100%;
   object-fit: contain;
   filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.55));
@@ -154,7 +153,7 @@
 /* ── Caption Text ─────────────────────────────────────────────── */
 .teapot-caption-box {
   margin-top: 0;
-  padding-top: 36px; /* consistent image-to-text gap across all slides */
+  padding-top: var(--gap-element); /* Standard Element spacing */
   width: 100%;
   max-width: var(--content-max-width);
   text-align: center;
@@ -163,13 +162,14 @@
 
 .teapot-caption {
   font-family: var(--font-family);
-  font-size: 38px;
-  font-weight: 400;
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-regular);
   line-height: 1.4;
   letter-spacing: -0.02em;
-  color: var(--color-text-white);
+  color: var(--text-heading);
   text-align: center;
   margin: 0;
+  transition: color 0.5s ease;
 }
 
 .teapot-caption .highlight-red {
@@ -181,7 +181,7 @@
   display: flex;
   justify-content: center;
   gap: 12px;
-  margin-top: 24px; /* 24px — extra small gap from consistency.png */
+  margin-top: var(--gap-micro); /* Micro spacing gap */
   z-index: 3;
   /* Padding at the bottom of the fixed-height track */
   padding-bottom: 4px;
@@ -191,7 +191,7 @@
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.3);
+  background-color: var(--pagination-dot-color);
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -203,23 +203,28 @@
 
 /* ── Responsive ───────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  .friction-slider-section {
-    padding: 60px 0;
-  }
-
   /* All slides: same height on mobile — images fill 100% of wrapper automatically */
   .slide-media-wrapper { height: 160px; }
 
-  .friction-slide[data-slide-index="1"] .slide-media-wrapper { gap: 16px; }
+  .friction-slide[data-slide-index="1"] .slide-media-wrapper { gap: var(--gap-micro); } /* Align gap with mobile micro spacing (16px) */
 
   .teapot-caption-box {
-    padding-top: 20px;
     padding-left: 10px;
     padding-right: 10px;
   }
+}
 
-  .teapot-caption {
-    font-size: 20px;
-    line-height: 1.35;
-  }
+/* ── Light Mode Adaptations ─────────────────────────────────────────────── */
+.friction-img-light {
+  display: none;
+}
+.friction-img-dark {
+  display: inline-block;
+}
+
+html.light-mode .friction-img-dark {
+  display: none !important;
+}
+html.light-mode .friction-img-light {
+  display: inline-block !important;
 }

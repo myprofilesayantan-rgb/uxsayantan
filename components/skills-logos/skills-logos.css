@@ -8,16 +8,17 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(1.5rem, 3vw, 2.5rem);
+  gap: var(--gap-element);
 }
 
 /* Section eyebrow label */
 .skills-label {
-  font-size: 16px;
-  font-weight: 600;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.45); /* matches .tracto-sub-eyebrow */
+  color: rgba(var(--grid-base-color), 0.45); /* dynamic theme color */
+  transition: color 0.5s ease;
 }
 
 /* Logo strip — single horizontal row that wraps gracefully */
@@ -26,7 +27,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: clamp(0.75rem, 1.8vw, 1.25rem);
+  gap: var(--gap-micro);
   width: 100%;
 }
 
@@ -86,3 +87,5 @@
 .skills-divider {
   display: none;
 }
+
+

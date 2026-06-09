@@ -5,7 +5,7 @@
   justify-content: center;
   align-items: flex-end;
   flex-wrap: wrap;
-  gap: 75px;
+  gap: var(--gap-component, 60px);
   width: 100%;
   padding: 0; /* section-container owns the vertical gap — do not add top/bottom here */
 }
@@ -38,14 +38,15 @@
   white-space: nowrap;
   font-family: var(--font-family);
   font-size: 0.62rem;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.35);
+  color: var(--logo-group-label-color);
   letter-spacing: 0.08em;
   padding-bottom: 0.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08); /* Thin dividing line under text */
+  border-bottom: 1px solid var(--logo-group-label-border); /* Thin dividing line under text */
   width: max-content;
   text-align: center;
+  transition: color 0.5s ease, border-color 0.5s ease;
 }
 
 .group-logos {
@@ -184,4 +185,33 @@
   .logo-group.combined {
     padding-top: 1.4rem;
   }
+}
+
+/* ── Light Mode Adaptations ─────────────────────────────────────────────── */
+html.light-mode .scroll-icon {
+  filter: invert(1); /* Invert the scroll mouse icon from white to black */
+}
+
+/* Show logos in their original color at all times in light mode (no hover color transitions) */
+html.light-mode .logo-img.bw {
+  display: none !important;
+}
+
+html.light-mode .logo-img.color {
+  position: relative !important;
+  opacity: 1 !important;
+}
+
+/* For Rummy Circle and National Geographic, adjust white text to black while keeping symbols intact at all times */
+html.light-mode .rc-logo .logo-img.color {
+  filter: invert(1) hue-rotate(180deg) !important;
+}
+
+html.light-mode .netgio-logo .logo-img.color {
+  filter: url(#netgeo-light-filter) !important;
+}
+
+/* Ensure hover does not alter the appearance */
+html.light-mode .logo-item:hover .logo-img.color {
+  opacity: 1 !important;
 }

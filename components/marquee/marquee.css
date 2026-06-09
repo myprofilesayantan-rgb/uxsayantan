@@ -26,12 +26,13 @@
   font-family: var(--font-family);
   font-size: clamp(2rem, 10vw, 128px); /* Fluid size: exactly 10vw at 1280px screen width (128px), clamping at 128px */
   font-weight: 900; /* Black weight as specified in Figma screen capture */
-  color: var(--color-text-gray); /* Sleek HSL-muted gray #AA9D9D */
+  color: var(--text-primary); /* Dynamic text color depending on theme */
   white-space: pre-wrap; /* Preserves double-space formatting */
   letter-spacing: 0; /* Normal letter spacing as specified in Figma (0%) */
   line-height: 1.1; /* Auto line-height representation */
   flex-shrink: 0;
   padding-right: clamp(4rem, 10vw, 8rem); /* Spacing gap between repetitions */
+  transition: color 0.5s ease;
 }
 
 /* Specific red highlight color for the problem word only */

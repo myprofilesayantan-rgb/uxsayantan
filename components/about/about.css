@@ -15,7 +15,7 @@
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding: 0 var(--side-padding-fluid);
-  padding-top: calc(var(--header-height, 80px) + var(--gap-section)); /* Extra top padding to clear sticky header links */
+  padding-top: calc(var(--header-height, 60px) + var(--gap-section)); /* Extra top padding to clear sticky header links */
   padding-bottom: var(--gap-section);
   box-sizing: border-box;
 }
@@ -72,8 +72,8 @@
 
 .card-item-title {
   font-family: var(--font-family);
-  font-size: 18px;
-  font-weight: 500; /* Medium weight */
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-medium); /* Medium weight */
   color: #151512; /* Dark website BG color */
   margin-bottom: 6px;
   letter-spacing: -0.01em;
@@ -81,8 +81,8 @@
 
 .card-item-desc {
   font-family: var(--font-family);
-  font-size: 16px; /* Details at 16px */
-  font-weight: 400;
+  font-size: var(--font-size-base); /* Details at 16px */
+  font-weight: var(--font-weight-regular);
   line-height: 1.45;
   color: #5d5d5a;
 }
@@ -98,8 +98,8 @@
 
 .about-contact-item {
   font-family: var(--font-family);
-  font-size: 16px; /* Contact text at 16px */
-  font-weight: 500;
+  font-size: var(--font-size-base); /* Contact text at 16px */
+  font-weight: var(--font-weight-medium);
   color: #151512; /* Dark website BG color */
   letter-spacing: -0.01em;
 }
@@ -122,8 +122,8 @@
 
 .about-editorial-text {
   font-family: var(--font-family);
-  font-size: clamp(18px, 2.6vw, 30px); /* Reduced by 6px (capping at 30px on desktop) */
-  font-weight: 400;
+  font-size: clamp(var(--font-size-md), 2.6vw, 30px); /* Responsive fluid sizing */
+  font-weight: var(--font-weight-regular);
   line-height: 1.4;
   color: #52524B;
   letter-spacing: -0.02em; /* -2% letter spacing */
@@ -173,23 +173,8 @@ body.about-open .header-link[href="#about"]::after {
 
 /* ── Mobile Layout Adjustments (≤768px) ────────────────────────────────── */
 @media (max-width: 768px) {
-  .about-wrapper {
-    padding-top: calc(var(--header-height, 80px) + var(--gap-section-mobile, 40px));
-    padding-bottom: var(--gap-section-mobile, 40px);
-  }
-
   .about-grid {
     grid-template-columns: 1fr; /* Single column stack */
-    gap: var(--gap-component-mobile, 40px);
-  }
-
-  .about-card {
-    padding: var(--gap-element-mobile, 24px);
-    gap: var(--gap-element-mobile, 24px);
-  }
-
-  .about-contact-box {
-    margin-top: var(--gap-element-mobile, 24px);
   }
 
   .about-editorial-text {

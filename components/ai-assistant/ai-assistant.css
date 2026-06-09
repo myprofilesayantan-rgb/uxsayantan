@@ -1,0 +1,539 @@
+/* ==========================================================================
+   🤖 Conversational AI Assistant — Mobile-First Siri & Gemini UI Stylesheet
+   Governs the 3-Stage Transition: Intro Splash -> Welcome Speech -> QA Stack
+   ========================================================================== */
+
+/* ── 1. Fullscreen Mobile Shell (Strictly 100dvh to prevent address-bar jumps) ── */
+.ai-assistant-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh; /* Dynamic viewport height standard */
+  background: #151512;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: var(--font-family);
+  transition: opacity 0.5s ease;
+}
+
+/* Background Atmospheric Gradient Aura (Transitions from Intro solid to Welcome aura) */
+.ai-assistant-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 120%, rgba(90, 164, 249, 0.12) 0%, rgba(126, 242, 157, 0.05) 50%, rgba(21, 21, 18, 0) 100%);
+  opacity: 0;
+  transition: opacity 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.ai-assistant-container.state-welcome::before,
+.ai-assistant-container.state-qa::before,
+.ai-assistant-container.state-answer::before {
+  opacity: 1; /* Fade in radial atmosphere only when conversation starts */
+}
+
+/* ── 2. Premium Branding Header (AI UX | Sayantan Ghosh + Hamburger) ── */
+.ai-mobile-header {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--gap-micro) var(--gap-micro) calc(var(--gap-micro) / 2);
+  box-sizing: border-box;
+}
+
+.ai-mobile-title {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.ai-mobile-logo {
+  font-size: 1.15rem;
+  font-weight: var(--font-weight-bold);
+  color: #ffffff;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.ai-mobile-sub {
+  font-size: 0.72rem;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-gray, #AA9D9D);
+  letter-spacing: 0.02em;
+  margin-top: 2px;
+}
+
+/* Elegant Hamburger Visual Hook */
+.ai-mobile-menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+}
+
+.ai-mobile-menu span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: #ffffff;
+  margin-bottom: 5px;
+  border-radius: 2px;
+  transition: 0.3s ease;
+}
+
+.ai-mobile-menu span:last-child {
+  margin-bottom: 0;
+  width: 16px; /* High-end staggered offset line */
+}
+
+/* ── 3. Content Viewport Switchers (Active transitions) ── */
+.ai-content-viewport {
+  position: relative;
+  z-index: 5;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.ai-screen-panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 0 32px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(15px);
+  transition: opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+              transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.ai-screen-panel.active {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+/* ── STATE A: Screen Intro Mob ── */
+.ai-screen-intro {
+  text-align: center;
+}
+
+.ai-intro-avatar-box {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: var(--gap-element);
+  box-sizing: border-box;
+}
+
+.ai-intro-avatar {
+  width: 98px;
+  height: 98px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.ai-intro-quote {
+  font-size: 1.05rem;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.6;
+  color: #DED5D5;
+  margin: 0 0 var(--gap-micro) 0;
+  max-width: 280px;
+}
+
+.ai-intro-signature {
+  height: 36px;
+  object-fit: contain;
+  opacity: 0.9;
+}
+
+/* ── STATE B & C: Screen welcome & QA Stack ── */
+.ai-screen-welcome {
+  text-align: center;
+  justify-content: flex-start;
+  padding-top: 15vh;
+}
+
+.ai-welcome-hi {
+  font-size: clamp(65px, 12vw, 90px);
+  font-weight: 300;
+  color: #ffffff;
+  margin: 0 0 var(--gap-micro) 0;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.ai-welcome-text {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--color-text-gray, #AA9D9D);
+  max-width: 250px;
+  margin: 0;
+}
+
+/* Stacked Capsule Suggestion pills in three neat rows */
+.ai-qa-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-top: var(--gap-element);
+  width: 100%;
+  
+  /* Initial hidden state for progressive Welcome -> QA transition */
+  opacity: 0;
+  transform: translateY(15px);
+  pointer-events: none;
+  transition: opacity 0.6s cubic-bezier(0.25, 1, 0.5, 1),
+              transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Show Suggestion Chips when transitioned into the QA Options state */
+.ai-assistant-container.state-qa .ai-qa-stack {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.ai-qa-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.ai-capsule-chip {
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-medium);
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  white-space: nowrap;
+  user-select: none;
+  transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.ai-capsule-chip:active {
+  background: rgba(90, 164, 249, 0.15);
+  border-color: rgba(90, 164, 249, 0.3);
+  transform: scale(0.96);
+}
+
+/* ── STATE D: Conversational Answer View Card ── */
+.ai-screen-answer {
+  text-align: left;
+}
+
+.ai-answer-card {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  box-sizing: border-box;
+  padding: var(--gap-micro);
+  color: #DED5D5;
+  font-size: 0.94rem;
+  line-height: 1.68;
+  max-height: 50vh;
+  overflow-y: auto;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+.ai-answer-title {
+  font-size: 0.78rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-blue, #5AA4F9);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 10px 0;
+  display: block;
+}
+
+.ai-answer-content {
+  margin: 0;
+}
+
+.ai-answer-content p {
+  margin: 0 0 12px 0;
+}
+
+.ai-answer-content p:last-child {
+  margin-bottom: 0;
+}
+
+.ai-answer-content .highlight-blue {
+  color: var(--color-primary-blue, #5AA4F9);
+  font-weight: var(--font-weight-semibold);
+}
+
+.ai-answer-content .highlight-green {
+  color: #7EF29D;
+  font-weight: var(--font-weight-semibold);
+}
+
+/* Clean vertical lists inside answer blocks */
+.ai-answer-content ul {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+.ai-answer-content li {
+  margin-bottom: 6px;
+}
+
+/* Embedded action buttons inside answer panel */
+.ai-answer-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.ai-answer-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.ai-answer-btn.primary {
+  background: var(--color-primary-blue, #5AA4F9);
+  color: #151512;
+}
+
+.ai-answer-btn.primary:active {
+  background: #ffffff;
+}
+
+.ai-answer-btn.secondary {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.ai-answer-btn.secondary:active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── 4. Bottom Active Controls (The Siri Orb) ── */
+.ai-bottom-controls {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 20px 48px;
+  box-sizing: border-box;
+}
+
+/* Circular Siri Breathing Orb (Uses Neon Blue and Green) */
+.ai-siri-orb {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 0 25px rgba(90, 164, 249, 0.3), 0 0 50px rgba(126, 242, 157, 0.15);
+}
+
+/* True living rotating breathing color gradient */
+.ai-siri-orb::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #5AA4F9 0%, #a47ef2 40%, #7EF29D 80%);
+  animation: orbRotate 6s linear infinite;
+  z-index: 1;
+  transition: opacity 0.3s;
+}
+
+@keyframes orbRotate {
+  0% { transform: rotate(0deg) scale(1); }
+  50% { transform: rotate(180deg) scale(1.04); }
+  100% { transform: rotate(360deg) scale(1); }
+}
+
+/* Pulsing voice aura behind orb (speaking / listening) */
+.ai-siri-orb::after {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border-radius: 50%;
+  border: 1px solid rgba(90, 164, 249, 0.4);
+  animation: orbPulse 2.2s ease-in-out infinite;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@keyframes orbPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.1); opacity: 0.3; }
+  100% { transform: scale(1); opacity: 0.8; }
+}
+
+/* STATE: Speaking - Siri Orb transforms to Pause (White circle with Red Stop Square) */
+.ai-siri-orb.speaking {
+  background: #ffffff !important;
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.4);
+  transform: scale(0.95);
+}
+
+.ai-siri-orb.speaking::before {
+  opacity: 0; /* Fade out colorful siri orb gradient */
+}
+
+.ai-siri-orb.speaking::after {
+  animation: none;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Clean, crisp red stop square centered inside */
+.ai-stop-square {
+  width: 24px;
+  height: 24px;
+  background-color: #ED2121;
+  border-radius: 6px;
+  z-index: 5;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.ai-siri-orb.speaking .ai-stop-square {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Microphone Icon inside default Orb state */
+.ai-mic-icon {
+  width: 28px;
+  height: 28px;
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  z-index: 5;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.ai-siri-orb.speaking .ai-mic-icon {
+  opacity: 0;
+  transform: scale(0.7);
+  pointer-events: none;
+}
+
+/* Caption below Orb */
+.ai-orb-caption {
+  font-size: 0.74rem;
+  font-weight: var(--font-weight-medium);
+  color: #AA9D9D;
+  margin-top: 14px;
+  letter-spacing: 0.03em;
+  text-align: center;
+}
+
+/* Back/Close pill button centered under the orb (Only visible in Answer State) */
+.ai-back-pill {
+  position: absolute;
+  bottom: 0px; /* Positioned directly under the caption */
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.ai-assistant-container.state-answer .ai-back-pill {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.ai-back-pill svg {
+  width: 12px;
+  height: 12px;
+  stroke: #ffffff;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+/* ── 5. PREDOMINANT MOBILE MEDIA INTEGRATION ── */
+@media (max-width: 767px) {
+  /* Completely bypass and hide the heavy desktop portfolio */
+  #app, 
+  #section-header, 
+  #section-about,
+  .footer-container {
+    display: none !important;
+  }
+}
+
+/* Desktop Hide Rules for Mobile Mode (Will integrate trigger button in subsequent phase) */
+@media (min-width: 768px) {
+  .ai-assistant-container {
+    display: none !important;
+  }
+}

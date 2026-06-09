@@ -2,11 +2,12 @@
 
 .component-statement {
   width: 100%;
-  background-color: var(--color-bg-dark, #151512);
+  background-color: var(--bg-primary, #151512);
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  transition: background-color 0.5s ease;
 }
 
 .statement-wrapper {
@@ -32,13 +33,14 @@
 .statement-heading {
   font-family: var(--font-family);
   font-size: clamp(22px, 3.8vw, 44px); /* Big slick centered editorial size */
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   line-height: 1.45;
   margin: 0;
   display: inline;
   white-space: pre-line; /* Honors newlines */
   letter-spacing: -0.02em;
-  color: #DED5D5; /* Clean solid warm silver off-white (site palette) */
+  color: var(--text-heading); /* Dynamic warm silver / dark gray depending on theme */
+  transition: color 0.5s ease;
 }
 
 /* Blinking Typewriter Cursor */
@@ -47,7 +49,7 @@
   font-size: clamp(22px, 3.8vw, 44px);
   font-weight: 300;
   color: var(--color-primary-blue, #5AA4F9); /* Glowing theme blue cursor */
-  text-shadow: 0 0 12px rgba(90, 164, 249, 0.95); /* Vibrant cursor light emission */
+  text-shadow: var(--typewriter-cursor-shadow); /* Vibrant cursor light emission in dark mode, clean in light mode */
   margin-left: 4px;
   display: inline-block;
   animation: cursorBlink 0.8s infinite;
@@ -62,28 +64,23 @@
   50% { opacity: 0; }
 }
 
-/* Responsive mobile tuning */
-@media (max-width: 768px) {
-  .statement-wrapper {
-    padding: var(--gap-section-mobile, 40px) var(--side-padding-fluid);
-  }
-}
-
 /* Semantic Footer styling at the bottom of the page */
 .footer-container {
   width: 100%;
-  padding-bottom: var(--gap-micro, 24px); /* Vertical micro-breathing room at absolute bottom */
+  padding-bottom: var(--gap-micro); /* Vertical micro-breathing room at absolute bottom */
   text-align: center;
-  background-color: var(--color-bg-dark, #151512);
+  background-color: var(--bg-primary, #151512);
   z-index: 2;
   position: relative;
+  transition: background-color 0.5s ease;
 }
 
 .footer-copyright {
   font-family: var(--font-family);
   font-size: clamp(0.78rem, 2vw, 0.85rem); /* Slick, minimal typographic scale */
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.22); /* Smooth, secondary muted grey (perfect contrast on #151512) */
+  font-weight: var(--font-weight-regular);
+  color: var(--footer-text-color); /* Dynamic contrast text */
   letter-spacing: 0.06em;
   margin: 0;
+  transition: color 0.5s ease;
 }

@@ -83,6 +83,15 @@ window.PortfolioCursor = {
         this.size = Math.random() * 1.6 + 0.8;    // Subtle star dust: 0.8px to 2.4px
         this.alpha = Math.random() * 0.5 + 0.25;  // Semi-transparent alphas
         this.colorType = Math.random() > 0.35 ? 'white' : 'blue'; // Multi-tone particles
+
+        // Microsoft brand colors (Red, Green, Blue, Yellow) for White Mode
+        const microsoftColors = [
+          'rgba(242, 80, 34, ',   // Microsoft Red (#F25022)
+          'rgba(127, 186, 0, ',   // Microsoft Green (#7FBA00)
+          'rgba(0, 164, 239, ',   // Microsoft Blue (#00A4EF)
+          'rgba(255, 185, 0, '    // Microsoft Yellow (#FFB900)
+        ];
+        this.microsoftColor = microsoftColors[Math.floor(Math.random() * microsoftColors.length)];
       }
 
       update() {
@@ -95,21 +104,26 @@ window.PortfolioCursor = {
             // Stronger pull close to mouse, fading at the boundary
             const force = (mouse.maxDist - dist) / mouse.maxDist;
             
+            // Detect light mode for custom animation physics
+            const isLightMode = document.documentElement.classList.contains('light-mode');
+
             // 1. Orbital shell attraction (pulls towards targetRadius, repels if inside it)
             const shellDist = dist - mouse.targetRadius;
-            const attractionStrength = 0.05 * force;
+            const attractionStrength = (isLightMode ? 0.065 : 0.05) * force;
             
             this.vx += (dx / dist) * shellDist * attractionStrength;
             this.vy += (dy / dist) * shellDist * attractionStrength;
             
             // 2. Swirling / Clockwise orbit force (tangent velocity vector)
-            const swirlStrength = (mouse.hovering ? 0.07 : 0.035) * force;
+            const baseSwirl = mouse.hovering ? 0.07 : 0.035;
+            const swirlStrength = (isLightMode ? baseSwirl * 1.3 : baseSwirl) * force;
             this.vx += (-dy / dist) * swirlStrength;
             this.vy += (dx / dist) * swirlStrength;
             
             // 3. Stabilization dampening under gravity
-            this.vx *= 0.935;
-            this.vy *= 0.935;
+            const dampening = isLightMode ? 0.92 : 0.935;
+            this.vx *= dampening;
+            this.vy *= dampening;
           } else {
             // Apply gentle drag outside mouse gravity field
             this.vx *= 0.98;
@@ -154,20 +168,32 @@ window.PortfolioCursor = {
       }
 
       draw() {
+        const isLightMode = document.documentElement.classList.contains('light-mode');
+        
         ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        // Slightly scale up particle sizes in Light Mode to make colors clear and readable against white background
+        const drawSize = isLightMode ? this.size * 1.3 : this.size;
+        ctx.arc(this.x, this.y, drawSize, 0, Math.PI * 2);
         
         let fillStyle;
-        if (mouse.hovering) {
-          // Dynamic color highlights on interactive element hovering
-          if (this.colorType === 'white') {
-            fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+        if (isLightMode) {
+          // Microsoft multi-color scheme for Light Mode
+          if (mouse.hovering) {
+            fillStyle = `${this.microsoftColor}${this.alpha * 0.95})`;
           } else {
-            fillStyle = `rgba(90, 164, 249, ${this.alpha + 0.25})`; // Primary blue glow highlight
+            fillStyle = `${this.microsoftColor}${this.alpha * 0.7})`;
           }
         } else {
-          // Standard soft floating stardust
-          fillStyle = `rgba(255, 255, 255, ${this.alpha * 0.6})`;
+          // Keep Dark Mode completely untouched (original white & blue glowing stardust particles)
+          if (mouse.hovering) {
+            if (this.colorType === 'white') {
+              fillStyle = `rgba(255, 255, 255, ${this.alpha})`;
+            } else {
+              fillStyle = `rgba(90, 164, 249, ${this.alpha + 0.25})`;
+            }
+          } else {
+            fillStyle = `rgba(255, 255, 255, ${this.alpha * 0.6})`;
+          }
         }
         
         ctx.fillStyle = fillStyle;
@@ -221,13 +247,66 @@ window.PortfolioCursor = {
       }
     });
 
+    // Light Mode minimalistic LERP follower variables
+    const follower = {
+      x: -1000,
+      y: -1000,
+      radius: 10,
+      targetRadius: 10
+    };
+
     // High-performance hardware accelerated render loop
     function renderLoop() {
       ctx.clearRect(0, 0, width, height);
       
-      for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
+      const isLightMode = document.documentElement.classList.contains('light-mode');
+      
+      if (isLightMode) {
+        // Light Mode: Minimalistic Follower Circle (No dusty particles!)
+        if (mouse.active) {
+          if (follower.x === -1000) {
+            follower.x = mouse.x;
+            follower.y = mouse.y;
+          } else {
+            // Smooth LERP lag drag
+            follower.x += (mouse.x - follower.x) * 0.18;
+            follower.y += (mouse.y - follower.y) * 0.18;
+          }
+          
+          // Hover expansion physics
+          follower.targetRadius = mouse.hovering ? 18 : 10;
+          follower.radius += (follower.targetRadius - follower.radius) * 0.15;
+          
+          // Draw the minimalistic follower
+          ctx.beginPath();
+          ctx.arc(follower.x, follower.y, follower.radius, 0, Math.PI * 2);
+          
+          // Mapped to Microsoft brand/accent guidelines
+          if (mouse.hovering) {
+            ctx.strokeStyle = 'rgba(0, 120, 212, 0.55)'; // Microsoft Brand Blue border
+            ctx.fillStyle = 'rgba(0, 120, 212, 0.05)';    // Subtle blue hover fill
+            ctx.lineWidth = 1.5;
+          } else {
+            ctx.strokeStyle = 'rgba(66, 66, 66, 0.25)';   // Soft Fluent dark gray border
+            ctx.fillStyle = 'transparent';
+            ctx.lineWidth = 1;
+          }
+          
+          ctx.fill();
+          ctx.stroke();
+        } else {
+          follower.x = -1000;
+          follower.y = -1000;
+        }
+      } else {
+        // Dark Mode: Premium swirling stardust particles (completely untouched)
+        follower.x = -1000;
+        follower.y = -1000;
+        
+        for (let i = 0; i < particles.length; i++) {
+          particles[i].update();
+          particles[i].draw();
+        }
       }
       
       requestAnimationFrame(renderLoop);

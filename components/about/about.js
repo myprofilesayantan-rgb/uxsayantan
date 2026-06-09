@@ -50,7 +50,12 @@ window.PortfolioAbout = {
 
   toggle() {
     if (this.isOpen) {
-      this.close();
+      // If the user is scrolled down, scroll them back to top to see the panel instead of closing it
+      if (window.scrollY > 50) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } else {
+        this.close();
+      }
     } else {
       this.open();
     }
@@ -62,6 +67,9 @@ window.PortfolioAbout = {
 
     // Add state class to body for theme swap (white navigation backdrop)
     document.body.classList.add('about-open');
+
+    // Scroll smoothly to top of page so user can see the expanding about panel
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 
     // ── Seamless Height Animation ──────────────────────────────────────────
     // 1. Calculate actual scroll height
