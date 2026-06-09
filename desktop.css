@@ -12,16 +12,18 @@ html {
   font-family: var(--font-family);
   font-size: var(--font-size-base);
   line-height: 1.6;
-  color: var(--color-text-gray);
-  background-color: var(--color-bg-dark);
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
   overflow-x: hidden;
   scroll-behavior: smooth; /* Enable smooth scrolling globally */
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
 }
 
 body {
-  background-color: var(--color-bg-dark);
+  background-color: var(--bg-primary);
   min-height: 100vh;
   position: relative;
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
 }
 
 /* Main app container */
@@ -40,8 +42,8 @@ body {
    on top of this — they control only their internal layout spacing.
    ────────────────────────────────────────────────────────────────────── */
 .section-container {
-  padding-top: var(--section-gap);
-  padding-bottom: var(--section-gap);
+  padding-top: var(--gap-section);
+  padding-bottom: var(--gap-section);
 }
 
 /* Exception: hidden-friction is LOCKED.
@@ -53,10 +55,6 @@ body {
 }
 
 @media (max-width: 768px) {
-  .section-container {
-    padding-top: var(--section-gap-mobile);
-    padding-bottom: var(--section-gap-mobile);
-  }
   #section-featured {
     padding-top: 0;
     padding-bottom: 0;
@@ -65,11 +63,12 @@ body {
 
 /* Fluid typography defaults */
 h1, h2, h3, h4, h5, h6 {
-  color: var(--color-text-white);
-  font-weight: 600;
+  color: var(--text-heading);
+  font-weight: var(--font-weight-semibold);
+  transition: color 0.5s ease;
 }
 
-h1 { font-size: clamp(2rem, 5.5vw, 4.5rem); }
+h1 { font-size: var(--font-size-hero); }
 h2 { font-size: clamp(1.5rem, 4vw, 3rem); }
 
 /* Global helper classes */
@@ -95,14 +94,14 @@ a {
   color: var(--color-primary-blue);
   border: 1px solid var(--color-primary-blue);
   border-radius: 2rem;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
 .btn-primary:hover {
   background-color: var(--color-primary-blue);
-  color: var(--color-bg-dark);
+  color: var(--bg-primary);
 }
 
 /* Lazy loading image transition support */
@@ -133,12 +132,12 @@ img.lazy-load.lazy-loaded {
   top: 0;
   left: 0;
   width: 100%;
-  height: 120px; /* extends below the header to create a smooth fade transition */
+  height: 90px; /* extends below the header to create a smooth fade transition */
   background: linear-gradient(
     to bottom,
-    rgba(21, 21, 18, 0.95) 0%,
-    rgba(21, 21, 18, 0.85) var(--header-height, 80px),
-    rgba(21, 21, 18, 0) 100%
+    rgba(var(--header-bg-color), 0.45) 0%,
+    rgba(var(--header-bg-color), 0.35) var(--header-height, 60px),
+    rgba(var(--header-bg-color), 0) 100%
   );
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -151,8 +150,8 @@ img.lazy-load.lazy-loaded {
   .above-fold-container {
     display: flex;
     flex-direction: column;
-    height: calc(100vh - var(--header-height, 80px));
-    height: calc(100dvh - var(--header-height, 80px));
+    height: calc(100vh - var(--header-height, 60px));
+    height: calc(100dvh - var(--header-height, 60px));
     justify-content: space-between;
     gap: clamp(1rem, 3vh, 2.5rem); /* Guarantees hero and logos never touch on small viewport heights */
     width: 100%;
@@ -177,8 +176,8 @@ img.lazy-load.lazy-loaded {
   .above-fold-container {
     display: flex;
     flex-direction: column;
-    min-height: calc(100vh - var(--header-height, 80px));
-    min-height: calc(100dvh - var(--header-height, 80px));
+    min-height: calc(100vh - var(--header-height, 60px));
+    min-height: calc(100dvh - var(--header-height, 60px));
     justify-content: space-between;
     width: 100%;
     position: relative;
@@ -201,6 +200,20 @@ img.lazy-load.lazy-loaded {
 #section-hidden-friction-image img {
   opacity: 0;
   transform: translateY(30px);
+  max-width: 834px; /* Maintain same visual dimensions as dark mode SVG (834px wide) */
+  width: 100%;
+  height: auto;
+}
+
+/* ── Light Mode Primary Button Hover Glass Overrides ────────────────── */
+html.light-mode .btn-primary:hover,
+html.light-mode .hero-cta:hover {
+  background-color: rgba(var(--color-primary-blue-rgb), 0.9) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  color: #ffffff !important;
+  border-color: rgba(var(--color-primary-blue-rgb), 0.95) !important;
+  box-shadow: 0 8px 24px rgba(var(--color-primary-blue-rgb), 0.35) !important;
 }
 
 
