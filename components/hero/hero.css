@@ -42,12 +42,13 @@
 .hero-heading {
   font-family: var(--font-family);
   font-size: clamp(1.5rem, 3.8vw, 2.35rem); /* Beautiful fluid typography sizing */
-  font-weight: 400; /* Clean, light weight matching mockup */
+  font-weight: var(--font-weight-regular); /* Clean, light weight matching mockup */
   line-height: 1.45;
-  color: var(--color-text-white);
+  color: var(--text-heading);
   letter-spacing: -0.01em;
   margin: 0;
   opacity: 0; /* Animated by GSAP on load */
+  transition: color 0.5s ease;
 }
 
 /* Signature block (handling 2x PNG asset) */
@@ -94,7 +95,7 @@
   gap: 0.75rem;
   padding: 1.1rem 2.8rem;
   font-size: clamp(1.1rem, 2.5vw, 1.3rem);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   letter-spacing: 0.02em;
   border-radius: 3rem;
   position: relative;
@@ -123,7 +124,7 @@
 
 .hero-cta:hover {
   background-color: var(--color-primary-blue);
-  color: var(--color-bg-dark);
+  color: #ffffff;
   border-color: var(--color-primary-blue);
   box-shadow: 0 0 28px rgba(90, 164, 249, 0.5), 0 6px 20px rgba(90, 164, 249, 0.25);
   animation: none;
@@ -143,27 +144,39 @@
   transform: translateY(4px);
 }
 
-/* Download CV — secondary ghost button */
+/* Secondary Outline Button (UX Research / Tracto) */
 .hero-cv-btn {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 1.1rem 2rem;
   font-size: clamp(1rem, 2vw, 1.15rem);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   letter-spacing: 0.02em;
   border-radius: 3rem;
-  color: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  color: var(--text-heading); /* Solid primary text color */
+  border: 1.5px solid rgba(255, 255, 255, 0.35); /* Prominent border in dark mode */
   background: transparent;
   text-decoration: none;
-  transition: color 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 
 .hero-cv-btn:hover {
-  color: rgba(255, 255, 255, 0.9);
-  border-color: rgba(255, 255, 255, 0.32);
-  background: rgba(255, 255, 255, 0.05);
+  color: var(--bg-primary) !important;
+  border-color: var(--text-heading);
+  background-color: var(--text-heading); /* Fill button with solid contrast text color */
+}
+
+/* Light mode adjustments for the outline button */
+html.light-mode .hero-cv-btn {
+  color: var(--text-heading);
+  border-color: rgba(0, 0, 0, 0.25); /* Clear visible border in light mode */
+}
+
+html.light-mode .hero-cv-btn:hover {
+  color: #ffffff !important;
+  background-color: var(--text-heading);
+  border-color: var(--text-heading);
 }
 
 /* Typing cursor styling */
@@ -203,4 +216,129 @@
   .hero-avatar-box {
     width: 65px;
   }
+}
+
+/* ── Light Mode Adaptations ─────────────────────────────────────────────── */
+html.light-mode .hero-signature {
+  filter: invert(1); /* Invert the signature image from white to black */
+}
+html.light-mode .hero-avatar {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* ── Fancy AI UX Callout Card ───────────────────────────────────────────── */
+.hero-cta-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.hero-callout {
+  position: absolute;
+  top: calc(100% + 16px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 290px;
+  padding: 10px 14px;
+  background: rgba(30, 30, 32, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 12px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.callout-text {
+  font-family: var(--font-family);
+  font-size: clamp(0.72rem, 1.5vw, 0.78rem);
+  line-height: 1.45;
+  color: var(--color-text-gray);
+  margin: 0;
+  padding-right: 12px; /* Prevent text from overlapping with close button */
+  text-align: left;
+}
+
+.callout-text strong {
+  color: var(--color-text-white);
+  font-weight: var(--font-weight-semibold);
+}
+
+.callout-badge {
+  display: inline-block;
+  background-color: var(--color-primary-blue);
+  color: var(--color-bg-dark);
+  font-size: 8px;
+  font-weight: var(--font-weight-bold);
+  padding: 1px 5px;
+  border-radius: 4px;
+  margin-right: 5px;
+  letter-spacing: 0.03em;
+  vertical-align: middle;
+}
+
+.callout-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  font-size: 14px;
+  font-weight: var(--font-weight-regular);
+  color: var(--color-text-gray);
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s ease;
+}
+
+.callout-close:hover {
+  color: var(--color-text-white);
+}
+
+.callout-arrow {
+  position: absolute;
+  top: -6px; /* Stick out at the top of the card */
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 12px;
+  height: 12px;
+  background: rgba(30, 30, 32, 0.82);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Light Mode Overrides for AI Callout */
+html.light-mode .hero-callout {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+html.light-mode .callout-text {
+  color: #555555;
+}
+
+html.light-mode .callout-text strong {
+  color: #1e1e1e;
+}
+
+html.light-mode .callout-badge {
+  background-color: var(--color-primary-blue);
+  color: #ffffff;
+}
+
+html.light-mode .callout-close {
+  color: #777777;
+}
+
+html.light-mode .callout-close:hover {
+  color: #1e1e1e;
+}
+
+html.light-mode .callout-arrow {
+  background: rgba(255, 255, 255, 0.9);
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
