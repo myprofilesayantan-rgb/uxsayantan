@@ -1,5 +1,10 @@
 /* Scoped Hero Component Styles */
 
+.component-hero {
+  position: relative;
+  z-index: 10; /* Ensure hero section (and its absolute callouts) stacks above subsequent sections like logos */
+}
+
 .hero-wrapper {
   display: flex;
   flex-direction: column;
