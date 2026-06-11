@@ -2,12 +2,11 @@
 
 .component-statement {
   width: 100%;
-  background-color: var(--bg-primary, #151512);
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  transition: background-color 0.5s ease;
 }
 
 .statement-wrapper {
@@ -69,10 +68,9 @@
   width: 100%;
   padding-bottom: var(--gap-micro); /* Vertical micro-breathing room at absolute bottom */
   text-align: center;
-  background-color: var(--bg-primary, #151512);
+  background-color: transparent;
   z-index: 2;
   position: relative;
-  transition: background-color 0.5s ease;
 }
 
 .footer-copyright {
