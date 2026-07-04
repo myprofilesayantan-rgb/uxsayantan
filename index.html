@@ -3,19 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   
-  <!-- ðŸ”„ Instant Mobile Redirection Engine
-       Checks device User-Agent and viewport dimensions to execute a high-performance,
-       zero-flash redirect to the isolated mobile experience before styling or heavy scripts parse. -->
-  <script type="text/javascript">
-    (function() {
-      var isMobileDevice = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-      var isSmallViewport = window.innerWidth < 768;
-      
-      if (isMobileDevice || isSmallViewport) {
-        window.location.replace("https://myprofilesayantan-rgb.github.io/mobile-chat/");
-      }
-    })();
-  </script>
 
   <!-- ðŸŒ“ Instant Theme Restoration Script
        Restores the user's previously selected theme preference from localStorage
@@ -110,6 +97,8 @@
   <link rel="stylesheet" href="components/tracto/tracto.css?v=1.1" />
   <!-- Skills Logos Stylesheet -->
   <link rel="stylesheet" href="components/skills-logos/skills-logos.css?v=1.3" />
+  <!-- Product Story Overlay Stylesheet -->
+  <link rel="stylesheet" href="components/product-story/product-story.css?v=1.0" />
   <!-- About Component Stylesheet -->
   <link rel="stylesheet" href="components/about/about.css?v=1.1" />
   <!-- Final Statement Component Stylesheet -->
@@ -292,8 +281,8 @@
               System Thinking (SmartBI) <span class="hero-cta-arrow"><svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-left:4px;"><path d="M5 13h11.86l-5.43 5.43L13 20l8-8-8-8-1.41 1.41 5.43 5.43H5v2z"/></svg></span>
             </a>
           </div>
-          <a href="#section-tracto" class="hero-cv-btn" id="hero-research-btn">
-            Behavioral Research (Tracto) <span class="hero-cta-arrow"><svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-left:4px;"><path d="M20 12l-1.41-1.41L13 16.17V4h-2v12.17l-5.58-5.59L4 12l8 8 8-8z"/></svg></span>
+          <a href="#section-tracto" class="hero-cv-btn" id="hero-research-btn" aria-label="See how we designed for elderly independence — an interactive product design story">
+            Elderly Care &middot; Design Story <span class="hero-cta-arrow"><svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-left:4px;"><path d="M5 13h11.86l-5.43 5.43L13 20l8-8-8-8-1.41 1.41 5.43 5.43H5v2z"/></svg></span>
           </a>
         </div>
       </div>
@@ -658,7 +647,7 @@
                   <!-- Widget 2 -->
                   <div class="widget-card">
                     <div class="widget-header">
-                      <span class="widget-number">+20</span>
+                      <span class="widget-number">20+</span>
                       <span class="widget-label">Contextual Interview</span>
                     </div>
                     <p class="widget-desc">Conducted using three complementary methodsâ€”interviewing during the activity, debriefing after the activity, and silent observation. Captures decisions in the moment, not reconstructed memory.</p>
@@ -737,8 +726,7 @@
                     </p>
                   </div>
                   <div class="solution-cta-row">
-                    <a href="work/Tracto%20Presentation.pptx" download="Tracto-Product-Story.pptx" class="btn-primary solution-btn">Download Product Story</a>
-                    <a href="mailto:myprofile.sayantan@gmail.com?subject=Request%20for%20Research%20Paper%20-%20Tracto%20Case%20Study&body=Hi%20Sayantan,%0D%0A%0D%0AI%20would%20love%20to%20read%20your%20research%20paper%20on%20Tracto%20(Design%20for%20Healthcare%20Ecosystem).%20Could%20you%20please%20share%20a%20copy%20with%20me?%0D%0A%0D%0ABest%20regards," class="btn-secondary solution-btn">Request for Research Paper</a>
+                    <a href="mailto:myprofile.sayantan@gmail.com?subject=Request%20for%20Research%20Paper%20-%20Tracto%20Case%20Study&body=Hi%20Sayantan,%0D%0A%0D%0AI%20would%20love%20to%20read%20your%20research%20paper%20on%20Tracto%20(Design%20for%20Healthcare%20Ecosystem).%20Could%20you%20please%20share%20a%20copy%20with%20me?%0D%0A%0D%0ABest%20regards," class="btn-primary solution-btn">Request for Research Paper</a>
                   </div>
                 </div>
 
@@ -842,8 +830,10 @@
 
     <section id="section-hidden-friction-image" class="section-container">
       <div class="image-wrapper text-center">
-        <img src="images/hidden_friction.svg" alt="Hidden Friction" class="friction-img-dark" />
-        <img src="images/hidden_friction_w.svg" alt="Hidden Friction" class="friction-img-light" />
+        <div class="friction-image-tilt-box">
+          <img src="images/hidden_friction.svg" alt="Hidden Friction" class="friction-img-dark" />
+          <img src="images/hidden_friction_w.svg" alt="Hidden Friction" class="friction-img-light" />
+        </div>
       </div>
     </section>
     <section id="section-featured" class="section-container component-featured">
@@ -945,7 +935,7 @@
   <!-- Zoom Modal Overlay -->
   <div class="radar-modal-overlay" id="radar-zoom-modal" aria-hidden="true">
     <div class="radar-modal-card">
-      <button class="radar-modal-close" id="radar-modal-close-btn" aria-label="Close Zoom View">âœ•</button>
+      <button class="radar-modal-close" id="radar-modal-close-btn" aria-label="Close Zoom View">✕</button>
       <div class="radar-modal-header">
         <h5 class="radar-modal-title">UX RESEARCH METRIC ALIGNMENT</h5>
         <div class="radar-modal-subtitle">Emotion, Care, &amp; Need Matrix</div>
@@ -1072,6 +1062,8 @@
   <script src="components/about/about.js?v=1.1"></script>
   <!-- Final Statement Component Script -->
   <script src="components/statement/statement.js?v=1.1"></script>
+  <!-- Product Story Overlay Component Script -->
+  <script src="components/product-story/product-story.js?v=1.0"></script>
   
   <!-- Boot Components -->
   <script>
@@ -1086,6 +1078,7 @@
     PortfolioContextMenu.init();
     PortfolioAbout.init(document.getElementById('section-about'));
     PortfolioStatement.init(document.getElementById('section-statement'));
+    ProductStoryModal.init();
 
     // â”€â”€ Preload Tracto Phone Mockup Images into browser disk cache â”€â”€â”€â”€â”€â”€â”€â”€â”€
     (function preloadTractoAssets() {
@@ -1126,6 +1119,47 @@
           }
         }
       );
+
+      // 3D Tilt effect on mouse movement for Hidden Friction image
+      (function() {
+        const tiltContainer = document.querySelector('#section-hidden-friction-image');
+        const tiltBox = document.querySelector('.friction-image-tilt-box');
+        
+        if (tiltContainer && tiltBox) {
+          tiltContainer.addEventListener('mousemove', (e) => {
+            const rect = tiltContainer.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const normX = (x / rect.width) - 0.5;
+            const normY = (y / rect.height) - 0.5;
+            
+            const maxTilt = 12; // Maximum tilt angle in degrees
+            const tiltX = -normY * maxTilt;
+            const tiltY = normX * maxTilt;
+            
+            gsap.to(tiltBox, {
+              rotationX: tiltX,
+              rotationY: tiltY,
+              scale: 1.03,
+              duration: 0.4,
+              ease: 'power2.out',
+              overwrite: 'auto'
+            });
+          });
+          
+          tiltContainer.addEventListener('mouseleave', () => {
+            gsap.to(tiltBox, {
+              rotationX: 0,
+              rotationY: 0,
+              scale: 1,
+              duration: 0.6,
+              ease: 'power2.out',
+              overwrite: 'auto'
+            });
+          });
+        }
+      })();
 
       // 2. Stagger-reveal skills logos, clearing props on completion for hover transitions
       gsap.fromTo(
