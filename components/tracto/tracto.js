@@ -247,7 +247,7 @@ window.PortfolioTracto = {
 
       // Animate User Profile
       gsap.to(userLevels, {
-        v0: 8.5, v1: 8.0, v2: 5.5, v3: 4.5, v4: 9.5,
+        v0: 8.7, v1: 7.8, v2: 5.7, v3: 4.8, v4: 9.6,
         duration: 1.3,
         ease: 'power3.out',
         onUpdate: updatePolygons
@@ -255,7 +255,7 @@ window.PortfolioTracto = {
 
       // Animate Care Ecosystem
       gsap.to(careLevels, {
-        v0: 5.5, v1: 4.0, v2: 7.5, v3: 9.0, v4: 6.0,
+        v0: 5.7, v1: 3.9, v2: 7.4, v3: 9.1, v4: 6.1,
         duration: 1.3,
         ease: 'power3.out'
       });
@@ -1062,7 +1062,7 @@ window.PortfolioTracto = {
 
         // Animate User levels
         gsap.to(userLevels, {
-          v0: 8.5, v1: 8.0, v2: 5.5, v3: 4.5, v4: 9.5,
+          v0: 8.7, v1: 7.8, v2: 5.7, v3: 4.8, v4: 9.6,
           duration: 1.2,
           delay: 0.1,
           ease: 'power3.out',
@@ -1071,7 +1071,7 @@ window.PortfolioTracto = {
 
         // Animate Care levels
         gsap.to(careLevels, {
-          v0: 5.5, v1: 4.0, v2: 7.5, v3: 9.0, v4: 6.0,
+          v0: 5.7, v1: 3.9, v2: 7.4, v3: 9.1, v4: 6.1,
           duration: 1.2,
           delay: 0.1,
           ease: 'power3.out'
