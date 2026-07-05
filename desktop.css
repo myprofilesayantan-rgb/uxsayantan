@@ -200,7 +200,7 @@ img.lazy-load.lazy-loaded {
 #section-hidden-friction-image img {
   opacity: 0;
   transform: translateY(30px);
-  max-width: 834px; /* Maintain same visual dimensions as dark mode SVG (834px wide) */
+  max-width: 834px;
   width: 100%;
   height: auto;
 }
