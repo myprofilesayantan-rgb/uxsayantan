@@ -830,10 +830,8 @@
 
     <section id="section-hidden-friction-image" class="section-container">
       <div class="image-wrapper text-center">
-        <div class="friction-image-tilt-box">
-          <img src="images/hidden_friction.svg" alt="Hidden Friction" class="friction-img-dark" />
-          <img src="images/hidden_friction_w.svg" alt="Hidden Friction" class="friction-img-light" />
-        </div>
+        <img src="images/hidden_friction.svg" alt="Hidden Friction" class="friction-img-dark" />
+        <img src="images/hidden_friction_w.svg" alt="Hidden Friction" class="friction-img-light" />
       </div>
     </section>
     <section id="section-featured" class="section-container component-featured">
@@ -1120,46 +1118,6 @@
         }
       );
 
-      // 3D Tilt effect on mouse movement for Hidden Friction image
-      (function() {
-        const tiltContainer = document.querySelector('#section-hidden-friction-image');
-        const tiltBox = document.querySelector('.friction-image-tilt-box');
-        
-        if (tiltContainer && tiltBox) {
-          tiltContainer.addEventListener('mousemove', (e) => {
-            const rect = tiltContainer.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            const normX = (x / rect.width) - 0.5;
-            const normY = (y / rect.height) - 0.5;
-            
-            const maxTilt = 12; // Maximum tilt angle in degrees
-            const tiltX = -normY * maxTilt;
-            const tiltY = normX * maxTilt;
-            
-            gsap.to(tiltBox, {
-              rotationX: tiltX,
-              rotationY: tiltY,
-              scale: 1.03,
-              duration: 0.4,
-              ease: 'power2.out',
-              overwrite: 'auto'
-            });
-          });
-          
-          tiltContainer.addEventListener('mouseleave', () => {
-            gsap.to(tiltBox, {
-              rotationX: 0,
-              rotationY: 0,
-              scale: 1,
-              duration: 0.6,
-              ease: 'power2.out',
-              overwrite: 'auto'
-            });
-          });
-        }
-      })();
 
       // 2. Stagger-reveal skills logos, clearing props on completion for hover transitions
       gsap.fromTo(
