@@ -1,0 +1,319 @@
+/* ==========================================================================
+   Outcomes Component — Project Outcome Cards
+   Follows portfolio design system: tokens.css + desktop.css
+   ========================================================================= */
+
+.component-outcomes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.outcomes-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: var(--gap-element);
+}
+
+/* Section Eyebrow */
+.outcomes-eyebrow {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(var(--grid-base-color), 0.35);
+  transition: color 0.5s ease;
+}
+
+/* Three-column card grid for desktop */
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Glassmorphic Card - Compact Specs */
+.outcome-card {
+  position: relative;
+  border: 1px solid var(--card-border-color);
+  background: var(--card-bg-gradient-start);
+  border-radius: 16px;
+  padding: 20px; /* Reduced for pro visual design */
+  box-shadow: var(--widget-card-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Tighter gaps for compact feel */
+  box-sizing: border-box;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease, background 0.5s ease;
+}
+
+/* Premium project-colour top strip - disabled to avoid AI template aesthetic */
+.outcome-card::before {
+  display: none;
+}
+
+.outcome-card:hover {
+  transform: translateY(-5px);
+  background: var(--card-bg-hover-start);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Tag pill */
+.outcome-tag {
+  font-family: var(--font-family);
+  font-size: 8.5px;
+  font-weight: var(--font-weight-semibold);
+  color: var(--widget-label-text);
+  background: var(--widget-label-bg);
+  padding: 3px 7px;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.2;
+  width: fit-content;
+}
+
+/* Adjust tag pill colors specifically per card for design contrast */
+#outcome-tenxengage .outcome-tag {
+  color: #ff007f;
+  background: rgba(255, 0, 127, 0.08);
+}
+
+/* Project title */
+.outcome-title {
+  font-family: var(--font-family);
+  font-size: 1.15rem; /* Reduced to look sleek & human */
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-heading);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 1px 0 0 0;
+  transition: color 0.5s ease;
+}
+
+/* Project subtitle */
+.outcome-subtitle {
+  font-family: var(--font-family);
+  font-size: 0.78rem; /* Reduced to look sleek */
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.4;
+  transition: color 0.5s ease;
+}
+
+/* Status badge — amber/green */
+.outcome-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 6px;
+  padding: 3px 7px;
+  width: fit-content;
+  margin-top: 1px;
+}
+
+/* Green status for shipped enterprise project */
+.outcome-status.status-shipped {
+  background: rgba(48, 209, 88, 0.08);
+  border: 1px solid rgba(48, 209, 88, 0.2);
+}
+
+.outcome-status.status-shipped .outcome-status-dot {
+  background: rgba(48, 209, 88, 0.9);
+}
+
+.outcome-status.status-shipped .outcome-status-text {
+  color: rgba(48, 209, 88, 0.9);
+}
+
+/* Amber status for concept/research stage */
+.outcome-status.status-amber {
+  background: rgba(255, 184, 0, 0.08);
+  border: 1px solid rgba(255, 184, 0, 0.2);
+}
+
+.outcome-status.status-amber .outcome-status-dot {
+  background: rgba(255, 184, 0, 0.9);
+}
+
+.outcome-status.status-amber .outcome-status-text {
+  color: rgba(255, 184, 0, 0.85);
+}
+
+.outcome-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: outcome-status-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes outcome-status-pulse {
+  0%, 100% { opacity: 1;   transform: scale(1);    }
+  50%       { opacity: 0.4; transform: scale(0.72); }
+}
+
+.outcome-status-text {
+  font-family: var(--font-family);
+  font-size: 8.5px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Divider */
+.outcome-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05); /* Softer divider */
+  margin: 1px 0;
+  flex-shrink: 0;
+}
+
+/* Outcome body (compact font size) */
+.outcome-body {
+  font-family: var(--font-family);
+  font-size: 0.82rem; /* Reduced to look high-end & readable */
+  line-height: 1.55;
+  color: var(--text-primary);
+  margin: 0;
+  min-height: 95px; /* Aligned starting point of stats row while saving space */
+  transition: color 0.5s ease;
+}
+
+/* Stats row — CSS Grid for perfect horizontal alignment across columns */
+.outcome-numbers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: auto;
+  min-height: 45px; /* Reduced height */
+  align-items: start;
+}
+
+.outcome-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.outcome-stat-num {
+  font-family: var(--font-family);
+  font-size: 1.5rem; /* Sleek, non-bulky size */
+  font-weight: var(--font-weight-bold);
+  color: var(--text-heading);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: color 0.5s ease;
+}
+
+.outcome-stat-label {
+  font-family: var(--font-family);
+  font-size: 8px; /* Extra compact */
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  transition: color 0.5s ease;
+}
+
+/* CTA button */
+.outcome-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.25rem; /* Proportioned for a card container */
+  background-color: transparent;
+  color: var(--color-primary-blue);
+  border: 1.5px solid var(--color-primary-blue);
+  border-radius: 2rem;
+  font-size: 0.75rem; /* Sleek & compact button text */
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+  margin-top: 4px;
+  text-decoration: none;
+}
+
+.outcome-cta:hover {
+  background-color: var(--color-primary-blue);
+  color: #ffffff;
+  border-color: var(--color-primary-blue);
+  box-shadow: 0 0 28px rgba(90, 164, 249, 0.5), 0 6px 20px rgba(90, 164, 249, 0.25);
+}
+
+.outcome-cta:focus-visible {
+  outline: 2px solid var(--color-primary-blue);
+  outline-offset: 3px;
+}
+
+.outcome-cta svg {
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+.outcome-cta:hover svg {
+  transform: translateX(3px);
+}
+
+/* Light mode */
+html.light-mode .outcome-card {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(0, 0, 0, 0.02);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.04);
+}
+
+html.light-mode .outcome-card:hover {
+  background: rgba(0, 0, 0, 0.04);
+  border-color: rgba(0, 0, 0, 0.16);
+  box-shadow: 0 16px 48px 0 rgba(0, 0, 0, 0.08);
+}
+
+html.light-mode .outcome-cta:hover {
+  background-color: rgba(var(--color-primary-blue-rgb), 0.9) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  color: #ffffff !important;
+  border-color: rgba(var(--color-primary-blue-rgb), 0.95) !important;
+  box-shadow: 0 8px 24px rgba(var(--color-primary-blue-rgb), 0.35) !important;
+}
+
+html.light-mode .outcomes-eyebrow {
+  color: rgba(0, 0, 0, 0.35);
+}
+
+/* Responsive configurations */
+@media (max-width: 992px) {
+  .outcomes-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .outcomes-grid {
+    grid-template-columns: 1fr;
+  }
+  .outcome-card {
+    padding: 20px;
+  }
+}
