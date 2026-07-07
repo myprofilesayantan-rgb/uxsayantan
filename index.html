@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  
+
 
   <!-- ðŸŒ“ Instant Theme Restoration Script
        Restores the user's previously selected theme preference from localStorage
        and applies the .light-mode class immediately before HTML rendering to prevent FOUC (flash of unstyled content). -->
   <script type="text/javascript">
-    (function() {
+    (function () {
       try {
         var theme = localStorage.getItem('theme');
         if (theme === 'light') {
           document.documentElement.classList.add('light-mode');
         }
-      } catch (e) {}
+      } catch (e) { }
     })();
   </script>
 
@@ -23,15 +24,18 @@
 
   <!-- Primary SEO Metadata -->
   <title>Sayantan Ghosh | Senior UX & Product Designer Portfolio</title>
-  <meta name="description" content="Portfolio of Sayantan Ghosh, a Senior UX & Product Designer in India with 22+ years of experience. Specializing in IxDF interaction design, AiUX workflows, B2B SaaS, and Healthcare ecosystems." />
-  <meta name="keywords" content="Sayantan Ghosh, UX Designer India, Senior UX Designer, Product Designer India, IxDF, Interaction Design Foundation, AiUX workflow, AI UX Design, AI-driven UX, Healthcare UX, SaaS UX Design, B2B UX, IIT Roorkee UX" />
+  <meta name="description"
+    content="Portfolio of Sayantan Ghosh, a Senior UX & Product Designer in India with 22+ years of experience. Specializing in IxDF interaction design, AiUX workflows, B2B SaaS, and Healthcare ecosystems." />
+  <meta name="keywords"
+    content="Sayantan Ghosh, UX Designer India, Senior UX Designer, Product Designer India, IxDF, Interaction Design Foundation, AiUX workflow, AI UX Design, AI-driven UX, Healthcare UX, SaaS UX Design, B2B UX, IIT Roorkee UX" />
   <meta name="author" content="Sayantan Ghosh" />
   <meta name="robots" content="index, follow" />
 
   <!-- Open Graph / Facebook / LinkedIn Social Cards -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Sayantan Ghosh | Senior UX & Product Designer Portfolio" />
-  <meta property="og:description" content="Explore the UX portfolio of Sayantan Ghosh: 22+ years of experience shaping B2B SaaS, healthcare systems, and advanced AiUX workflows." />
+  <meta property="og:description"
+    content="Explore the UX portfolio of Sayantan Ghosh: 22+ years of experience shaping B2B SaaS, healthcare systems, and advanced AiUX workflows." />
   <meta property="og:image" content="images/sayantan_pic.png" />
   <meta property="og:url" content="https://in.linkedin.com/in/uxsayantan" />
   <meta property="og:site_name" content="Sayantan Ghosh Portfolio" />
@@ -39,7 +43,8 @@
   <!-- Twitter Card Social Metadata -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Sayantan Ghosh | Senior UX & Product Designer Portfolio" />
-  <meta name="twitter:description" content="Explore the UX portfolio of Sayantan Ghosh: 22+ years of experience shaping B2B SaaS, healthcare systems, and advanced AiUX workflows." />
+  <meta name="twitter:description"
+    content="Explore the UX portfolio of Sayantan Ghosh: 22+ years of experience shaping B2B SaaS, healthcare systems, and advanced AiUX workflows." />
   <meta name="twitter:image" content="images/sayantan_pic.png" />
 
   <!-- JSON-LD Person Rich Schema Markup (Structured Search Data) -->
@@ -113,13 +118,14 @@
 
   <!-- Microsoft Clarity Tracking Code -->
   <script type="text/javascript">
-      (function(c,l,a,r,i,t,y){
-          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-      })(window, document, "clarity", "script", "wft5af44a0");
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "wft5af44a0");
   </script>
 </head>
+
 <body>
 
   <section id="section-header" class="section-container component-header">
@@ -127,13 +133,15 @@
     <nav class="header-nav">
       <!-- Left side: Name Logo -->
       <a href="#app" class="header-logo">Sayantan Ghosh</a>
-      
+
       <!-- Center: Nav Links -->
       <div class="header-links">
         <a href="#work" class="header-link">Work</a>
         <a href="#about" class="header-link">About</a>
-        <a href="https://medium.com/@myprofile.sayantan/" target="_blank" rel="noopener noreferrer" class="header-link">Medium</a>
-        <a href="https://in.linkedin.com/in/uxsayantan" target="_blank" rel="noopener noreferrer" class="header-link">LinkedIn</a>
+        <a href="https://medium.com/@myprofile.sayantan/" target="_blank" rel="noopener noreferrer"
+          class="header-link">Medium</a>
+        <a href="https://in.linkedin.com/in/uxsayantan" target="_blank" rel="noopener noreferrer"
+          class="header-link">LinkedIn</a>
       </div>
 
       <!-- Right side: Actions wrapper (Theme Toggle + Phone Link) -->
@@ -141,7 +149,8 @@
         <!-- 🌙 Modern Day/Night Theme Toggler Button -->
         <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle light and dark mode">
           <!-- Sun Icon (visible in light mode) -->
-          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="5"></circle>
             <line x1="12" y1="1" x2="12" y2="3"></line>
             <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -153,14 +162,17 @@
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
           </svg>
           <!-- Moon Icon (visible in dark mode) -->
-          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
         </button>
 
         <a href="tel:+919959629041" class="header-phone">
           <svg viewBox="0 0 24 24" fill="none" class="phone-icon">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+            </path>
           </svg>+91 995 962 9041
         </a>
       </div>
@@ -171,15 +183,16 @@
   <section id="section-about" class="about-section">
     <div class="about-wrapper">
       <div class="about-grid">
-        
+
         <!-- Left Column: Background Card + Contacts -->
         <div class="about-left-col">
           <div class="about-card">
-            
+
             <!-- Experience Item -->
             <div class="about-card-item">
               <div class="about-card-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
                   <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
                   <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
                 </svg>
@@ -193,7 +206,8 @@
             <!-- Education Item -->
             <div class="about-card-item">
               <div class="about-card-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
                   <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
                   <path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5"></path>
                 </svg>
@@ -207,7 +221,8 @@
             <!-- Certification Item -->
             <div class="about-card-item">
               <div class="about-card-icon">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
                   <circle cx="12" cy="8" r="7"></circle>
                   <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
                 </svg>
@@ -232,7 +247,13 @@
         <!-- Right Column: Paragraph Text -->
         <div class="about-right-col">
           <p class="about-editorial-text">
-            With 22 years in design &mdash; 9 focused on UX &mdash; I build products from the inside out: starting with real research, uncovering behavioral patterns that never appear in briefs, and designing systems that work for actual people in actual situations. My work spans B2B SaaS, Healthcare, Gaming, and enterprise tools across companies including Rummy Circle, Blue Dart, and projects delivered through Google and Cisco. I combine UX research, product thinking, and AI-assisted workflows to move from insight to interface faster, without losing depth. I am at my best when the problem is complex, the users are underserved, and there is room to challenge the initial brief.
+            With 22 years in design &mdash; 9 focused on UX &mdash; I build products from the inside out: starting with
+            real research, uncovering behavioral patterns that never appear in briefs, and designing systems that work
+            for actual people in actual situations. My work spans B2B SaaS, Healthcare, Gaming, and enterprise tools
+            across companies including Rummy Circle, Blue Dart, and projects delivered through Google and Cisco. I
+            combine UX research, product thinking, and AI-assisted workflows to move from insight to interface faster,
+            without losing depth. I am at my best when the problem is complex, the users are underserved, and there is
+            room to challenge the initial brief.
           </p>
         </div>
 
@@ -244,107 +265,121 @@
     <!-- Above the fold viewport container -->
     <div class="above-fold-container">
 
-    <!-- Hero Section (Inlined to work on file:// protocol) -->
-    <section id="section-hero" class="section-container component-hero">
-      <div class="hero-wrapper">
-        <!-- Top Row: Avatar and Text Content -->
-        <div class="hero-main-row">
-          <!-- Left Side: Profile Picture (2x asset scaled proportionally) -->
-          <div class="hero-avatar-box">
-            <img src="images/sayantan_pic.png" alt="Sayantan Ghosh" class="hero-avatar" />
-          </div>
-
-          <!-- Right Side: Content Box -->
-          <div class="hero-content">
-            <h1 class="hero-heading">
-              Senior UX &amp; Product Designer with 22+ years of experience. From behavioral research to production-ready interfaces.
-            </h1>
-            
-            <!-- Signature Graphic (2x asset scaled proportionally) -->
-            <div class="hero-signature-box">
-              <img src="images/signature.png" alt="Sayantan Ghosh Signature" class="hero-signature" />
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom Row: CTA buttons (centered) -->
-        <div class="hero-cta-box">
-          <div class="hero-cta-wrapper">
-            <!-- Fancy AI Callout -->
-            <div class="hero-callout" id="smartbi-callout">
-              <span class="callout-close">&times;</span>
-              <p class="callout-text">
-                <span class="callout-badge">NEW</span> Following a structured product design system, this case study was designed &amp; coded via an AI UX orchestration workflow using <strong>Claude</strong>, <strong>Gemini</strong>, <strong>Antigravity</strong>, <strong>Figma</strong> &amp; <strong>Google-Stitch</strong>.
-              </p>
-              <div class="callout-arrow"></div>
+      <!-- Hero Section (Inlined to work on file:// protocol) -->
+      <section id="section-hero" class="section-container component-hero">
+        <div class="hero-wrapper">
+          <!-- Top Row: Avatar and Text Content -->
+          <div class="hero-main-row">
+            <!-- Left Side: Profile Picture (2x asset scaled proportionally) -->
+            <div class="hero-avatar-box">
+              <img src="images/sayantan_pic.png" alt="Sayantan Ghosh" class="hero-avatar" />
             </div>
 
-            <a href="https://myprofilesayantan-rgb.github.io/Smart-BI/" target="_blank" rel="noopener noreferrer" class="hero-cta btn-primary" id="hero-product-btn">
-              SmartBI &mdash; BI Dashboard Design System <span class="hero-cta-arrow"><svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-left:4px;"><path d="M5 13h11.86l-5.43 5.43L13 20l8-8-8-8-1.41 1.41 5.43 5.43H5v2z"/></svg></span>
+            <!-- Right Side: Content Box -->
+            <div class="hero-content">
+              <h1 class="hero-heading">
+                Senior UX &amp; Product Designer with 22+ years of experience. From behavioral research to
+                production-ready interfaces.
+              </h1>
+
+              <!-- Signature Graphic (2x asset scaled proportionally) -->
+              <div class="hero-signature-box">
+                <img src="images/signature.png" alt="Sayantan Ghosh Signature" class="hero-signature" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom Row: CTA buttons (centered) -->
+          <div class="hero-cta-box">
+            <div class="hero-cta-wrapper">
+              <!-- Fancy AI Callout -->
+              <div class="hero-callout" id="smartbi-callout">
+                <span class="callout-close">&times;</span>
+                <p class="callout-text">
+                  <span class="callout-badge">NEW</span> Following a structured product design system, this case study
+                  was designed &amp; coded via an AI UX orchestration workflow using <strong>Claude</strong>,
+                  <strong>Gemini</strong>, <strong>Antigravity</strong>, <strong>Figma</strong> &amp;
+                  <strong>Google-Stitch</strong>.
+                </p>
+                <div class="callout-arrow"></div>
+              </div>
+
+              <a href="https://myprofilesayantan-rgb.github.io/Smart-BI/" target="_blank" rel="noopener noreferrer"
+                class="hero-cta btn-primary" id="hero-product-btn">
+                SmartBI &mdash; BI Dashboard Design System <span class="hero-cta-arrow"><svg
+                    xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 24 24" fill="currentColor"
+                    style="vertical-align:middle;margin-left:4px;">
+                    <path d="M5 13h11.86l-5.43 5.43L13 20l8-8-8-8-1.41 1.41 5.43 5.43H5v2z" />
+                  </svg></span>
+              </a>
+            </div>
+            <a href="#section-tracto" class="hero-cv-btn" id="hero-research-btn"
+              aria-label="See how we designed for elderly independence — an interactive product design story">
+              Elderly Care &middot; Design Story <span class="hero-cta-arrow"><svg xmlns="http://www.w3.org/2000/svg"
+                  height="18" width="18" viewBox="0 0 24 24" fill="currentColor"
+                  style="vertical-align:middle;margin-left:4px;">
+                  <path d="M5 13h11.86l-5.43 5.43L13 20l8-8-8-8-1.41 1.41 5.43 5.43H5v2z" />
+                </svg></span>
             </a>
           </div>
-          <a href="#section-tracto" class="hero-cv-btn" id="hero-research-btn" aria-label="See how we designed for elderly independence — an interactive product design story">
-            Elderly Care &middot; Design Story <span class="hero-cta-arrow"><svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-left:4px;"><path d="M5 13h11.86l-5.43 5.43L13 20l8-8-8-8-1.41 1.41 5.43 5.43H5v2z"/></svg></span>
-          </a>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Component Placeholders (Will inline as we implement) -->
-    <!-- Logos Section (Inlined to work on file:// protocol) -->
-    <section id="section-logos" class="section-container component-logos">
-      <div class="logos-wrapper">
-        <!-- Group 1: Rummy Circle (Solo) -->
-        <div class="logo-group solo">
-          <div class="logo-item rc-logo">
-            <img src="images/rc_b&w.png" alt="Rummy Circle" class="logo-img bw" />
-            <img src="images/rc_color.png" alt="Rummy Circle" class="logo-img color" />
+      <!-- Component Placeholders (Will inline as we implement) -->
+      <!-- Logos Section (Inlined to work on file:// protocol) -->
+      <section id="section-logos" class="section-container component-logos">
+        <div class="logos-wrapper">
+          <!-- Group 1: Rummy Circle (Solo) -->
+          <div class="logo-group solo">
+            <div class="logo-item rc-logo">
+              <img src="images/rc_b&w.png" alt="Rummy Circle" class="logo-img bw" />
+              <img src="images/rc_color.png" alt="Rummy Circle" class="logo-img color" />
+            </div>
+          </div>
+
+          <!-- Group 2: Worked through tenXengage (Google & Cisco) -->
+          <div class="logo-group combined">
+            <span class="group-label">Worked through tenXengage</span>
+            <div class="group-logos">
+              <div class="logo-item google-logo">
+                <img src="images/google_b&w.png" alt="Google" class="logo-img bw" />
+                <img src="images/google_color.png" alt="Google" class="logo-img color" />
+              </div>
+              <div class="logo-item cisco-logo">
+                <img src="images/cisco_b&w.png" alt="Cisco" class="logo-img bw" />
+                <img src="images/cisco_color.png" alt="Cisco" class="logo-img color" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Group 3: Worked through Hurix Systems (National Geographic & McGraw Hill) -->
+          <div class="logo-group combined">
+            <span class="group-label">Worked through Hurix Systems</span>
+            <div class="group-logos">
+              <div class="logo-item netgio-logo">
+                <img src="images/netgio_b&w.png" alt="National Geographic" class="logo-img bw" />
+                <img src="images/netgio_color.png" alt="National Geographic" class="logo-img color" />
+              </div>
+              <div class="logo-item mcgrawhill-logo">
+                <img src="images/mcgrawhill_b&w.png" alt="McGraw Hill" class="logo-img bw" />
+                <img src="images/mcgrawhill_color.png" alt="McGraw Hill" class="logo-img color" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Group 4: Blue Dart (Solo) -->
+          <div class="logo-group solo">
+            <div class="logo-item bluedart-logo">
+              <img src="images/bluedart_b&w.png" alt="Blue Dart" class="logo-img bw" />
+              <img src="images/bluedart_color.png" alt="Blue Dart" class="logo-img color" />
+            </div>
           </div>
         </div>
 
-        <!-- Group 2: Worked through tenXengage (Google & Cisco) -->
-        <div class="logo-group combined">
-          <span class="group-label">Worked through tenXengage</span>
-          <div class="group-logos">
-            <div class="logo-item google-logo">
-              <img src="images/google_b&w.png" alt="Google" class="logo-img bw" />
-              <img src="images/google_color.png" alt="Google" class="logo-img color" />
-            </div>
-            <div class="logo-item cisco-logo">
-              <img src="images/cisco_b&w.png" alt="Cisco" class="logo-img bw" />
-              <img src="images/cisco_color.png" alt="Cisco" class="logo-img color" />
-            </div>
-          </div>
+        <!-- Centered Mouse Scroll Icon -->
+        <div class="scroll-indicator">
+          <img src="images/mousescroll_ico.png" alt="Scroll Down" class="scroll-icon" />
         </div>
-
-        <!-- Group 3: Worked through Hurix Systems (National Geographic & McGraw Hill) -->
-        <div class="logo-group combined">
-          <span class="group-label">Worked through Hurix Systems</span>
-          <div class="group-logos">
-            <div class="logo-item netgio-logo">
-              <img src="images/netgio_b&w.png" alt="National Geographic" class="logo-img bw" />
-              <img src="images/netgio_color.png" alt="National Geographic" class="logo-img color" />
-            </div>
-            <div class="logo-item mcgrawhill-logo">
-              <img src="images/mcgrawhill_b&w.png" alt="McGraw Hill" class="logo-img bw" />
-              <img src="images/mcgrawhill_color.png" alt="McGraw Hill" class="logo-img color" />
-            </div>
-          </div>
-        </div>
-
-        <!-- Group 4: Blue Dart (Solo) -->
-        <div class="logo-group solo">
-          <div class="logo-item bluedart-logo">
-            <img src="images/bluedart_b&w.png" alt="Blue Dart" class="logo-img bw" />
-            <img src="images/bluedart_color.png" alt="Blue Dart" class="logo-img color" />
-          </div>
-        </div>
-      </div>
-
-      <!-- Centered Mouse Scroll Icon -->
-      <div class="scroll-indicator">
-        <img src="images/mousescroll_ico.png" alt="Scroll Down" class="scroll-icon" />
-      </div>
       </section>
     </div>
 
@@ -367,7 +402,9 @@
               <span class="outcome-status-text">Shipped &middot; Enterprise</span>
             </div>
             <div class="outcome-divider"></div>
-            <p class="outcome-body">AI predicted business outcomes, but users still faced 40+ manual steps. I diagnosed the cognitive load gap, restructured the UX architecture, and delivered wireframes to redirect AI assistance directly to the creation flow.</p>
+            <p class="outcome-body">AI predicted business outcomes, but users still faced 40+ manual steps. I diagnosed
+              the cognitive load gap, restructured the UX architecture, and delivered wireframes to redirect AI
+              assistance directly to the creation flow.</p>
             <div class="outcome-numbers">
               <div class="outcome-stat">
                 <span class="outcome-stat-num">40%&plus;</span>
@@ -382,9 +419,12 @@
                 <span class="outcome-stat-label">UX Architect</span>
               </div>
             </div>
-            <a href="https://uxsayantan.com/CStenxengage.html" target="_blank" rel="noopener noreferrer" class="outcome-cta">
+            <a href="https://uxsayantan.com/texproduct/CStenxengage.html" target="_blank" rel="noopener noreferrer"
+              class="outcome-cta">
               View Case Study
-              <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13h11.86l-5.43 5.43L13 20l8-8-8-8-1.41 1.41 5.43 5.43H5v2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M5 13h11.86l-5.43 5.43L13 20l8-8-8-8-1.41 1.41 5.43 5.43H5v2z" />
+              </svg>
             </a>
           </div>
 
@@ -398,7 +438,9 @@
               <span class="outcome-status-text">Research-stage &middot; 2025&ndash;2026</span>
             </div>
             <div class="outcome-divider"></div>
-            <p class="outcome-body">Most health apps manage elders; Tracto trusts them. Research showed elders were calm while families panicked. Restructured the experience around a passive ambient status system that gives peace of mind without surveillance.</p>
+            <p class="outcome-body">Most health apps manage elders; Tracto trusts them. Research showed elders were calm
+              while families panicked. Restructured the experience around a passive ambient status system that gives
+              peace of mind without surveillance.</p>
             <div class="outcome-numbers">
               <div class="outcome-stat">
                 <span class="outcome-stat-num">20+</span>
@@ -415,7 +457,9 @@
             </div>
             <a href="#section-tracto" class="outcome-cta">
               Explore Design Story
-              <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13h11.86l-5.43 5.43L13 20l8-8-8-8-1.41 1.41 5.43 5.43H5v2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M5 13h11.86l-5.43 5.43L13 20l8-8-8-8-1.41 1.41 5.43 5.43H5v2z" />
+              </svg>
             </a>
           </div>
 
@@ -429,7 +473,9 @@
               <span class="outcome-status-text">Concept-stage &middot; AI-Accelerated</span>
             </div>
             <div class="outcome-divider"></div>
-            <p class="outcome-body">An AI-accelerated dashboard design system proving how advanced tooling scales human design thinking. Structured modular component libraries mapped directly to cognitive decision workflows.</p>
+            <p class="outcome-body">An AI-accelerated dashboard design system proving how advanced tooling scales human
+              design thinking. Structured modular component libraries mapped directly to cognitive decision workflows.
+            </p>
             <div class="outcome-numbers">
               <div class="outcome-stat">
                 <span class="outcome-stat-num">AI</span>
@@ -444,9 +490,12 @@
                 <span class="outcome-stat-label">Thinking</span>
               </div>
             </div>
-            <a href="https://myprofilesayantan-rgb.github.io/Smart-BI/" target="_blank" rel="noopener noreferrer" class="outcome-cta">
+            <a href="https://myprofilesayantan-rgb.github.io/Smart-BI/" target="_blank" rel="noopener noreferrer"
+              class="outcome-cta">
               Explore Design System
-              <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" viewBox="0 0 24 24" fill="currentColor"><path d="M5 13h11.86l-5.43 5.43L13 20l8-8-8-8-1.41 1.41 5.43 5.43H5v2z"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M5 13h11.86l-5.43 5.43L13 20l8-8-8-8-1.41 1.41 5.43 5.43H5v2z" />
+              </svg>
             </a>
           </div>
 
@@ -482,7 +531,7 @@
         <!-- Slider Viewport & Track -->
         <div class="tracto-slider-viewport">
           <div class="tracto-slider-track">
-            
+
             <!-- Slide 1: Voice of the Customer (Speech Bubbles) -->
             <div class="tracto-slide active" data-slide-index="0">
 
@@ -499,7 +548,8 @@
                       <span class="quote-author">Elder Voice</span>
                       <span class="quote-time">now</span>
                     </div>
-                    <p class="quote-text">I am not a kid. They worry constantly when I go out, calling me all through the day.</p>
+                    <p class="quote-text">I am not a kid. They worry constantly when I go out, calling me all through
+                      the day.</p>
                   </div>
                 </div>
 
@@ -514,7 +564,8 @@
                       <span class="quote-author">Caregiver Voice</span>
                       <span class="quote-time">now</span>
                     </div>
-                    <p class="quote-text">My mother went out for three hours and didn't call even once. I was honestly starting to panic.</p>
+                    <p class="quote-text">My mother went out for three hours and didn't call even once. I was honestly
+                      starting to panic.</p>
                   </div>
                 </div>
 
@@ -544,7 +595,8 @@
                       <span class="quote-author">Caregiver Voice</span>
                       <span class="quote-time">now</span>
                     </div>
-                    <p class="quote-text">When it comes to her medicines, forget it. I have to keep reminding him throughout the day.</p>
+                    <p class="quote-text">When it comes to her medicines, forget it. I have to keep reminding him
+                      throughout the day.</p>
                   </div>
                 </div>
 
@@ -559,7 +611,8 @@
                       <span class="quote-author">Elder Voice</span>
                       <span class="quote-time">now</span>
                     </div>
-                    <p class="quote-text">Sometime I forget the road and it happened 2 to 3 times. Rescued by my family.</p>
+                    <p class="quote-text">Sometime I forget the road and it happened 2 to 3 times. Rescued by my family.
+                    </p>
                   </div>
                 </div>
 
@@ -574,7 +627,8 @@
                       <span class="quote-author">Caregiver Voice</span>
                       <span class="quote-time">now</span>
                     </div>
-                    <p class="quote-text">I tried calling my father, but he was busy playing cards on his phone and rejected my call. So I had no idea how my mother was doing. She has no phone.</p>
+                    <p class="quote-text">I tried calling my father, but he was busy playing cards on his phone and
+                      rejected my call. So I had no idea how my mother was doing. She has no phone.</p>
                   </div>
                 </div>
 
@@ -604,7 +658,8 @@
                       <span class="quote-author">Caregiver Voice</span>
                       <span class="quote-time">now</span>
                     </div>
-                    <p class="quote-text">I don't know why he's like this sometimes. Even when she's unwell, he rarely calls or gives an update.</p>
+                    <p class="quote-text">I don't know why he's like this sometimes. Even when she's unwell, he rarely
+                      calls or gives an update.</p>
                   </div>
                 </div>
 
@@ -619,7 +674,8 @@
                       <span class="quote-author">Elder Voice</span>
                       <span class="quote-time">now</span>
                     </div>
-                    <p class="quote-text">Feel helpless when I am home alone. My son in US. He calls everyday. I can feel what they think :)</p>
+                    <p class="quote-text">Feel helpless when I am home alone. My son in US. He calls everyday. I can
+                      feel what they think :)</p>
                   </div>
                 </div>
               </div>
@@ -634,7 +690,8 @@
                     <div class="radar-svg-wrapper">
                       <!-- Floating Zoom Trigger -->
                       <button class="radar-zoom-trigger" id="radar-zoom-btn" title="Zoom Chart" aria-label="Zoom Chart">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                          stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                           <circle cx="11" cy="11" r="8"></circle>
                           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                           <line x1="11" y1="8" x2="11" y2="14"></line>
@@ -648,16 +705,18 @@
                             <stop offset="100%" stop-color="rgba(0,0,0,0)" />
                           </radialGradient>
                         </defs>
-                        
+
                         <!-- Glow Background circle -->
                         <circle cx="250" cy="250" r="160" fill="url(#radar-glow)" />
 
                         <!-- Concentric Pentagon Grid Lines (10, 8, 6, 4, 2) -->
                         <polygon class="grid-polygon" points="250,90 392.7,193.7 338.2,361.4 161.8,361.4 107.3,193.7" />
                         <polygon class="grid-polygon" points="250,122 364.2,205 320.6,339.1 179.4,339.1 135.8,205" />
-                        <polygon class="grid-polygon" points="250,154 335.6,216.2 302.9,316.8 197.1,316.8 164.4,216.2" />
+                        <polygon class="grid-polygon"
+                          points="250,154 335.6,216.2 302.9,316.8 197.1,316.8 164.4,216.2" />
                         <polygon class="grid-polygon" points="250,186 307,227.5 285.3,294.6 214.7,294.6 193,227.5" />
-                        <polygon class="grid-polygon" points="250,218 278.5,238.7 267.6,272.3 232.4,272.3 221.5,238.7" />
+                        <polygon class="grid-polygon"
+                          points="250,218 278.5,238.7 267.6,272.3 232.4,272.3 221.5,238.7" />
 
                         <!-- Grid scale labels (10, 8, 6, 4, 2) -->
                         <text x="250" y="85" text-anchor="middle" class="grid-scale-label">10</text>
@@ -749,22 +808,25 @@
                     </div>
                     <p class="widget-desc">Across 6 elder behaviour categories</p>
                   </div>
-                  
+
                   <!-- Widget 2 -->
                   <div class="widget-card">
                     <div class="widget-header">
                       <span class="widget-number">20+</span>
                       <span class="widget-label">Contextual Interview</span>
                     </div>
-                    <p class="widget-desc">Conducted using three complementary methods &mdash; interviewing during the activity, debriefing after the activity, and silent observation. Captures decisions in the moment, not reconstructed memory.</p>
+                    <p class="widget-desc">Conducted using three complementary methods &mdash; interviewing during the
+                      activity, debriefing after the activity, and silent observation. Captures decisions in the moment,
+                      not reconstructed memory.</p>
                   </div>
-                  
+
                   <!-- Widget 3 -->
                   <div class="widget-card">
                     <div class="widget-header">
                       <span class="widget-heading">Affinity Mapping</span>
                     </div>
-                    <p class="widget-desc">Raw observations clustered into behavioral patterns. Reveals what's actually happening beneath stated preferences and post-hoc rationalizations.</p>
+                    <p class="widget-desc">Raw observations clustered into behavioral patterns. Reveals what's actually
+                      happening beneath stated preferences and post-hoc rationalizations.</p>
                   </div>
                 </div>
               </div>
@@ -777,15 +839,8 @@
 
                 <!-- Cinematic Video Frame -->
                 <div class="empathy-cinema-frame">
-                  <video
-                    id="empathy-video"
-                    class="empathy-video-player"
-                    playsinline
-                    loop
-                    muted
-                    preload="auto"
-                    data-playlist="images/elderphoto.mp4"
-                  >
+                  <video id="empathy-video" class="empathy-video-player" playsinline loop muted preload="auto"
+                    data-playlist="images/elderphoto.mp4">
                     <source src="images/elderphoto.mp4" type="video/mp4" />
                   </video>
 
@@ -796,10 +851,11 @@
                   <!-- Floating Glass Play / Pause button -->
                   <button class="video-play-btn" id="video-play-toggle" aria-label="Toggle Play">
                     <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
-                      <path d="M8 5v14l11-7z"/>
+                      <path d="M8 5v14l11-7z" />
                     </svg>
-                    <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" width="20" height="20" style="display:none">
-                      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
+                    <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"
+                      style="display:none">
+                      <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" />
                     </svg>
                   </button>
                 </div>
@@ -825,14 +881,17 @@
                   <h4 class="solution-headline">So we designed for this specific tension.</h4>
                   <div class="solution-body">
                     <p>
-                      We reframed the problem around the family, not just the individual. Instead of daily, anxious check-in calls, Tracto communicates through passive coordinates.
+                      We reframed the problem around the family, not just the individual. Instead of daily, anxious
+                      check-in calls, Tracto communicates through passive coordinates.
                     </p>
                     <p>
-                      A single, ambient status indicator tells the caregiver "All is well" without demanding active input from the elder, preserving their independence.
+                      A single, ambient status indicator tells the caregiver "All is well" without demanding active
+                      input from the elder, preserving their independence.
                     </p>
                   </div>
                   <div class="solution-cta-row">
-                    <a href="mailto:myprofile.sayantan@gmail.com?subject=Tracto%20%E2%80%94%20Full%20Project%20Deck%20Request&body=Hi%20Sayantan,%0D%0A%0D%0AI%20came%20across%20your%20Tracto%20case%20study%20and%20would%20love%20to%20see%20the%20full%20project%20deck.%20Could%20you%20please%20share%20it?%0D%0A%0D%0ABest%20regards," class="btn-primary solution-btn">Request Full Project Deck</a>
+                    <a href="mailto:myprofile.sayantan@gmail.com?subject=Tracto%20%E2%80%94%20Full%20Project%20Deck%20Request&body=Hi%20Sayantan,%0D%0A%0D%0AI%20came%20across%20your%20Tracto%20case%20study%20and%20would%20love%20to%20see%20the%20full%20project%20deck.%20Could%20you%20please%20share%20it?%0D%0A%0D%0ABest%20regards,"
+                      class="btn-primary solution-btn">Request Full Project Deck</a>
                   </div>
                 </div>
 
@@ -858,13 +917,15 @@
 
                       <!-- Fixed Top Bar -->
                       <div class="phone-fixed-top">
-                        <img src="images/elder_topbar.png" alt="Top Bar" id="phone-top-asset" class="phone-header-img" />
+                        <img src="images/elder_topbar.png" alt="Top Bar" id="phone-top-asset"
+                          class="phone-header-img" />
                       </div>
 
                       <!-- Scrollable Screen Content -->
                       <div class="phone-screen-viewport">
                         <div class="phone-scroll-content" id="phone-scroll-content">
-                          <img src="images/elder_mob.png" alt="Active Screen Content" id="phone-screen-asset" class="phone-content-img" />
+                          <img src="images/elder_mob.png" alt="Active Screen Content" id="phone-screen-asset"
+                            class="phone-content-img" />
                         </div>
                       </div>
 
@@ -875,7 +936,8 @@
 
                       <!-- Fixed Bottom Bar -->
                       <div class="phone-fixed-bottom">
-                        <img src="images/elder_bottomtabbar.png" alt="Bottom Bar" id="phone-bottom-asset" class="phone-footer-img" />
+                        <img src="images/elder_bottomtabbar.png" alt="Bottom Bar" id="phone-bottom-asset"
+                          class="phone-footer-img" />
                       </div>
                     </div>
                   </div>
@@ -948,17 +1010,19 @@
           <div class="friction-slider-viewport">
             <!-- Horizontal Slide Track -->
             <div class="friction-slider-track">
-              
+
               <!-- Slide 1: Teapots (Double PNGs side-by-side) -->
               <div class="friction-slide active" data-index="0" data-slide-index="0">
                 <div class="slide-media-wrapper double-media">
                   <!-- Left Teapot: Hot (with warm animation) -->
                   <div class="teapot-container hot">
-                    <img src="images/hotteapot_final.png" alt="Hot Teapot (Quiet Failure)" class="slide-media-img teapot-img teapot-hot lazy-load" />
+                    <img src="images/hotteapot_final.png" alt="Hot Teapot (Quiet Failure)"
+                      class="slide-media-img teapot-img teapot-hot lazy-load" />
                   </div>
                   <!-- Right Teapot: Cold (other one) -->
                   <div class="teapot-container cold">
-                    <img src="images/coldteapot.png" alt="Cold Teapot" class="slide-media-img teapot-img teapot-cold lazy-load" />
+                    <img src="images/coldteapot.png" alt="Cold Teapot"
+                      class="slide-media-img teapot-img teapot-cold lazy-load" />
                   </div>
                 </div>
                 <!-- Caption Text -->
@@ -975,11 +1039,13 @@
                 <div class="slide-media-wrapper double-media">
                   <!-- Left Car Handle: Problem -->
                   <div class="teapot-container problem">
-                    <img src="images/car_problem.svg" alt="Capacitive Door Handle (Problem)" class="slide-media-img car-img lazy-load" />
+                    <img src="images/car_problem.svg" alt="Capacitive Door Handle (Problem)"
+                      class="slide-media-img car-img lazy-load" />
                   </div>
                   <!-- Right Car Handle: Best UX -->
                   <div class="teapot-container bestux">
-                    <img src="images/car_bestUX.svg" alt="Mechanical Door Handle (Best UX)" class="slide-media-img car-img lazy-load" />
+                    <img src="images/car_bestUX.svg" alt="Mechanical Door Handle (Best UX)"
+                      class="slide-media-img car-img lazy-load" />
                   </div>
                 </div>
                 <!-- Caption Text -->
@@ -1035,7 +1101,7 @@
     </footer>
 
   </div>
-  
+
   <!-- Zoom Modal Overlay -->
   <div class="radar-modal-overlay" id="radar-zoom-modal" aria-hidden="true">
     <div class="radar-modal-card">
@@ -1053,7 +1119,7 @@
                 <stop offset="100%" stop-color="rgba(0,0,0,0)" />
               </radialGradient>
             </defs>
-            
+
             <!-- Glow Background circle -->
             <circle cx="250" cy="250" r="160" fill="url(#modal-radar-glow)" />
 
@@ -1129,7 +1195,7 @@
             </text>
           </svg>
         </div>
-        
+
         <!-- Legend -->
         <div class="modal-legend-container">
           <div class="chart-legend">
@@ -1143,154 +1209,155 @@
             </div>
           </div>
         </div>
-  </div>
+      </div>
 
-  <!-- Placeholder Section for Scrolling Test -->
-   <!-- Initialize Background Grid -->
-  <script src="loader.js?v=1.1"></script>
-  
-  <!-- Component Scripts (Standard scripts to bypass local CORS rules) -->
-  <script src="components/header/header.js?v=1.1"></script>
-  <script src="components/hero/hero.js?v=1.1"></script>
-  <script src="components/logos/logos.js?v=1.1"></script>
-  <script src="components/marquee/marquee.js?v=1.1"></script>
-  <script src="components/cursor/cursor.js?v=1.1"></script>
-  <!-- Hidden Friction Component Script -->
-  <script src="components/hidden-friction/hidden-friction.js?v=1.1"></script>
-  <!-- Skills Logos Component Script (no JS needed â€” CSS only) -->
-  <!-- Tracto Component Script -->
-  <script src="components/tracto/tracto.js?v=1.1"></script>
-  <!-- Custom Context Menu Script -->
-  <script src="components/context-menu/context-menu.js?v=1.1"></script>
-  <!-- About Component Script -->
-  <script src="components/about/about.js?v=1.1"></script>
-  <!-- Final Statement Component Script -->
-  <script src="components/statement/statement.js?v=1.1"></script>
-  <!-- Product Story Overlay Component Script -->
-  <script src="components/product-story/product-story.js?v=1.0"></script>
-  
-  <!-- Boot Components -->
-  <script>
-    PortfolioHeader.init(document.getElementById('section-header'));
-    PortfolioHero.init(document.getElementById('section-hero'), () => {
-      PortfolioLogos.init(document.getElementById('section-logos'));
-    });
-    PortfolioMarquee.init(document.getElementById('section-marquee'));
-    PortfolioFriction.init(document.getElementById('section-featured'));
-    PortfolioTracto.init(document.getElementById('section-tracto'));
-    PortfolioCursor.init();
-    PortfolioContextMenu.init();
-    PortfolioAbout.init(document.getElementById('section-about'));
-    PortfolioStatement.init(document.getElementById('section-statement'));
-    ProductStoryModal.init();
+      <!-- Placeholder Section for Scrolling Test -->
+      <!-- Initialize Background Grid -->
+      <script src="loader.js?v=1.1"></script>
 
-    // â”€â”€ Preload Tracto Phone Mockup Images into browser disk cache â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    (function preloadTractoAssets() {
-      [
-        'images/elder_topbar.png',
-        'images/elder_bottomtabbar.png',
-        'images/elder_bottomtabbar2.png',
-        'images/elder_mob.png',
-        'images/elder_onroad.png',
-        'images/when not well.png',
-        'images/caregiver_toppanel.png',
-        'images/caregiver_bttomtab.png',
-        'images/CG_alliswell.png',
-        'images/addmedicine.png'
-      ].forEach(src => {
-        const i = new Image();
-        i.src = src;
-      });
-    })();
+      <!-- Component Scripts (Standard scripts to bypass local CORS rules) -->
+      <script src="components/header/header.js?v=1.1"></script>
+      <script src="components/hero/hero.js?v=1.1"></script>
+      <script src="components/logos/logos.js?v=1.1"></script>
+      <script src="components/marquee/marquee.js?v=1.1"></script>
+      <script src="components/cursor/cursor.js?v=1.1"></script>
+      <!-- Hidden Friction Component Script -->
+      <script src="components/hidden-friction/hidden-friction.js?v=1.1"></script>
+      <!-- Skills Logos Component Script (no JS needed â€” CSS only) -->
+      <!-- Tracto Component Script -->
+      <script src="components/tracto/tracto.js?v=1.1"></script>
+      <!-- Custom Context Menu Script -->
+      <script src="components/context-menu/context-menu.js?v=1.1"></script>
+      <!-- About Component Script -->
+      <script src="components/about/about.js?v=1.1"></script>
+      <!-- Final Statement Component Script -->
+      <script src="components/statement/statement.js?v=1.1"></script>
+      <!-- Product Story Overlay Component Script -->
+      <script src="components/product-story/product-story.js?v=1.0"></script>
 
-    // â”€â”€ Scroll-Triggered Entrance Animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
-    if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
-      gsap.registerPlugin(ScrollTrigger);
+      <!-- Boot Components -->
+      <script>
+        PortfolioHeader.init(document.getElementById('section-header'));
+        PortfolioHero.init(document.getElementById('section-hero'), () => {
+          PortfolioLogos.init(document.getElementById('section-logos'));
+        });
+        PortfolioMarquee.init(document.getElementById('section-marquee'));
+        PortfolioFriction.init(document.getElementById('section-featured'));
+        PortfolioTracto.init(document.getElementById('section-tracto'));
+        PortfolioCursor.init();
+        PortfolioContextMenu.init();
+        PortfolioAbout.init(document.getElementById('section-about'));
+        PortfolioStatement.init(document.getElementById('section-statement'));
+        ProductStoryModal.init();
 
-      // 1. Fade-in and slide-up the hidden_friction.svg image
-      gsap.fromTo(
-        '#section-hidden-friction-image img',
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.0,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '#section-hidden-friction-image',
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-          }
+        // â”€â”€ Preload Tracto Phone Mockup Images into browser disk cache â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        (function preloadTractoAssets() {
+          [
+            'images/elder_topbar.png',
+            'images/elder_bottomtabbar.png',
+            'images/elder_bottomtabbar2.png',
+            'images/elder_mob.png',
+            'images/elder_onroad.png',
+            'images/when not well.png',
+            'images/caregiver_toppanel.png',
+            'images/caregiver_bttomtab.png',
+            'images/CG_alliswell.png',
+            'images/addmedicine.png'
+          ].forEach(src => {
+            const i = new Image();
+            i.src = src;
+          });
+        })();
+
+        // â”€â”€ Scroll-Triggered Entrance Animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
+          gsap.registerPlugin(ScrollTrigger);
+
+          // 1. Fade-in and slide-up the hidden_friction.svg image
+          gsap.fromTo(
+            '#section-hidden-friction-image img',
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 1.0,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: '#section-hidden-friction-image',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+
+
+          // 2. Stagger-reveal outcome cards
+          gsap.fromTo(
+            '#section-outcomes .outcome-card',
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.7,
+              stagger: 0.18,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: '#section-outcomes',
+                start: 'top 80%',
+                toggleActions: 'play none none none'
+              }
+            }
+          );
+
+          // 3. Stagger-reveal skills logos, clearing props on completion for hover transitions
+          gsap.fromTo(
+            '#section-skills .skill-logo-item',
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              stagger: 0.06,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: '#section-skills',
+                start: 'top 85%',
+                toggleActions: 'play none none none'
+              },
+              onComplete: function () {
+                gsap.set('#section-skills .skill-logo-item', { clearProps: "opacity,transform" });
+                document.querySelectorAll('#section-skills .skill-logo-item').forEach(item => {
+                  item.classList.add('animated');
+
+                  // Seed random duration between 3.2s and 5.8s for smooth, slow float
+                  const randomDuration = (3.2 + Math.random() * 2.6).toFixed(2);
+                  // Seed random negative delay between -5.8s and 0s to start animation mid-cycle (prevents synchronized jumps!)
+                  const randomDelay = (-1 * Math.random() * randomDuration).toFixed(2);
+
+                  item.style.setProperty('--bounce-duration', `${randomDuration}s`);
+                  item.style.setProperty('--bounce-delay', `${randomDelay}s`);
+                });
+              }
+            }
+          );
         }
-      );
+      </script>
 
-
-      // 2. Stagger-reveal outcome cards
-      gsap.fromTo(
-        '#section-outcomes .outcome-card',
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.7,
-          stagger: 0.18,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '#section-outcomes',
-            start: 'top 80%',
-            toggleActions: 'play none none none'
-          }
-        }
-      );
-
-      // 3. Stagger-reveal skills logos, clearing props on completion for hover transitions
-      gsap.fromTo(
-        '#section-skills .skill-logo-item',
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.5,
-          stagger: 0.06,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: '#section-skills',
-            start: 'top 85%',
-            toggleActions: 'play none none none'
-          },
-          onComplete: function() {
-            gsap.set('#section-skills .skill-logo-item', { clearProps: "opacity,transform" });
-            document.querySelectorAll('#section-skills .skill-logo-item').forEach(item => {
-              item.classList.add('animated');
-              
-              // Seed random duration between 3.2s and 5.8s for smooth, slow float
-              const randomDuration = (3.2 + Math.random() * 2.6).toFixed(2);
-              // Seed random negative delay between -5.8s and 0s to start animation mid-cycle (prevents synchronized jumps!)
-              const randomDelay = (-1 * Math.random() * randomDuration).toFixed(2);
-              
-              item.style.setProperty('--bounce-duration', `${randomDuration}s`);
-              item.style.setProperty('--bounce-delay', `${randomDelay}s`);
-            });
-          }
-        }
-      );
-    }
-  </script>
-
-  <!-- ðŸŽ¨ Inline SVG Filters for Light Mode Asset Color Correction -->
-  <svg style="display: none;" aria-hidden="true">
-    <defs>
-      <!-- Converts white text to black while keeping the yellow symbol exactly brand yellow (subtraction method) -->
-      <filter id="netgeo-light-filter">
-        <feColorMatrix type="matrix" values="
+      <!-- ðŸŽ¨ Inline SVG Filters for Light Mode Asset Color Correction -->
+      <svg style="display: none;" aria-hidden="true">
+        <defs>
+          <!-- Converts white text to black while keeping the yellow symbol exactly brand yellow (subtraction method) -->
+          <filter id="netgeo-light-filter">
+            <feColorMatrix type="matrix" values="
           1  0 -1  0  0
           0  1 -1  0  0
           0  0  0  0  0
           0  0  0  1  0
         " />
-      </filter>
-    </defs>
-  </svg>
+          </filter>
+        </defs>
+      </svg>
 
 </body>
+
 </html>
