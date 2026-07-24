@@ -54,7 +54,7 @@ if (localStorage.getItem("isInternalUser") === "true") {
   }
 
   #nda-banner {
-    background: #111112; 
+    background: var(--bg); 
     color: var(--para); 
     text-align: center;
     padding: 10px 24px; 
@@ -168,7 +168,7 @@ if (localStorage.getItem("isInternalUser") === "true") {
   }
   h1 {
     font-family: var(--font-family);
-    font-size: clamp(1.8rem, 4.5vw, 2.8rem);
+    font-size: var(--font-size-hero);
     font-weight: var(--font-weight-semibold); 
     color: var(--heading); 
     line-height: 1.2; 
@@ -212,18 +212,27 @@ if (localStorage.getItem("isInternalUser") === "true") {
   .metrics {
     display: grid; 
     grid-template-columns: repeat(4, 1fr);
-    gap: 1px; 
-    background: var(--border);
-    border: 1px solid var(--border); 
-    border-radius: 12px;
+    gap: 16px; 
+    background: transparent;
+    border: none; 
+    border-radius: 0;
     overflow: hidden; 
-    margin: var(--gap-element) 0 8px;
-    box-shadow: var(--widget-card-shadow);
+    margin: var(--gap-element) 0 32px;
+    box-shadow: none;
   }
   .metric { 
     background: linear-gradient(135deg, var(--card-bg-gradient-start), var(--card-bg-gradient-end));
     padding: 24px 16px; 
     text-align: center; 
+    border-radius: 12px;
+    border: 1px solid var(--card-border-color);
+    box-shadow: var(--widget-card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  }
+  .metric:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
   }
   .metric-num {
     font-family: var(--font-family); 
@@ -727,6 +736,9 @@ if (localStorage.getItem("isInternalUser") === "true") {
   /* Avoid background grid lines & animation on this page to reduce cognitive load */
   .bg-grid-lines { display: none !important; }
   </style>
+
+  <!-- GSAP Animation Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 </head>
 <body>
   
@@ -764,6 +776,10 @@ if (localStorage.getItem("isInternalUser") === "true") {
 <nav>
   <div class="nav-left"><a href="https://uxsayantan.com">uxsayantan.com</a></div>
   <div class="nav-right">
+    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle light and dark mode" style="background:none; border:none; color:inherit; cursor:pointer; margin-right:12px; display:inline-flex; align-items:center;">
+      <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px; height:20px; display:none;"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px; height:20px;"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    </button>
     <span class="a11y-label">Accessibility</span>
     <div class="a11y-divider"></div>
     <div class="a11y-group">
@@ -779,10 +795,10 @@ if (localStorage.getItem("isInternalUser") === "true") {
 <!-- HERO -->
 <section id="hero">
   <div class="wrap">
-    <div class="eyebrow">UX Case Study · tenXengage</div>
-    <h1>The Workflow That Was Losing Enterprise Deals</h1>
-    <p class="lead">A broken promotion-creation workflow was causing enterprise prospects to disengage at demo. As the sole client-facing UX leader, I conducted ground field research with partners, diagnosed the cognitive load gap in the "AI" flow, and designed the structured UX architecture and wireframes that Cisco and Google now use to run partner programs at scale.</p>
-    <div class="tags">
+    <div class="eyebrow test-animate">UX Case Study · tenXengage</div>
+    <h1 class="test-animate">The Workflow That Was Losing Enterprise Deals</h1>
+    <p class="lead test-animate">A broken promotion-creation workflow was causing enterprise prospects to disengage at demo. I conducted ground field research with partners, diagnosed the cognitive load gap in the "AI" flow, and designed the structured UX architecture and wireframes that Cisco and Google now use to run partner programs at scale.</p>
+    <div class="tags test-animate">
       <span class="tag">B2B SaaS</span>
       <span class="tag">AI + Manual Workflow</span>
       <span class="tag">User Research</span>
@@ -791,10 +807,10 @@ if (localStorage.getItem("isInternalUser") === "true") {
       <span class="tag">Wireframing</span>
     </div>
 
-    <div class="role-box">
+    <div class="role-box test-animate">
       <div class="role-item">
         <span class="role-item-title">My Role</span>
-        <span class="role-item-desc"><strong>Sole Client-Facing UX Leader</strong><br>Led field research, friction diagnostics, and system UX architecture.</span>
+        <span class="role-item-desc"><strong>UX Architecture & Research</strong><br>Led field research, friction diagnostics, and system UX architecture.</span>
       </div>
       <div class="role-item">
         <span class="role-item-title">My Ownership</span>
@@ -818,34 +834,34 @@ if (localStorage.getItem("isInternalUser") === "true") {
     </div>
     <div class="metrics">
       <div class="metric">
-        <div class="metric-num">40–50%</div>
+        <div class="metric-num">30%</div>
         <div class="metric-label">Partner engagement increase</div>
       </div>
       <div class="metric">
         <div class="metric-num">20–25%</div>
-        <div class="metric-label">Partner-led bookings growth</div>
+        <div class="metric-label">Q1 Support tickets drop</div>
       </div>
       <div class="metric">
-        <div class="metric-num">50%</div>
+        <div class="metric-num">22%</div>
         <div class="metric-label">Reduction in support costs</div>
       </div>
       <div class="metric">
-        <div class="metric-num">99.5%</div>
+        <div class="metric-num">94%</div>
         <div class="metric-label">Partner support SLAs met</div>
       </div>
     </div>
 
     <div class="metrics-correlation">
       <div class="correlation-card">
-        <h4>How UX drove the 40–50% Engagement Lift:</h4>
+        <h4>How UX drove the 30% Engagement Lift:</h4>
         <p>By replacing the opaque "black-box" conversational setup flow with a dual-mode workflow (side-by-side parameters and live visualization), we eliminated visual hesitation. Partner admins could validate their setup criteria dynamically, reducing abandonment rates mid-flow.</p>
       </div>
       <div class="correlation-card">
-        <h4>How UX drove the 20–25% Bookings Growth:</h4>
-        <p>Training partner sellers became effortless because the interface was framed as a guided conversational engagement builder. Since the UI demanded minimal technical knowledge, sales reps could instantly launch campaign promotions with zero configuration learning curves.</p>
+        <h4>How UX drove the 20–25% Q1 Ticket Reduction:</h4>
+        <p>Training partner sellers became effortless because the interface was framed as a guided conversational engagement builder. Since the UI demanded minimal technical knowledge, sales reps could instantly launch campaign promotions with zero configuration learning curves, drastically reducing the number of support tickets raised in the first quarter.</p>
       </div>
       <div class="correlation-card">
-        <h4>How UX drove the 50% Support Cost Reduction:</h4>
+        <h4>How UX drove the 22% Support Cost Reduction:</h4>
         <p>The original conversational UI was an ambiguous black box, forcing partner administrators to constantly submit support tickets just to understand how the system worked. The new self-explanatory layout contextually "spoon-fed" parameters, cutting out "how-to" and system-understanding tickets.</p>
       </div>
     </div>
@@ -1134,7 +1150,7 @@ if (localStorage.getItem("isInternalUser") === "true") {
     </button>
     <div id="nda-content">
       <h4>A note on confidentiality &amp; project scope</h4>
-      <p>The UX methodology, strategic research, and core informational architecture are documented here to show my design process. Direct business metrics (40&mdash;50% engagement lift) are sourced from public customer decks, and client names (Cisco, Google) reflect marketing releases.</p>
+      <p>The UX methodology, strategic research, and core informational architecture are documented here to show my design process. Direct business metrics (30% engagement lift) are sourced from public customer decks, and client names (Cisco, Google) reflect marketing releases.</p>
       <ul>
         <li>All interface screens represented in this case study are early UX architecture wireframes I designed for stakeholder validation and testing.</li>
         <li>The final high-fidelity visual design and front-end development were implemented by tenXengage's internal product design and engineering teams.</li>
@@ -1254,6 +1270,63 @@ setInterval(function() {
     window.speechSynthesis.resume();
   }
 }, 10000);
+</script>
+<script>
+  // Theme Toggle Logic
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const sunIcon = document.querySelector('.sun-icon');
+  const moonIcon = document.querySelector('.moon-icon');
+  
+  // Initialize theme from localStorage or default to dark
+  const currentTheme = localStorage.getItem('theme') || 'dark';
+  
+  if (currentTheme === 'light') {
+    document.documentElement.classList.add('light-mode');
+  } else {
+    document.documentElement.classList.remove('light-mode');
+  }
+  
+  if (currentTheme === 'light') {
+    sunIcon.style.display = 'block';
+    moonIcon.style.display = 'none';
+  } else {
+    sunIcon.style.display = 'none';
+    moonIcon.style.display = 'block';
+  }
+  
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const isLight = document.documentElement.classList.toggle('light-mode');
+      const newTheme = isLight ? 'light' : 'dark';
+      
+      localStorage.setItem('theme', newTheme);
+      
+      if (isLight) {
+        sunIcon.style.display = 'block';
+        moonIcon.style.display = 'none';
+      } else {
+        sunIcon.style.display = 'none';
+        moonIcon.style.display = 'block';
+      }
+    });
+  }
+</script>
+
+<script>
+  // TEST ANIMATION FOR HERO BANNER
+  document.addEventListener("DOMContentLoaded", () => {
+    if(typeof gsap !== 'undefined') {
+      // We do not set opacity:0 in CSS to avoid the previous bug. 
+      // GSAP handles everything dynamically.
+      gsap.from(".test-animate", {
+        y: 40,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        stagger: 0.2
+      });
+    }
+  });
 </script>
 </body>
 </html>

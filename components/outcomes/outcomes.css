@@ -197,29 +197,32 @@
   transition: color 0.5s ease;
 }
 
-/* Stats row — CSS Grid for perfect horizontal alignment across columns */
 .outcome-numbers {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 8px;
   margin-top: auto;
-  min-height: 45px; /* Reduced height */
+  min-height: 40px; 
   align-items: start;
+  width: 100%;
 }
 
 .outcome-stat {
   display: flex;
   flex-direction: column;
-  gap: 1px;
+  gap: 2px;
+  flex: 0 1 auto;
 }
 
 .outcome-stat-num {
   font-family: var(--font-family);
-  font-size: 1.5rem; /* Sleek, non-bulky size */
+  font-size: 1.05rem; /* Reduced to ensure it never breaks onto two lines */
   font-weight: var(--font-weight-bold);
   color: var(--text-heading);
   line-height: 1;
   letter-spacing: -0.02em;
+  white-space: nowrap; /* Prevent breaking on hyphens like 20-25% */
   transition: color 0.5s ease;
 }
 
@@ -231,6 +234,7 @@
   text-transform: uppercase;
   letter-spacing: 0.06em;
   line-height: 1.3;
+  white-space: nowrap; /* Keep labels on one line where possible */
   transition: color 0.5s ease;
 }
 
