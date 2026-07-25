@@ -122,7 +122,7 @@
 
 .about-editorial-text {
   font-family: var(--font-family);
-  font-size: clamp(16px, 1.8vw, 24px); /* Responsive fluid sizing - reduced */
+  font-size: clamp(14px, 1.5vw, 20px); /* Responsive fluid sizing - reduced further */
   font-weight: var(--font-weight-regular);
   line-height: 1.4;
   color: #52524B;
