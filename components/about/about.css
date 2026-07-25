@@ -127,7 +127,11 @@
   line-height: 1.4;
   color: #52524B;
   letter-spacing: -0.02em; /* -2% letter spacing */
-  margin: 0;
+  margin: 0 0 1.2em 0;
+}
+
+.about-editorial-text:last-child {
+  margin-bottom: 0;
 }
 
 /* ── Active State Header Link Toggles ───────────────────────────────────── */
