@@ -156,13 +156,6 @@
         <a href="https://in.linkedin.com/in/uxsayantan" target="_blank" rel="noopener noreferrer"
           class="header-link">LinkedIn</a>
         <a href="Resume/SayantanGhosh_CV.pdf" download class="header-link" style="color: var(--accent); font-weight: var(--font-weight-bold);">Resume &darr;</a>
-        <button id="qr-trigger-btn" class="qr-header-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2v20"></path>
-            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-          </svg>
-          AI Chat Mode
-        </button>
       </div>
 
       <!-- Right side: Actions wrapper (Theme Toggle + Phone Link) -->
@@ -1248,6 +1241,14 @@
       <!-- Custom Cursor Element (Optional/Disabled) -->
   <!-- <div class="custom-cursor" id="custom-cursor"></div> -->
 
+  <!-- Floating Animated AI Button -->
+  <button id="floating-ai-btn" class="floating-ai-btn" aria-label="Open AI Portfolio Mode">
+    <!-- Clean sparkle icon -->
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11.5,1.5 L12.9,8.1 C13.3,10.2 14.9,11.8 17.0,12.2 L23.5,13.5 L17.0,14.8 C14.9,15.2 13.3,16.8 12.9,18.9 L11.5,25.5 L10.1,18.9 C9.7,16.8 8.1,15.2 6.0,14.8 L-0.5,13.5 L6.0,12.2 C8.1,11.8 9.7,10.2 10.1,8.1 L11.5,1.5 Z"></path>
+    </svg>
+  </button>
+
   <!-- QR Code Modal Overlay -->
   <div id="qr-modal" class="qr-modal-overlay">
     <div class="qr-modal-content">
@@ -1297,6 +1298,11 @@
         PortfolioAbout.init(document.getElementById('section-about'));
         PortfolioStatement.init(document.getElementById('section-statement'));
         ProductStoryModal.init();
+        
+        // Initialize QR Modal interaction
+        if (typeof QRModal !== 'undefined') {
+          QRModal.init();
+        }
 
         // â”€â”€ Preload Tracto Phone Mockup Images into browser disk cache â”€â”€â”€â”€â”€â”€â”€â”€â”€
         (function preloadTractoAssets() {

@@ -97,43 +97,71 @@
   width: max-content;
 }
 
-/* Link Button in Header */
-.qr-header-btn {
-  background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
-  color: white !important;
-  padding: 8px 16px;
-  border-radius: 24px;
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.02em;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* Floating AI Button */
+.floating-ai-btn {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
   border: none;
   cursor: pointer;
-  text-decoration: none;
+  z-index: 9900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  box-shadow: 0 8px 32px rgba(138, 43, 226, 0.4);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+  background-color: #111; /* Fallback */
 }
 
-/* Dark mode overrides */
-.dark-mode .qr-header-btn {
-  background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
-  color: #111 !important;
+.floating-ai-btn:hover {
+  transform: scale(1.1) translateY(-4px);
+  box-shadow: 0 12px 48px rgba(138, 43, 226, 0.6);
 }
+
+/* Liquid animated gradient background */
+.floating-ai-btn::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(
+    from 0deg,
+    #ff2a85, /* Magenta */
+    #8a2be2, /* Purple */
+    #4169e1, /* Blue */
+    #ff2a85  /* Magenta */
+  );
+  animation: spinLiquid 3s linear infinite;
+  z-index: 0;
+  filter: blur(6px);
+}
+
+/* Sparkle Icon */
+.floating-ai-btn svg {
+  width: 24px;
+  height: 24px;
+  fill: #ffffff;
+  z-index: 2;
+  position: relative;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+}
+
+@keyframes spinLiquid {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Dark mode overrides (if needed) */
 .dark-mode .qr-modal-content {
   border: 1px solid #333;
 }
 .dark-mode .qr-code-wrapper {
   background: #ffffff; /* Keep QR code background white for scannability */
   border-color: transparent;
-}
-
-.qr-header-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.qr-header-btn svg {
-  width: 16px;
-  height: 16px;
 }
