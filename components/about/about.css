@@ -24,8 +24,8 @@
 .about-grid {
   display: grid;
   grid-template-columns: minmax(280px, 1fr) 2.2fr;
-  gap: var(--gap-component);
-  align-items: start;
+  gap: calc(var(--gap-component) * 1.5);
+  align-items: center; /* Vertically center the text and the card */
 }
 
 /* Left Column Styling */
@@ -36,12 +36,14 @@
 
 /* Rounded Card Container */
 .about-card {
-  background-color: #f6f6f4;
+  background-color: #ffffff;
   border-radius: 16px;
   padding: var(--gap-element);
   display: flex;
   flex-direction: column;
   gap: var(--gap-element);
+  border: 1px solid #e2e2dc;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
 }
 
 /* Individual Card Items */
@@ -124,9 +126,9 @@
   font-family: var(--font-family);
   font-size: clamp(14px, 1.5vw, 20px); /* Responsive fluid sizing - reduced further */
   font-weight: var(--font-weight-regular);
-  line-height: 1.4;
+  line-height: 1.6; /* Increased for a more polished look */
   color: #52524B;
-  letter-spacing: -0.02em; /* -2% letter spacing */
+  letter-spacing: -0.01em; /* Subtler letter spacing */
   margin: 0 0 1.2em 0;
 }
 
