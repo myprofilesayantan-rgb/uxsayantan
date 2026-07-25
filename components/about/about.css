@@ -134,6 +134,44 @@
   margin-bottom: 0;
 }
 
+/* ── Skill Chips ────────────────────────────────────────────────────────── */
+.about-skills-container {
+  margin-top: 2rem;
+}
+
+.about-skills-title {
+  font-family: var(--font-family);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #8c8c83;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.about-skills-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.skill-chip {
+  background-color: #f2f2ef;
+  color: #52524b;
+  padding: 0.5rem 1rem;
+  border-radius: 100px; /* Fully rounded pill shape */
+  font-size: 14px;
+  font-family: var(--font-family);
+  font-weight: 500;
+  border: 1px solid #e2e2dc;
+  transition: all 0.2s ease;
+}
+
+.skill-chip:hover {
+  background-color: #e2e2dc;
+  color: #151512;
+}
+
 /* ── Active State Header Link Toggles ───────────────────────────────────── */
 
 /* Add smooth transition to the header's background mask */
