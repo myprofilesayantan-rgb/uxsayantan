@@ -119,9 +119,15 @@
   <link rel="stylesheet" href="components/outcomes/outcomes.css?v=1.0" />
   <!-- Custom Context Menu Stylesheet -->
   <link rel="stylesheet" href="components/context-menu/context-menu.css?v=1.1" />
+  <!-- QR Modal Stylesheet -->
+  <link rel="stylesheet" href="components/qr-modal/qr-modal.css?v=1.0" />
+  
   <!-- GSAP (latest CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  
+  <!-- QR Code Styling API -->
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
 
   <!-- Microsoft Clarity Tracking Code -->
   <script type="text/javascript">
@@ -149,7 +155,14 @@
           class="header-link">Medium</a>
         <a href="https://in.linkedin.com/in/uxsayantan" target="_blank" rel="noopener noreferrer"
           class="header-link">LinkedIn</a>
-        <a href="Resume/Sayantan_Ghosh_UX_Architect_Resume_V2.pdf" download class="header-link" style="color: var(--accent); font-weight: var(--font-weight-bold);">Resume &darr;</a>
+        <a href="Resume/SayantanGhosh_CV.pdf" download class="header-link" style="color: var(--accent); font-weight: var(--font-weight-bold);">Resume &darr;</a>
+        <button id="qr-trigger-btn" class="qr-header-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v20"></path>
+            <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+          </svg>
+          AI Chat Mode
+        </button>
       </div>
 
       <!-- Right side: Actions wrapper (Theme Toggle + Phone Link) -->
@@ -1232,15 +1245,32 @@
       <!-- Initialize Background Grid -->
       <script src="loader.js?v=1.1"></script>
 
-      <!-- Component Scripts (Standard scripts to bypass local CORS rules) -->
+      <!-- Custom Cursor Element (Optional/Disabled) -->
+  <!-- <div class="custom-cursor" id="custom-cursor"></div> -->
+
+  <!-- QR Code Modal Overlay -->
+  <div id="qr-modal" class="qr-modal-overlay">
+    <div class="qr-modal-content">
+      <button id="qr-close-btn" class="qr-close-btn" aria-label="Close modal">&times;</button>
+      <div class="qr-modal-header">
+        <h3 class="qr-modal-title">Experience AiUX</h3>
+        <p class="qr-modal-desc">Scan this code using your mobile camera to launch the conversational AI experience.</p>
+      </div>
+      <!-- The JS library will render the premium QR code inside this container -->
+      <div id="qr-code-container" class="qr-code-wrapper"></div>
+    </div>
+  </div>
+
+  <!-- Component Scripts (Standard scripts to bypass local CORS rules) -->
       <script src="components/header/header.js?v=1.1"></script>
+      <script src="components/qr-modal/qr-modal.js?v=1.0"></script>
       <script src="components/hero/hero.js?v=1.1"></script>
       <script src="components/logos/logos.js?v=1.1"></script>
       <script src="components/marquee/marquee.js?v=1.1"></script>
       <script src="components/cursor/cursor.js?v=1.1"></script>
       <!-- Hidden Friction Component Script -->
       <script src="components/hidden-friction/hidden-friction.js?v=1.1"></script>
-      <!-- Skills Logos Component Script (no JS needed â€” CSS only) -->
+      <!-- Skills Logos Component Script (no JS needed — CSS only) -->
       <!-- Tracto Component Script -->
       <script src="components/tracto/tracto.js?v=1.1"></script>
       <!-- Custom Context Menu Script -->
