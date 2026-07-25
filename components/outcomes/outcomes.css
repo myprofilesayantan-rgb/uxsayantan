@@ -321,3 +321,37 @@ html.light-mode .outcomes-eyebrow {
     padding: 20px;
   }
 }
+
+@media (max-width: 1024px) {
+  .outcome-numbers {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .outcome-stat {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  
+  .outcome-stat:first-child {
+    padding-top: 0;
+  }
+  
+  .outcome-stat:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .outcome-stat-label {
+    white-space: normal;
+    text-align: left;
+  }
+  
+  /* Support for light mode */
+  html.light-mode .outcome-stat {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+  }
+}
