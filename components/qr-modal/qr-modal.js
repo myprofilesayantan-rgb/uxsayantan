@@ -1,6 +1,6 @@
 /**
  * QR Modal Interaction and Generation
- * Handles modal toggling and sophisticated QR code rendering using qr-code-styling
+ * Handles modal toggling, QR code rendering, and periodic attention-grabbing AI tooltip popups
  */
 
 const QRModal = {
@@ -9,12 +9,15 @@ const QRModal = {
     const triggerBtn = document.getElementById('floating-ai-btn');
     const closeBtn = document.getElementById('qr-close-btn');
     const qrContainer = document.getElementById('qr-code-container');
+    const tooltipBubble = document.getElementById('ai-tooltip-bubble');
     let isQrGenerated = false;
+    let tooltipTimer = null;
 
     if (!modalOverlay || !triggerBtn || !closeBtn || !qrContainer) return;
 
     function openModal(e) {
       if (e) e.preventDefault();
+      hideTooltip();
       modalOverlay.classList.add('active');
       
       // Generate QR only on first open to save resources
@@ -37,7 +40,7 @@ const QRModal = {
             type: "dot"
           },
           backgroundOptions: {
-            color: "transparent",
+            color: "#ffffff",
           }
         });
         qrCode.append(qrContainer);
@@ -49,8 +52,47 @@ const QRModal = {
       modalOverlay.classList.remove('active');
     }
 
+    // Periodic Tooltip Attention Logic
+    function showTooltip() {
+      if (!tooltipBubble || modalOverlay.classList.contains('active')) return;
+      tooltipBubble.classList.add('visible');
+      
+      // Auto hide after 4.5 seconds
+      setTimeout(() => {
+        hideTooltip();
+      }, 4500);
+    }
+
+    function hideTooltip() {
+      if (tooltipBubble) {
+        tooltipBubble.classList.remove('visible');
+      }
+    }
+
+    // Initial pop 2 seconds after page load, then cycle every 12 seconds
+    setTimeout(() => {
+      showTooltip();
+      tooltipTimer = setInterval(showTooltip, 12000);
+    }, 2000);
+
     triggerBtn.addEventListener('click', openModal);
     closeBtn.addEventListener('click', closeModal);
+
+    // Show tooltip immediately on hover
+    triggerBtn.addEventListener('mouseenter', () => {
+      showTooltip();
+    });
+
+    triggerBtn.addEventListener('mouseleave', () => {
+      hideTooltip();
+    });
+
+    if (tooltipBubble) {
+      tooltipBubble.addEventListener('click', (e) => {
+        hideTooltip();
+        openModal(e);
+      });
+    }
 
     // Close on outside click
     modalOverlay.addEventListener('click', (e) => {

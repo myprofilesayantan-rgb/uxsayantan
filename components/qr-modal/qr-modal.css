@@ -1,4 +1,4 @@
-/* QR Code Modal Styles (Google Material UI Inspired) */
+/* QR Code Modal Styles - Premium Creative Design System */
 
 .qr-modal-overlay {
   position: fixed;
@@ -6,14 +6,16 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.6); /* Dark scrim */
+  background-color: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(14px) saturate(160%);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.35s ease;
 }
 
 .qr-modal-overlay.active {
@@ -22,31 +24,34 @@
 }
 
 .qr-modal-content {
-  background-color: var(--bg-primary, #ffffff);
-  border-radius: 16px;
-  box-shadow: 0 12px 48px rgba(0, 0, 0, 0.15);
-  padding: 40px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.2), 0 0 40px rgba(138, 43, 226, 0.12);
+  padding: 36px 32px 32px 32px;
   width: 90%;
-  max-width: 420px;
+  max-width: 430px;
   position: relative;
   text-align: center;
-  transform: translateY(20px) scale(0.95);
-  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transform: translateY(24px) scale(0.94);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
 }
 
 .qr-modal-overlay.active .qr-modal-content {
   transform: translateY(0) scale(1);
 }
 
+
+
 /* Close Button */
 .qr-close-btn {
   position: absolute;
   top: 16px;
   right: 16px;
-  background: transparent;
+  background: rgba(0, 0, 0, 0.05);
   border: none;
-  font-size: 24px;
-  color: var(--text-secondary, #666);
+  font-size: 22px;
+  color: #666;
   cursor: pointer;
   width: 32px;
   height: 32px;
@@ -54,75 +59,146 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  transition: background-color 0.2s, color 0.2s;
+  transition: all 0.2s ease;
+  z-index: 10;
 }
 
 .qr-close-btn:hover {
-  background-color: var(--bg-secondary, #f0f0f0);
-  color: var(--text-primary, #111);
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #111;
+  transform: rotate(90deg);
+}
+
+/* AI Badge */
+.qr-modal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(58, 134, 255, 0.1));
+  border: 1px solid rgba(138, 43, 226, 0.25);
+  color: #7c3aed;
+  margin-bottom: 12px;
+}
+
+.qr-badge-sparkle {
+  font-size: 13px;
 }
 
 /* Typography */
 .qr-modal-header {
-  margin-bottom: 24px;
+  margin-bottom: 20px;
 }
 
 .qr-modal-title {
   font-family: var(--font-family, sans-serif);
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 700;
-  color: var(--text-primary, #111);
+  color: #000000;
   margin: 0 0 8px 0;
   letter-spacing: -0.02em;
 }
 
 .qr-modal-desc {
   font-family: var(--font-family, sans-serif);
-  font-size: 15px;
+  font-size: 14.5px;
   line-height: 1.5;
-  color: var(--text-secondary, #52524b);
+  color: #222222;
+  font-weight: 500;
+  margin: 0 0 10px 0;
+}
+
+.qr-modal-subdesc {
+  font-family: var(--font-family, sans-serif);
+  font-size: 13px;
+  line-height: 1.45;
+  color: #4b5563;
   margin: 0;
 }
 
-/* QR Code Container */
+/* QR Code Outer Floating Card */
+.qr-code-outer-card {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff !important;
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  margin-top: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.qr-code-outer-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12);
+}
+
 .qr-code-wrapper {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: transparent;
-  padding: 16px;
-  border-radius: 12px;
-  border: 1px solid var(--border-light, #e2e2dc);
-  margin: 0 auto;
-  width: max-content;
 }
 
-/* Floating AI Button */
+/* Scan Hint Chip */
+.qr-scan-hint {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #4b5563;
+  margin-top: 12px;
+  letter-spacing: 0.01em;
+}
+
+.qr-pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  box-shadow: 0 0 8px #22c55e;
+  animation: pulseGreen 2s infinite;
+}
+
+@keyframes pulseGreen {
+  0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* Floating AI Action Button */
 .floating-ai-btn {
   position: fixed;
   bottom: 32px;
   right: 32px;
-  width: 56px;
-  height: 56px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
-  border: none;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   cursor: pointer;
   z-index: 9900;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  box-shadow: 0 8px 32px rgba(138, 43, 226, 0.4);
+  box-shadow: 0 10px 36px rgba(138, 43, 226, 0.55), 0 0 28px rgba(255, 42, 133, 0.4);
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
-  background-color: #111; /* Fallback */
+  background-color: #111;
 }
 
 .floating-ai-btn:hover {
-  transform: scale(1.1) translateY(-4px);
-  box-shadow: 0 12px 48px rgba(138, 43, 226, 0.6);
+  transform: scale(1.08) translateY(-3px);
+  box-shadow: 0 14px 48px rgba(138, 43, 226, 0.75), 0 0 38px rgba(255, 42, 133, 0.55);
 }
 
-/* Liquid animated gradient background */
 .floating-ai-btn::before {
   content: '';
   position: absolute;
@@ -130,26 +206,26 @@
   left: -50%;
   width: 200%;
   height: 200%;
+  border-radius: 50%;
   background: conic-gradient(
     from 0deg,
-    #ff2a85, /* Magenta */
-    #8a2be2, /* Purple */
-    #4169e1, /* Blue */
-    #ff2a85  /* Magenta */
+    #ff2a85,
+    #8a2be2,
+    #4169e1,
+    #ff2a85
   );
   animation: spinLiquid 3s linear infinite;
   z-index: 0;
-  filter: blur(6px);
+  filter: blur(5px);
 }
 
-/* Sparkle Icon */
 .floating-ai-btn svg {
-  width: 24px;
-  height: 24px;
+  width: 27px;
+  height: 27px;
   fill: #ffffff;
   z-index: 2;
   position: relative;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.4));
 }
 
 @keyframes spinLiquid {
@@ -157,11 +233,117 @@
   100% { transform: rotate(360deg); }
 }
 
-/* Dark mode overrides (if needed) */
-.dark-mode .qr-modal-content {
-  border: 1px solid #333;
+/* Fancy Animated Tooltip Bubble */
+.ai-tooltip-bubble {
+  position: fixed;
+  bottom: 108px;
+  right: 32px;
+  z-index: 9901;
+  background: rgba(18, 18, 22, 0.94);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45), 0 0 25px rgba(138, 43, 226, 0.35);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px) scale(0.9);
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease;
+  white-space: nowrap;
 }
-.dark-mode .qr-code-wrapper {
-  background: #ffffff; /* Keep QR code background white for scannability */
-  border-color: transparent;
+
+.ai-tooltip-bubble.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) scale(1);
+  animation: tooltipBounce 3s ease-in-out infinite;
+}
+
+.ai-tooltip-bubble:hover {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(-2px) scale(1.03) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 30px rgba(138, 43, 226, 0.45);
+}
+
+@keyframes tooltipBounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.tooltip-arrow {
+  position: absolute;
+  bottom: -6px;
+  right: 24px;
+  width: 10px;
+  height: 10px;
+  background: rgba(18, 18, 22, 0.94);
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transform: rotate(45deg);
+}
+
+.tooltip-sparkle {
+  font-size: 14px;
+  animation: sparkleRotate 2s ease-in-out infinite alternate;
+}
+
+@keyframes sparkleRotate {
+  0% { transform: scale(1) rotate(0deg); }
+  100% { transform: scale(1.2) rotate(15deg); }
+}
+
+/* Dark Mode Creative Overrides */
+.dark-mode .qr-modal-content {
+  background-color: #121215 !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7), 0 0 50px rgba(138, 43, 226, 0.18);
+}
+
+.dark-mode .qr-modal-badge {
+  background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(58, 134, 255, 0.2));
+  border-color: rgba(168, 85, 247, 0.4);
+  color: #c084fc;
+}
+
+.dark-mode .qr-modal-title {
+  color: #ffffff !important;
+}
+
+.dark-mode .qr-modal-desc {
+  color: #f4f4f5 !important;
+  font-weight: 500;
+}
+
+.dark-mode .qr-modal-subdesc {
+  color: #a1a1aa !important;
+}
+
+.dark-mode .qr-close-btn {
+  background: rgba(255, 255, 255, 0.08);
+  color: #a1a1aa;
+}
+
+.dark-mode .qr-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+}
+
+.dark-mode .qr-code-outer-card {
+  background-color: #ffffff !important;
+  border-color: #27272a;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .qr-scan-hint {
+  color: #374151;
 }

@@ -120,7 +120,7 @@
   <!-- Custom Context Menu Stylesheet -->
   <link rel="stylesheet" href="components/context-menu/context-menu.css?v=1.1" />
   <!-- QR Modal Stylesheet -->
-  <link rel="stylesheet" href="components/qr-modal/qr-modal.css?v=1.1" />
+  <link rel="stylesheet" href="components/qr-modal/qr-modal.css" />
   
   <!-- GSAP (latest CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -1123,6 +1123,41 @@
       <p class="footer-copyright">© 2026 Sayantan Ghosh. All rights reserved.</p>
     </footer>
 
+  <!-- Fancy Animated AI Tooltip & Floating Button -->
+  <div id="ai-tooltip-bubble" class="ai-tooltip-bubble">
+    <span class="tooltip-sparkle">✨</span>
+    <span>Test My UX via AI</span>
+    <div class="tooltip-arrow"></div>
+  </div>
+
+  <!-- Floating Animated AI Button -->
+  <button id="floating-ai-btn" class="floating-ai-btn" aria-label="Open AI Portfolio Mode">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M11.5,1.5 L12.9,8.1 C13.3,10.2 14.9,11.8 17.0,12.2 L23.5,13.5 L17.0,14.8 C14.9,15.2 13.3,16.8 12.9,18.9 L11.5,25.5 L10.1,18.9 C9.7,16.8 8.1,15.2 6.0,14.8 L-0.5,13.5 L6.0,12.2 C8.1,11.8 9.7,10.2 10.1,8.1 L11.5,1.5 Z"></path>
+    </svg>
+  </button>
+
+  <!-- QR Code Modal Overlay -->
+  <div id="qr-modal" class="qr-modal-overlay">
+    <div class="qr-modal-content">
+      <button id="qr-close-btn" class="qr-close-btn" aria-label="Close modal">&times;</button>
+      <div class="qr-modal-header">
+        <div class="qr-modal-badge">
+          <span class="qr-badge-sparkle">✨</span>
+          <span>AI-Orchestrated Portfolio</span>
+        </div>
+        <h3 class="qr-modal-title">Test My UX Architecture via AI</h3>
+        <p class="qr-modal-desc">Scan with your mobile camera to interrogate my case studies, design system logic, and trade-offs in real time.</p>
+        <p class="qr-modal-subdesc">(Engineered with custom LLM prompt orchestration &amp; structured design context to demonstrate AI-native product workflows.)</p>
+      </div>
+      <div class="qr-code-outer-card">
+        <div id="qr-code-container" class="qr-code-wrapper"></div>
+        <div class="qr-scan-hint">
+          <span class="qr-pulse-dot"></span>
+          <span>Point your camera to open</span>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- Zoom Modal Overlay -->
@@ -1240,28 +1275,6 @@
 
       <!-- Custom Cursor Element (Optional/Disabled) -->
   <!-- <div class="custom-cursor" id="custom-cursor"></div> -->
-
-  <!-- Floating Animated AI Button -->
-  <button id="floating-ai-btn" class="floating-ai-btn" aria-label="Open AI Portfolio Mode">
-    <!-- Clean sparkle icon -->
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M11.5,1.5 L12.9,8.1 C13.3,10.2 14.9,11.8 17.0,12.2 L23.5,13.5 L17.0,14.8 C14.9,15.2 13.3,16.8 12.9,18.9 L11.5,25.5 L10.1,18.9 C9.7,16.8 8.1,15.2 6.0,14.8 L-0.5,13.5 L6.0,12.2 C8.1,11.8 9.7,10.2 10.1,8.1 L11.5,1.5 Z"></path>
-    </svg>
-  </button>
-
-  <!-- QR Code Modal Overlay -->
-  <div id="qr-modal" class="qr-modal-overlay">
-    <div class="qr-modal-content">
-      <button id="qr-close-btn" class="qr-close-btn" aria-label="Close modal">&times;</button>
-      <div class="qr-modal-header">
-        <h3 class="qr-modal-title">Experience AiUX</h3>
-        <p class="qr-modal-desc" style="margin-bottom: 12px;">Scan this code using your mobile camera to launch my conversational AI portfolio.</p>
-        <p class="qr-modal-desc" style="font-size: 13.5px; opacity: 0.75; line-height: 1.4;">(This AI isn't here to hide my flaws or do the talking for me. It's simply a transparent, interactive way to let you explore my systems thinking and design process firsthand.)</p>
-      </div>
-      <!-- The JS library will render the premium QR code inside this container -->
-      <div id="qr-code-container" class="qr-code-wrapper"></div>
-    </div>
-  </div>
 
   <!-- Component Scripts (Standard scripts to bypass local CORS rules) -->
       <script src="components/header/header.js?v=1.1"></script>
