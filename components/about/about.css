@@ -15,8 +15,8 @@
   max-width: var(--container-max-width);
   margin: 0 auto;
   padding: 0 var(--side-padding-fluid);
-  padding-top: calc(var(--gap-section) * 1.2); /* Adjusted for visual balance */
-  padding-bottom: calc(var(--gap-section) * 1.2); /* Matches top padding */
+  padding-top: clamp(4rem, 8vw, 6rem) !important;
+  padding-bottom: clamp(4rem, 8vw, 6rem) !important;
   box-sizing: border-box;
 }
 
@@ -25,13 +25,20 @@
   display: grid;
   grid-template-columns: minmax(280px, 1fr) 2.2fr;
   gap: calc(var(--gap-component) * 1.5);
-  align-items: center; /* Vertically center the text and the card */
+  align-items: stretch; /* Stretch to equal height so we can center content inside */
 }
 
 /* Left Column Styling */
 .about-left-col {
   display: flex;
   flex-direction: column;
+  justify-content: center; /* Center the card vertically */
+}
+
+.about-right-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center text vertically to guarantee equal top/bottom space */
 }
 
 /* Rounded Card Container */
