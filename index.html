@@ -1265,7 +1265,7 @@
 
   <!-- Component Scripts (Standard scripts to bypass local CORS rules) -->
       <script src="components/header/header.js?v=1.1"></script>
-      <script src="components/qr-modal/qr-modal.js?v=1.1"></script>
+      <script src="components/qr-modal/qr-modal.js"></script>
       <script src="components/hero/hero.js?v=1.1"></script>
       <script src="components/logos/logos.js?v=1.1"></script>
       <script src="components/marquee/marquee.js?v=1.1"></script>
@@ -1304,7 +1304,7 @@
           QRModal.init();
         }
 
-        // â”€â”€ Preload Tracto Phone Mockup Images into browser disk cache â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // ── Preload Tracto Phone Mockup Images into browser disk cache ─────────
         (function preloadTractoAssets() {
           [
             'images/elder_topbar.png',
@@ -1323,7 +1323,7 @@
           });
         })();
 
-        // â”€â”€ Scroll-Triggered Entrance Animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+        // ── Scroll-Triggered Entrance Animations ──────────────────────────────
         if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
           gsap.registerPlugin(ScrollTrigger);
 
@@ -1397,7 +1397,7 @@
         }
       </script>
 
-      <!-- ðŸŽ¨ Inline SVG Filters for Light Mode Asset Color Correction -->
+      <!-- 🎨 Inline SVG Filters for Light Mode Asset Color Correction -->
       <svg style="display: none;" aria-hidden="true">
         <defs>
           <!-- Converts white text to black while keeping the yellow symbol exactly brand yellow (subtraction method) -->
