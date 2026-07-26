@@ -8,6 +8,10 @@
 > explicitly says `Unlock [Section Name]`. No exceptions. No assumptions. No workarounds.
 
 > [!CAUTION]
+> **STRICT GIT & UPLOAD RULE — NON-NEGOTIABLE**
+> NEVER EVER upload, push, or commit any file from the local environment to GitHub or any remote repository unless explicitly requested by the user. Upload, push, and commit requests will strictly come from the user's end only. Never execute git commit, git push, or repository upload actions proactively or automatically under any circumstances.
+
+> [!CAUTION]
 > **STRICT SCOPE RULE — Added 2026-06-05**
 > Do ONLY what the user explicitly requests. No additions, no proactive improvements,
 > no unrequested features, no extra changes beyond the exact instruction given.
@@ -225,6 +229,11 @@ The following phrases trigger an undo action:
 - Screenshots are unreliable — they may be outdated, cropped, or from a different state
 - Always read the actual source files directly to understand the current state
 - If a visual issue is reported, diagnose by reading the code, not by interpreting the screenshot
+
+### GitHub & Repository Upload Policy
+- **Zero Automatic GitHub Uploads**: NEVER upload, push, or commit any file from the local environment to GitHub or any remote repository unless the user explicitly requests it.
+- **User-Initiated Only**: All upload/push/commit requests must come strictly from the user's end.
+- **No Unrequested Git Commands**: Never execute `git push`, `git commit`, or remote repository sync actions automatically or proactively.
 
 ---
 
