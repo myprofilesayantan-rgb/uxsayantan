@@ -149,8 +149,8 @@
   position: fixed;
   bottom: 32px;
   right: 32px;
-  width: 85px;
-  height: 85px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.25);
   cursor: pointer;
@@ -162,6 +162,7 @@
   box-shadow: 0 12px 42px rgba(138, 43, 226, 0.7), 0 0 36px rgba(255, 42, 133, 0.55), 0 0 18px rgba(0, 242, 254, 0.4);
   transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
   background-color: #111;
+  animation: btnBouncePopIn 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) both;
 }
 
 .floating-ai-btn:hover {
@@ -191,8 +192,8 @@
 }
 
 .floating-ai-btn svg {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
   fill: #ffffff;
   z-index: 2;
   position: relative;
@@ -204,10 +205,31 @@
   100% { transform: rotate(360deg); }
 }
 
+@keyframes btnBouncePopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(180px);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(-16px);
+  }
+  75% {
+    transform: translateY(6px);
+  }
+  88% {
+    transform: translateY(-3px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Slick Professional AI Tooltip Bubble */
 .ai-tooltip-bubble {
   position: fixed;
-  bottom: 126px;
+  bottom: 114px;
   right: 32px;
   z-index: 9901;
   background: rgba(18, 18, 22, 0.92);

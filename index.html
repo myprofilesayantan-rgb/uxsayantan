@@ -121,6 +121,8 @@
   <link rel="stylesheet" href="components/context-menu/context-menu.css?v=1.1" />
   <!-- QR Modal Stylesheet -->
   <link rel="stylesheet" href="components/qr-modal/qr-modal.css" />
+  <!-- Atmospheric Canvas Background Stylesheet -->
+  <link rel="stylesheet" href="components/background/background.css?v=1.0" />
   
   <!-- GSAP (latest CDN) -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
@@ -140,6 +142,9 @@
 </head>
 
 <body>
+
+  <!-- Atmospheric Background Canvas (Night Sky / Morning Vibe) -->
+  <canvas id="sky-background-canvas" class="sky-background-canvas" aria-hidden="true"></canvas>
 
   <section id="section-header" class="section-container component-header">
 
@@ -1293,6 +1298,8 @@
       <script src="components/statement/statement.js?v=1.1"></script>
       <!-- Product Story Overlay Component Script -->
       <script src="components/product-story/product-story.js?v=1.0"></script>
+      <!-- Atmospheric Canvas Background Script -->
+      <script src="components/background/background.js?v=1.0"></script>
 
       <!-- Boot Components -->
       <script>
