@@ -1,0 +1,15 @@
+/* ==========================================================================
+   🌅 Atmospheric Canvas Background (Night Sky & Morning Vibe)
+   ========================================================================== */
+
+.sky-background-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 1;
+  transition: opacity 0.8s ease;
+}
