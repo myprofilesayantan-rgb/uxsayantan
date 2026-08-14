@@ -1534,14 +1534,14 @@ html.light-mode .tracto-description {
   display: flex !important;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 8px;
-  margin: 0 0 16px 0 !important;
+  gap: 4px !important;
+  margin: 0 0 14px 0 !important;
   position: static !important;
   top: auto !important;
   left: auto !important;
   transform: none !important;
   width: 100%;
-  max-width: 500px;
+  max-width: 480px;
   z-index: 2;
 }
 
@@ -1552,12 +1552,12 @@ html.light-mode .tracto-description {
 
 .sub-sel-btn {
   font-family: var(--font-family);
-  font-size: 0.74rem;
+  font-size: 0.68rem;
   font-weight: 500;
   color: var(--text-primary);
   background: rgba(var(--grid-base-color), 0.06);
   border: 1px solid var(--card-border-color);
-  padding: 6px 14px;
+  padding: 4px 10px;
   border-radius: 100px;
   cursor: pointer;
   transition: all 0.25s ease;
@@ -1574,21 +1574,21 @@ html.light-mode .tracto-description {
   background: var(--color-primary-blue, #5AA4F9);
   color: #ffffff;
   border-color: var(--color-primary-blue, #5AA4F9);
-  box-shadow: 0 4px 14px rgba(90, 164, 249, 0.4);
+  box-shadow: 0 3px 10px rgba(90, 164, 249, 0.35);
 }
 
-/* ── Clean Screen Display Card (Transparent Background, No Black Box) ── */
+/* ── Clean Screen Display Card (Fits comfortably in main site container) ── */
 .screen-display-card {
   position: relative;
   display: inline-block;
   width: fit-content;
-  max-width: 275px;
+  max-width: 220px;
   margin: 0 auto;
-  border-radius: 20px;
+  border-radius: 18px;
   overflow: hidden;
   box-shadow: 
-    0 24px 60px rgba(0, 0, 0, 0.45), 
-    0 8px 24px rgba(0, 0, 0, 0.25),
+    0 18px 45px rgba(0, 0, 0, 0.4), 
+    0 6px 18px rgba(0, 0, 0, 0.2),
     0 0 0 1px rgba(255, 255, 255, 0.1);
   background: transparent;
   transition: transform 0.35s ease, box-shadow 0.35s ease;
@@ -1596,106 +1596,28 @@ html.light-mode .tracto-description {
 
 html.light-mode .screen-display-card {
   box-shadow: 
-    0 20px 50px rgba(0, 0, 0, 0.14), 
-    0 6px 18px rgba(0, 0, 0, 0.08),
+    0 16px 36px rgba(0, 0, 0, 0.12), 
+    0 4px 12px rgba(0, 0, 0, 0.06),
     0 0 0 1px rgba(0, 0, 0, 0.08);
   background: transparent;
 }
 
 .screen-display-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-3px);
   box-shadow: 
-    0 32px 75px rgba(0, 0, 0, 0.6), 
-    0 12px 36px rgba(0, 0, 0, 0.35);
+    0 24px 55px rgba(0, 0, 0, 0.55), 
+    0 8px 24px rgba(0, 0, 0, 0.3);
 }
 
 .clean-screen-img {
   display: block;
   width: 100%;
   height: auto;
-  max-height: 480px;
+  max-height: 380px;
   object-fit: contain;
-  border-radius: 20px;
+  border-radius: 18px;
   background: transparent;
   transition: opacity 0.25s ease;
-}
-
-
-.phone-scroll-content {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-}
-
-.phone-content-img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-/* Elder Sub-State Selector (Positioned Horizontally Above Phone) */
-.elder-sub-selector,
-.caregiver-sub-selector {
-  position: absolute;
-  top: 14px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  gap: 8px;
-  z-index: 10;
-  opacity: 1;
-  pointer-events: auto;
-  height: 38px;
-  transition: opacity 0.35s ease, transform 0.35s ease;
-  overflow: visible;
-  max-width: 95%;
-  flex-wrap: nowrap;
-}
-
-.elder-sub-selector.hide-selector,
-.caregiver-sub-selector.hide-selector {
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(-50%, -10px);
-}
-
-.sub-sel-btn {
-  font-family: var(--font-family);
-  font-size: 13px;
-  font-weight: 600;
-  color: rgba(var(--grid-base-color), 0.55);
-  background: transparent;
-  border: 1px solid transparent;
-  border-radius: 100px;
-  padding: 8px 18px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-  outline: none;
-}
-
-.sub-sel-btn.active {
-  color: #ffffff;
-  background: #111111;
-  border-color: rgba(255, 255, 255, 0.12);
-  box-shadow:
-    0 4px 14px rgba(0, 0, 0, 0.45),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
-  font-weight: var(--font-weight-bold);
-}
-
-/* Light mode — still black pill to match the request */
-html.light-mode .sub-sel-btn.active {
-  color: #ffffff;
-  background: #111111;
-  border-color: rgba(0, 0, 0, 0.15);
-  box-shadow:
-    0 4px 14px rgba(0, 0, 0, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .sub-sel-btn:hover:not(.active) {
