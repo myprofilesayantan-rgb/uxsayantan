@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <!-- Instant Theme Restoration Script -->
+  <script type="text/javascript">
+    (function () {
+      try {
+        var theme = localStorage.getItem('theme');
+        if (theme === 'light') {
+          document.documentElement.classList.add('light-mode');
+        }
+      } catch (e) { }
+    })();
+  </script>
+
+  <!-- Microsoft Clarity Analytics -->
+  <script type="text/javascript">
+    (function (c, l, a, r, i, t, y) {
+      c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+      t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+      y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+    })(window, document, "clarity", "script", "wft5af44a0");
+  </script>
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Primary SEO Metadata -->
+  <title>RummyCircle · Design Story | Sayantan Ghosh UX</title>
+  <meta name="description"
+    content="Interactive 8-slide product design story showcasing gaming UX architecture, table lobby redesign, and reward flows for RummyCircle." />
+  <meta name="author" content="Sayantan Ghosh" />
+  <meta name="robots" content="index, follow" />
+
+  <link rel="icon" type="image/png" href="images/sayantan_pic.png" />
+  <!-- Baseline & Responsive Styles -->
+  <link rel="stylesheet" href="tokens.css?v=1.1" />
+  <link rel="stylesheet" href="desktop.css?v=1.1" />
+  <link rel="stylesheet" href="responsive.css?v=1.1" />
+  <!-- Product Story Component Stylesheet -->
+  <link rel="stylesheet" href="components/product-story/product-story.css?v=1.1" />
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: var(--bg-primary);
+    }
+
+    .story-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .story-overlay .story-theater-stage,
+    .story-overlay .story-nav-sidebar {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .story-logo a {
+      color: var(--text-heading);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .story-logo a:hover {
+      opacity: 0.8;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="story-overlay active" id="rummycircle-story-modal" role="region" aria-label="RummyCircle Design Story Presentation">
+    <!-- Background Texture Grid Lines -->
+    <div class="story-bg-grid">
+      <div class="story-grid-line"></div>
+      <div class="story-grid-line"></div>
+      <div class="story-grid-line"></div>
+      <div class="story-grid-line"></div>
+      <div class="story-grid-line"></div>
+      <div class="story-grid-line"></div>
+      <div class="story-grid-line"></div>
+      <div class="story-grid-line"></div>
+      <div class="story-grid-line"></div>
+      <div class="story-grid-line"></div>
+      <div class="story-grid-line"></div>
+      <div class="story-grid-line"></div>
+    </div>
+
+    <!-- Main presentation stage (Left side) -->
+    <div class="story-theater-stage">
+      <header class="story-theater-header">
+        <div class="story-logo"><a href="index.html">Sayantan Ghosh<span>.</span></a></div>
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <a href="index.html" class="story-header-cta" id="rc-dive-btn" style="text-decoration: none;">
+            Return to Portfolio
+            <svg xmlns="http://www.w3.org/2000/svg" height="15" width="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-left:4px;"><path d="M5 13h11.86l-5.43 5.43L13 20l8-8-8-8-1.41 1.41 5.43 5.43H5v2z"/></svg>
+          </a>
+          <a href="index.html" class="story-control-btn" id="rc-close-btn" aria-label="Return to Portfolio Home" style="border-radius:50%; width:40px; height:40px; margin: 0; text-decoration: none; display: flex; align-items: center; justify-content: center;">✕</a>
+        </div>
+      </header>
+
+      <div class="story-viewport-wrapper">
+        <div class="story-stage-glow"></div>
+        <div class="story-viewport" id="rc-slide-viewport">
+          <div class="theater-progress-bar">
+            <div class="theater-progress-fill" id="rc-progress-indicator"></div>
+          </div>
+          <div class="story-loader" id="rc-modal-loader">
+            <div class="loader-spinner-container">
+              <div class="loader-spinner"></div>
+              <span class="loader-percentage" id="rc-pct-text">0%</span>
+            </div>
+            <p class="loader-insight" id="rc-insight-text">Initializing RummyCircle presentation...</p>
+          </div>
+        </div>
+      </div>
+
+      <footer class="story-theater-footer">
+        <div class="story-stage-controls">
+          <button class="story-control-btn" id="rc-prev-btn" aria-label="Previous Slide">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+          <button class="story-control-btn" id="rc-play-btn" aria-label="Play Autoplay">
+            <svg id="rc-play-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          </button>
+          <button class="story-control-btn" id="rc-next-btn" aria-label="Next Slide">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+        <span style="font-family: monospace; font-weight: 600;" id="rc-counter-label">Slide 01 / 08</span>
+      </footer>
+    </div>
+
+    <aside class="story-nav-sidebar">
+      <div class="sidebar-header-box">
+        <h3 class="sidebar-title">RummyCircle UX</h3>
+        <p style="font-size: var(--font-size-xs); color: var(--text-primary); line-height: 1.4; margin-top: -12px;">Real-money gaming UX architecture, table lobby redesign, and reward flow presentation.</p>
+      </div>
+
+      <div class="thumbnails-grid" id="rc-thumbnails-container">
+        <!-- Thumbnails generated dynamically by script -->
+      </div>
+    </aside>
+  </div>
+
+  <script src="components/rummycircle-story/rummycircle-story.js?v=1.1"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.RummycircleStoryModal) {
+        window.RummycircleStoryModal.init();
+      }
+    });
+  </script>
+</body>
+
+</html>

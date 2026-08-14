@@ -1,0 +1,280 @@
+/* Design Tokens & Theme Variables */
+:root {
+  /* Colors Palette (Static Reference Tokens) */
+  --color-bg-dark: #151512;
+  --color-bg-light: #ffffff;
+  --color-primary-blue: #5AA4F9;
+  --color-primary-blue-rgb: 90, 164, 249;
+  --color-primary-green: #30D158;
+  --color-primary-green-rgb: 48, 209, 88;
+  --color-text-gray: #AA9D9D;
+  --color-text-red: #ED2121;
+  --color-text-white: #ffffff;
+  --color-text-dark: #1e1e1e;
+
+  /* Theme-dependent Semantic Variables (Default: Dark Mode) */
+  --bg-primary: var(--color-bg-dark);
+  --text-primary: var(--color-text-gray);
+  --text-heading: var(--color-text-white);
+  
+  --header-nav-color: #DED5D5;
+  --header-bg-color: 21, 21, 18; /* RGB representation for constructing linear-gradients with transparency */
+  
+  --grid-base-color: 255, 255, 255;
+  --grid-line-opacity: 0.06;
+  --grid-glow-opacity: 0.45;
+  
+  --btn-secondary-text: rgba(255, 255, 255, 0.55);
+  --btn-secondary-border: rgba(255, 255, 255, 0.14);
+  --btn-secondary-hover-bg: rgba(255, 255, 255, 0.05);
+  --btn-secondary-hover-text: rgba(255, 255, 255, 0.9);
+  
+  --pagination-dot-color: rgba(255, 255, 255, 0.3);
+  --typewriter-cursor-shadow: 0 0 12px rgba(90, 164, 249, 0.95);
+  
+  --card-bg-gradient-start: rgba(22, 22, 24, 0.7);
+  --card-bg-gradient-end: rgba(14, 14, 16, 0.8);
+  --card-bg-hover-start: rgba(30, 30, 32, 0.75);
+  --card-bg-hover-end: rgba(22, 22, 24, 0.85);
+  --card-border-color: rgba(255, 255, 255, 0.1);
+  --widget-card-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35);
+  --widget-card-hover-shadow: 0 12px 38px 0 rgba(0, 229, 255, 0.15), 0 6px 16px 0 rgba(var(--color-primary-green-rgb), 0.1);
+  
+  --widget-label-text: var(--color-primary-green);
+  --widget-label-bg: rgba(var(--color-primary-green-rgb), 0.12);
+  
+  --radar-grid-stroke: rgba(255, 255, 255, 0.06);
+  --radar-spoke-stroke: rgba(255, 255, 255, 0.08);
+  --radar-label-fill: rgba(255, 255, 255, 0.45);
+  --radar-axis-primary-fill: #ffffff;
+  --radar-axis-secondary-fill: rgba(255, 255, 255, 0.6);
+  
+  --context-menu-bg: rgba(30, 30, 30, 0.72);
+  --context-menu-border: rgba(255, 255, 255, 0.12);
+  --context-menu-color: rgba(255, 255, 255, 0.9);
+  --context-menu-divider: rgba(255, 255, 255, 0.08);
+  
+  --logo-group-label-color: rgba(255, 255, 255, 0.35);
+  --logo-group-label-border: rgba(255, 255, 255, 0.08);
+
+  --footer-text-color: rgba(255, 255, 255, 0.22);
+
+  /* Radar Chart Data Fills & Stroke Fills */
+  --radar-user-stroke: #00E5FF;
+  --radar-user-fill: rgba(0, 229, 255, 0.12);
+  --radar-user-glow: rgba(0, 229, 255, 0.3);
+  --radar-care-stroke: var(--color-primary-green);
+  --radar-care-fill: rgba(var(--color-primary-green-rgb), 0.12);
+  --radar-care-glow: rgba(var(--color-primary-green-rgb), 0.3);
+  
+  /* User Pain Quote Cards Styles (Microsoft/iOS Dark Mode default) */
+  --quote-card-bg-start: rgba(30, 30, 30, 0.75);
+  --quote-card-bg-end: rgba(20, 20, 20, 0.8);
+  --quote-card-border-start: rgba(255, 255, 255, 0.09);
+  --quote-card-border-end: rgba(255, 255, 255, 0.05);
+  --quote-card-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+  
+  --quote-caregiver-bg-start: rgba(25, 35, 53, 0.8);
+  --quote-caregiver-bg-end: rgba(15, 22, 35, 0.85);
+  --quote-caregiver-border-start: rgba(90, 164, 249, 0.25);
+  --quote-caregiver-border-end: rgba(90, 164, 249, 0.12);
+
+  --quote-author-color: #ffffff;
+  --quote-time-color: rgba(255, 255, 255, 0.45);
+  --quote-text-color: #e5e5ea;
+  --phone-shadow-opacity: 0.8;
+
+  /* Chips / Tags */
+  --chip-bg: rgba(255, 255, 255, 0.05);
+  --chip-border: rgba(255, 255, 255, 0.10);
+  --chip-text: rgba(255, 255, 255, 0.7);
+  --chip-hover-bg: rgba(255, 255, 255, 0.10);
+  --chip-hover-border: rgba(255, 255, 255, 0.22);
+  --chip-hover-text: var(--text-heading);
+
+  /* Typography */
+  --font-family: 'Inter', sans-serif;
+  
+  /* Typographical Font Size Scale */
+  --font-size-xs: 12px;
+  --font-size-sm: 14px;
+  --font-size-base: 16px;
+  --font-size-md: 18px;
+  --font-size-lg: 20px;
+  --font-size-xl: 24px;
+  --font-size-2xl: 28px;
+  --font-size-3xl: 32px;
+  --font-size-4xl: 36px;
+  --font-size-5xl: clamp(20px, 3.5vw, 38px);
+  --font-size-hero: clamp(2rem, 5.5vw, 4.5rem);
+
+  /* Typographical Font Weight Scale */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* Sizing Constraints (based on 1080px work area in 1280px total width) */
+  --container-max-width: 1280px;
+  --content-max-width: 1080px;
+  --side-padding: 100px;
+  --side-padding-fluid: clamp(1rem, 7.8vw, 100px); /* Responsive scaling from 100px at 1280px to 16px on mobile */
+
+  /* Background Grid Lines */
+  --grid-line-color: rgba(255, 255, 255, 0.05);
+
+  /* Section Spacing — equal vertical gap above and below every content section */
+  --section-gap: 60px;          /* desktop default — from consistency.png reference */
+  --section-gap-mobile: 40px;   /* ≤768px          */
+  --header-height: 60px;        /* navigation block height */
+
+  /* ── Spacing Design System (consistency.png — Section 7 of rules.md) ──────
+     These four tokens are the backbone of all layout spacing.
+     Apply them to every component. Never use 3-digit px values for spacing.
+     ──────────────────────────────────────────────────────────────────────── */
+  --gap-section:    60px;   /* 🟠 Section container top & bottom padding (each side) */
+  --gap-component:  60px;   /* 🔵 Between major components / objects within a section */
+  --gap-element:    36px;   /* 🟢 Between related elements (heading→tabs, image→caption) */
+  --gap-micro:      24px;   /* 🟣 Between tightly paired elements (eyebrow→sub-label, caption→dots) */
+}
+
+/* Responsive Spacing Overrides (Mobile <= 768px) */
+@media (max-width: 768px) {
+  :root {
+    --gap-section: 40px;
+    --gap-component: 40px;
+    --gap-element: 24px;
+    --gap-micro: 16px;
+  }
+}
+
+/* Light Mode Overrides (Refactored to align with Microsoft Fluent 2 Design Guidelines) */
+html.light-mode {
+  --color-primary-blue: #0078D4; /* Microsoft Brand Blue */
+  --color-primary-blue-rgb: 0, 120, 212; /* Microsoft Brand Blue RGB */
+  --color-primary-green: #107C41; /* Microsoft brand green */
+  --color-primary-green-rgb: 16, 124, 65;
+  --bg-primary: var(--color-bg-light);
+  --text-primary: #424242; /* colorNeutralForeground2: Body copy, high contrast readability */
+  --text-heading: #242424; /* colorNeutralForeground1: Bold headings & focus items */
+  
+  --header-nav-color: #242424; /* colorNeutralForeground1 */
+  --header-bg-color: 255, 255, 255;
+  
+  --grid-base-color: 0, 0, 0;
+  --grid-line-opacity: 0.05;
+  --grid-glow-opacity: 0.8;
+  
+  /* Outline button system mapped to Microsoft outline control guidelines */
+  --btn-secondary-text: #424242;
+  --btn-secondary-border: #d2d2d2; /* Light outline border */
+  --btn-secondary-hover-bg: #f5f5f5; /* Light neutral hover fill */
+  --btn-secondary-hover-text: #242424;
+  
+  --pagination-dot-color: #d2d2d2;
+  --typewriter-cursor-shadow: none; /* Clean solid cursor for Fluent UI light theme */
+  
+  --card-bg-gradient-start: rgba(255, 255, 255, 0.75);
+  --card-bg-gradient-end: rgba(245, 245, 245, 0.85); /* Mapped to colorNeutralBackground2 */
+  --card-bg-hover-start: rgba(255, 255, 255, 0.85);
+  --card-bg-hover-end: rgba(250, 250, 250, 0.9);
+  --card-border-color: rgba(0, 0, 0, 0.05); /* Translucent, premium Apple-style card border */
+  --widget-card-shadow: 0 8px 30px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.02); /* Extremely soft, smooth Apple-style shadows */
+  --widget-card-hover-shadow: 0 12px 38px rgba(0, 120, 212, 0.08), 0 6px 16px rgba(var(--color-primary-green-rgb), 0.04);
+  
+  --widget-label-text: var(--color-primary-green);
+  --widget-label-bg: rgba(var(--color-primary-green-rgb), 0.1);
+  
+  --radar-grid-stroke: #e0e0e0;
+  --radar-spoke-stroke: #d2d2d2;
+  --radar-label-fill: #616161; /* colorNeutralForeground3 */
+  --radar-axis-primary-fill: #242424;
+  --radar-axis-secondary-fill: #616161;
+  
+  /* Mac/Windows hybrid menu using Microsoft Fluent Acrylic Spec */
+  --context-menu-bg: rgba(255, 255, 255, 0.85); 
+  --context-menu-border: #e0e0e0;
+  --context-menu-color: #242424;
+  --context-menu-divider: #f0f0f0;
+  
+  --logo-group-label-color: #616161; /* colorNeutralForeground3 */
+  --logo-group-label-border: #f0f0f0;
+
+  --footer-text-color: #616161; /* colorNeutralForeground3 */
+
+  --color-text-red: #D13438; /* Microsoft System Red (Destructive / Highlight warning) */
+  --radar-user-stroke: #0078D4; /* Microsoft Brand Blue */
+  --radar-user-fill: rgba(0, 120, 212, 0.12);
+  --radar-user-glow: rgba(0, 120, 212, 0.25);
+  --radar-care-stroke: var(--color-primary-green);
+  --radar-care-fill: rgba(var(--color-primary-green-rgb), 0.12);
+  --radar-care-glow: rgba(var(--color-primary-green-rgb), 0.25);
+  
+  --quote-card-bg-start: #ffffff;
+  --quote-card-bg-end: #fafafa;
+  --quote-card-border-start: #e0e0e0;
+  --quote-card-border-end: #d2d2d2;
+  --quote-card-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 2px 4px rgba(0, 0, 0, 0.04);
+  
+  --quote-caregiver-bg-start: #f2f7fc; /* Soft tinted Microsoft Blue background */
+  --quote-caregiver-bg-end: #eaf1f8;
+  --quote-caregiver-border-start: #c3daf1; /* Tinted Microsoft Blue border */
+  --quote-caregiver-border-end: #b3cbe6;
+
+  --quote-author-color: rgba(28, 29, 23, 0.95);
+  --quote-time-color: rgba(28, 29, 23, 0.6);
+  --quote-text-color: #1C1D17;
+
+  /* Chips / Tags overrides */
+  --chip-bg: #f5f5f7;
+  --chip-border: rgba(0, 0, 0, 0.06);
+  --chip-text: #242424;
+  --chip-hover-bg: #242424;
+  --chip-hover-border: #242424;
+  --chip-hover-text: #ffffff;
+
+  --phone-shadow-opacity: 0.25;
+}
+
+/* Background Texture Lines */
+.bg-grid-lines {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  grid-template-columns: repeat(24, 1fr); /* Equal gap between each vertical line */
+  pointer-events: none;
+  z-index: 1;
+  
+  /* Fade out at the bottom */
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 60%, rgba(0, 0, 0, 0) 100%);
+}
+
+.bg-grid-line {
+  width: 1px;
+  height: 100%;
+  /* Brighter grid line with a more distinct moving blue sweep, adapting to theme variables */
+  background: linear-gradient(
+    to bottom,
+    rgba(var(--grid-base-color), var(--grid-line-opacity)) 0%,
+    rgba(var(--grid-base-color), var(--grid-line-opacity)) 35%,
+    rgba(var(--color-primary-blue-rgb), var(--grid-glow-opacity)) 50%,
+    rgba(var(--grid-base-color), var(--grid-line-opacity)) 65%,
+    rgba(var(--grid-base-color), var(--grid-line-opacity)) 100%
+  );
+  background-size: 100% 200%;
+  background-repeat: no-repeat;
+  animation: grid-light-sweep 12s ease-in-out infinite;
+}
+
+@keyframes grid-light-sweep {
+  0% {
+    background-position: 0% -100%;
+  }
+  50%, 100% {
+    background-position: 0% 200%;
+  }
+}

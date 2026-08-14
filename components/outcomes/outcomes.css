@@ -1,0 +1,479 @@
+/* ==========================================================================
+   Outcomes Component — Project Outcome Cards
+   Follows portfolio design system: tokens.css + desktop.css
+   ========================================================================= */
+
+.component-outcomes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.outcomes-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: var(--gap-element);
+}
+
+/* Section Eyebrow */
+.outcomes-eyebrow {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(var(--grid-base-color), 0.35);
+  transition: color 0.5s ease;
+}
+
+/* Three-column card grid for desktop */
+.outcomes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: var(--content-max-width);
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Glassmorphic Card - Compact Specs */
+.outcome-card {
+  position: relative;
+  border: 1px solid var(--card-border-color);
+  background: var(--card-bg-gradient-start);
+  border-radius: 16px;
+  padding: 20px; /* Reduced for pro visual design */
+  box-shadow: var(--widget-card-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px; /* Tighter gaps for compact feel */
+  box-sizing: border-box;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease, background 0.5s ease;
+}
+
+/* Premium project-colour top strip - disabled to avoid AI template aesthetic */
+.outcome-card::before {
+  display: none;
+}
+
+.outcome-card:hover {
+  transform: translateY(-5px);
+  background: var(--card-bg-hover-start);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Master Category Tag Pill - 100% Unified Font & Layout Specs */
+.outcome-tag {
+  font-family: var(--font-family);
+  font-size: 9.5px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+  padding: 4px 9px;
+  border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  box-sizing: border-box;
+  margin: 0;
+  transition: color 0.4s ease, background 0.4s ease, border-color 0.4s ease;
+}
+
+/* 🌙 Dark Mode Colors per Card */
+#outcome-tenxengage .outcome-tag {
+  color: #ff2a85;
+  background: rgba(255, 42, 133, 0.1);
+  border: 1px solid rgba(255, 42, 133, 0.25);
+}
+
+#outcome-tracto .outcome-tag,
+#outcome-rummycircle .outcome-tag {
+  color: #30d158;
+  background: rgba(48, 209, 88, 0.1);
+  border: 1px solid rgba(48, 209, 88, 0.25);
+}
+
+#outcome-smartbi .outcome-tag {
+  color: #00f2fe;
+  background: rgba(0, 242, 254, 0.1);
+  border: 1px solid rgba(0, 242, 254, 0.25);
+}
+
+/* Project title */
+.outcome-title {
+  font-family: var(--font-family);
+  font-size: 1.15rem; /* Reduced to look sleek & human */
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-heading);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 1px 0 0 0;
+  transition: color 0.5s ease;
+}
+
+/* Project subtitle */
+.outcome-subtitle {
+  font-family: var(--font-family);
+  font-size: 0.78rem; /* Reduced to look sleek */
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.4;
+  transition: color 0.5s ease;
+}
+
+/* Status badge — amber/green */
+.outcome-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 100px;
+  padding: 4px 9px 4px 8px;
+  width: fit-content;
+  margin-top: 1px;
+  box-sizing: border-box;
+}
+
+/* Green status for shipped enterprise project */
+.outcome-status.status-shipped {
+  background: rgba(48, 209, 88, 0.08);
+  border: 1px solid rgba(48, 209, 88, 0.2);
+}
+
+.outcome-status.status-shipped .outcome-status-dot {
+  background: rgba(48, 209, 88, 0.9);
+}
+
+.outcome-status.status-shipped .outcome-status-text {
+  color: rgba(48, 209, 88, 0.9);
+}
+
+/* Amber status for concept/research stage */
+.outcome-status.status-amber {
+  background: rgba(255, 184, 0, 0.08);
+  border: 1px solid rgba(255, 184, 0, 0.2);
+}
+
+.outcome-status.status-amber .outcome-status-dot {
+  background: rgba(255, 184, 0, 0.9);
+}
+
+.outcome-status.status-amber .outcome-status-text {
+  color: rgba(255, 184, 0, 0.85);
+}
+
+.outcome-status-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin: 0;
+  display: block;
+  animation: outcome-status-pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes outcome-status-pulse {
+  0%, 100% { opacity: 1;   transform: scale(1);    }
+  50%       { opacity: 0.4; transform: scale(0.72); }
+}
+
+.outcome-status-text {
+  font-family: var(--font-family);
+  font-size: 9.5px;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-top: 1px; /* Optical cap-height alignment shift */
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0;
+  display: block;
+}
+
+/* Divider */
+.outcome-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.05); /* Softer divider */
+  margin: 1px 0;
+  flex-shrink: 0;
+}
+
+/* Outcome body (compact font size) */
+.outcome-body {
+  font-family: var(--font-family);
+  font-size: 0.82rem; /* Reduced to look high-end & readable */
+  line-height: 1.55;
+  color: var(--text-primary);
+  margin: 0;
+  min-height: 95px; /* Aligned starting point of stats row while saving space */
+  transition: color 0.5s ease;
+}
+
+.outcome-numbers {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin-top: auto;
+  min-height: 40px; 
+  align-items: start;
+  width: 100%;
+}
+
+.outcome-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 0 1 auto;
+}
+
+.outcome-stat-num {
+  font-family: var(--font-family);
+  font-size: 1.05rem; /* Reduced to ensure it never breaks onto two lines */
+  font-weight: var(--font-weight-bold);
+  color: var(--text-heading);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  white-space: nowrap; /* Prevent breaking on hyphens like 20-25% */
+  transition: color 0.5s ease;
+}
+
+.outcome-stat-label {
+  font-family: var(--font-family);
+  font-size: 8px; /* Extra compact */
+  color: var(--text-primary);
+  font-weight: var(--font-weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  white-space: nowrap; /* Keep labels on one line where possible */
+  transition: color 0.5s ease;
+}
+
+/* Actions row container for side-by-side CTAs */
+.outcome-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 14px;
+}
+
+/* CTA button - Uniform size and style across all cards */
+.outcome-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  height: 38px;
+  background-color: transparent;
+  color: var(--color-primary-blue);
+  border: 1.5px solid var(--color-primary-blue);
+  border-radius: 2rem;
+  font-size: 0.74rem;
+  font-weight: var(--font-weight-semibold);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  text-decoration: none;
+  box-sizing: border-box;
+  flex: 1 1 0%;
+  margin: 0;
+}
+
+.outcome-cta:hover {
+  background-color: var(--color-primary-blue);
+  color: #ffffff;
+  border-color: var(--color-primary-blue);
+  box-shadow: 0 0 28px rgba(90, 164, 249, 0.5), 0 6px 20px rgba(90, 164, 249, 0.25);
+}
+
+.outcome-cta:focus-visible {
+  outline: 2px solid var(--color-primary-blue);
+  outline-offset: 3px;
+}
+
+.outcome-cta svg {
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+  vertical-align: middle;
+  margin-left: 4px;
+}
+
+.outcome-cta:hover svg {
+  transform: translateX(3px);
+}
+
+/* Light mode - High Contrast Color & Border Overrides (Font sizes & weights match 100%) */
+html.light-mode .outcomes-eyebrow {
+  color: rgba(30, 30, 45, 0.65);
+}
+
+html.light-mode .outcome-card {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #ffffff;
+  box-shadow: 0 10px 36px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+html.light-mode .outcome-card:hover {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.22);
+  box-shadow: 0 18px 48px 0 rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 1);
+}
+
+/* Category Eyebrow Tag Pills in Light Mode */
+html.light-mode .outcome-tag {
+  color: #1a4d2e;
+  background: rgba(26, 77, 46, 0.09);
+  border: 1px solid rgba(26, 77, 46, 0.18);
+}
+
+html.light-mode #outcome-tenxengage .outcome-tag {
+  color: #b30059;
+  background: rgba(179, 0, 89, 0.09);
+  border: 1px solid rgba(179, 0, 89, 0.18);
+}
+
+html.light-mode #outcome-tracto .outcome-tag,
+html.light-mode #outcome-rummycircle .outcome-tag {
+  color: #0d6e38;
+  background: rgba(13, 110, 56, 0.09);
+  border: 1px solid rgba(13, 110, 56, 0.18);
+}
+
+html.light-mode #outcome-smartbi .outcome-tag {
+  color: #006652;
+  background: rgba(0, 102, 82, 0.09);
+  border: 1px solid rgba(0, 102, 82, 0.18);
+}
+
+/* Status Badges in Light Mode */
+html.light-mode .outcome-status.status-shipped {
+  background: rgba(16, 124, 45, 0.09);
+  border: 1px solid rgba(16, 124, 45, 0.25);
+}
+
+html.light-mode .outcome-status.status-shipped .outcome-status-dot {
+  background: #0f7a2d;
+}
+
+html.light-mode .outcome-status.status-shipped .outcome-status-text {
+  color: #0f7a2d;
+}
+
+html.light-mode .outcome-status.status-amber {
+  background: rgba(163, 82, 0, 0.09);
+  border: 1px solid rgba(163, 82, 0, 0.25);
+}
+
+html.light-mode .outcome-status.status-amber .outcome-status-dot {
+  background: #a35200;
+}
+
+html.light-mode .outcome-status.status-amber .outcome-status-text {
+  color: #a35200;
+}
+
+/* Text Color Hierarchy in Light Mode */
+html.light-mode .outcome-title {
+  color: #111118;
+}
+
+html.light-mode .outcome-subtitle {
+  color: #2b2b36;
+}
+
+html.light-mode .outcome-divider {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+html.light-mode .outcome-body {
+  color: #2c2c36;
+}
+
+html.light-mode .outcome-stat-num {
+  color: #111118;
+}
+
+html.light-mode .outcome-stat-label {
+  color: #555562;
+}
+
+/* CTA Buttons in Light Mode */
+html.light-mode .outcome-cta {
+  color: #005bb5;
+  border-color: #005bb5;
+  background-color: rgba(0, 91, 181, 0.04);
+}
+
+html.light-mode .outcome-cta:hover {
+  background-color: #005bb5 !important;
+  color: #ffffff !important;
+  border-color: #005bb5 !important;
+  box-shadow: 0 6px 20px rgba(0, 91, 181, 0.3) !important;
+}
+
+/* Responsive configurations */
+@media (max-width: 992px) {
+  .outcomes-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .outcomes-grid {
+    grid-template-columns: 1fr;
+  }
+  .outcome-card {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .outcome-numbers {
+    flex-direction: column;
+    gap: 0;
+  }
+  
+  .outcome-stat {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+  
+  .outcome-stat:first-child {
+    padding-top: 0;
+  }
+  
+  .outcome-stat:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+  
+  .outcome-stat-label {
+    white-space: normal;
+    text-align: left;
+  }
+  
+  /* Support for light mode */
+  html.light-mode .outcome-stat {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+  }
+}

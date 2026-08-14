@@ -1,0 +1,6 @@
+# robots.txt for Sayantan Ghosh UX Portfolio
+User-agent: *
+Allow: /
+
+# Direct link to sitemap to assist search crawlers
+Sitemap: https://your-domain.com/sitemap.xml

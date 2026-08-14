@@ -1,0 +1,1921 @@
+/* ==========================================================================
+   Tracto Component — Layout & Typography
+   ========================================================================= */
+
+.component-tracto {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.tracto-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Featured Project label */
+.tracto-eyebrow {
+  font-family: var(--font-family);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em; /* -2% spacing */
+  color: var(--text-heading);
+  margin: 0;
+  transition: color 0.5s ease;
+}
+
+/* DESIGN FOR HEALTHCARE ECOSYSTEM sub-label */
+.tracto-sub-eyebrow {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: rgba(var(--grid-base-color), 0.45); /* Muted white/gray */
+  margin: var(--gap-micro) 0 0 0; /* Micro spacing gap */
+  transition: color 0.5s ease;
+}
+
+/* Highlight red for HEALTHCARE */
+.tracto-sub-eyebrow .highlight-red {
+  color: var(--color-text-red);
+}
+
+/* Main paragraph description */
+.tracto-description {
+  font-family: var(--font-family);
+  font-size: var(--font-size-5xl); /* Responsive fluid scaling */
+  font-weight: var(--font-weight-regular);
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+  max-width: 1000px;
+  margin: var(--gap-element) 0 0 0; /* Element spacing gap */
+
+  /* Extremely premium smooth auto-loop text gradient */
+  background: linear-gradient(
+    90deg,
+    #FFFFFF 0%,
+    #DED5D5 20%,
+    #7EF29D 40%, /* Subtle healthcare tech green */
+    #82C1FF 60%, /* Soft sky blue */
+    #DED5D5 80%,
+    #FFFFFF 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent; /* Fallback for older browsers */
+  animation: tractoGradientFlow 12s linear infinite;
+}
+
+@keyframes tractoGradientFlow {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+/* Light Mode: High-contrast, slick, and prominent Microsoft-inspired gradient flow for readability */
+html.light-mode .tracto-description {
+  background: linear-gradient(
+    90deg,
+    #1F2937 0%,      /* Elegant slate charcoal base for maximum contrast & readability */
+    #1F2937 25%,
+    #0078D4 45%,     /* Microsoft Corporate Blue */
+    #5C2D91 65%,     /* Microsoft Corporate Purple */
+    #1F2937 85%,     /* Smooth loop transition */
+    #1F2937 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  animation: tractoGradientFlow 12s linear infinite;
+}
+
+/* Step Navigation Bar - Text-based slick tabs */
+.tracto-tab-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: var(--gap-element) auto; /* Element spacing gap */
+  box-sizing: border-box;
+}
+
+.tracto-tab-items {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 10px;
+}
+
+.tracto-tab-item {
+  font-family: var(--font-family, sans-serif);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  color: rgba(var(--grid-base-color), 0.45);
+  background: none;
+  border: none;
+  padding: 10px 0;
+  cursor: pointer;
+  outline: none;
+  transition: color 0.3s ease;
+  position: relative;
+  white-space: nowrap;
+}
+
+.tracto-tab-item:hover {
+  color: rgba(var(--grid-base-color), 0.85);
+}
+
+.tracto-tab-item.active {
+  color: var(--text-heading);
+}
+
+.tracto-tab-indicator-bar {
+  position: relative;
+  width: 100%;
+  height: 1px;
+  background-color: rgba(var(--grid-base-color), 0.15);
+  margin-top: 5px;
+  transition: background-color 0.5s ease;
+}
+
+.tracto-tab-indicator {
+  position: absolute;
+  top: -0.5px;
+  left: 0;
+  width: 0; /* JS-driven width and placement */
+  height: 2px;
+  background-color: var(--text-heading);
+  border-radius: 1px;
+  will-change: left, width;
+  transition: background-color 0.5s ease;
+}
+
+/* Slider Viewport & Track */
+.tracto-slider-viewport {
+  width: 100%;
+  position: relative;
+  overflow: visible;
+}
+
+.tracto-slider-track {
+  width: 100%;
+  position: relative;
+  transition: min-height 0.4s ease;
+}
+
+.tracto-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.6s ease, filter 0.6s ease;
+}
+
+.tracto-slide.active {
+  position: relative;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.slide-placeholder-text {
+  text-align: center;
+  padding: 80px 20px;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 18px;
+}
+
+
+
+/* Speech Bubbles Container */
+.speech-bubbles-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, auto);
+  gap: var(--gap-micro); /* Micro spacing gap */
+  width: 100%;
+  max-width: var(--content-max-width); /* 1080px */
+  margin: var(--gap-element) auto; /* Element spacing gap */
+  box-sizing: border-box;
+}
+
+/* Responsive grid layout for tablet and mobile devices */
+@media (max-width: 900px) {
+  .speech-bubbles-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(9, auto);
+  }
+}
+
+/* Quote Card (Notification style with glassmorphic effect) */
+.quote-card {
+  position: relative;
+  width: 100%;
+  border: 1.5px solid transparent;
+  background: 
+    linear-gradient(135deg, var(--quote-card-bg-start), var(--quote-card-bg-end)) padding-box,
+    linear-gradient(135deg, var(--quote-card-border-start) 0%, var(--quote-card-border-end) 100%) border-box;
+  border-radius: 16px;
+  padding: 14px 16px;
+  box-shadow: var(--quote-card-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  text-align: left;
+  box-sizing: border-box;
+  backdrop-filter: blur(25px) saturate(190%);
+  -webkit-backdrop-filter: blur(25px) saturate(190%);
+  will-change: transform, opacity;
+  opacity: 0;
+  transform: translateY(35px) scale(0.88);
+  cursor: pointer;
+  transition: box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.quote-card:hover {
+  transform: scale(1.03) !important; /* Zoom card on hover, override inline GSAP */
+  background: 
+    linear-gradient(135deg, var(--quote-card-bg-start), var(--quote-card-bg-end)) padding-box,
+    linear-gradient(135deg, var(--radar-user-stroke) 0%, var(--radar-user-stroke) 100%) border-box; /* Dynamic border color using site colors */
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.35), 
+    0 0 15px rgba(var(--color-primary-blue-rgb), 0.15), /* Soft cyan/blue glow matching theme */
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+/* Caregiver specific quote card style */
+.quote-card.caregiver-quote {
+  background: 
+    linear-gradient(135deg, var(--quote-caregiver-bg-start), var(--quote-caregiver-bg-end)) padding-box,
+    linear-gradient(135deg, var(--quote-caregiver-border-start) 0%, var(--quote-caregiver-border-end) 100%) border-box;
+}
+
+.quote-card.caregiver-quote:hover {
+  transform: scale(1.03) !important; /* Zoom card on hover, override inline GSAP */
+  background: 
+    linear-gradient(135deg, var(--quote-caregiver-bg-start), var(--quote-caregiver-bg-end)) padding-box, /* Keep original background colors inside */
+    linear-gradient(135deg, var(--radar-care-stroke) 0%, var(--radar-care-stroke) 100%) border-box; /* Dynamic border color using site colors */
+  box-shadow: 
+    0 12px 35px rgba(0, 0, 0, 0.35), 
+    0 0 15px rgba(52, 199, 89, 0.15), /* Soft green glow matching theme */
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.quote-avatar-wrapper {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.quote-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.quote-icon {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #ffffff;
+  padding: 3.5px;
+  box-sizing: border-box;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}
+
+.quote-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.quote-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.quote-author {
+  font-family: var(--font-family);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--quote-author-color);
+  transition: color 0.5s ease;
+}
+
+.quote-time {
+  font-family: var(--font-family);
+  font-size: var(--font-size-xs);
+  color: var(--quote-time-color);
+  transition: color 0.5s ease;
+}
+
+.quote-text {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.45;
+  font-weight: var(--font-weight-regular);
+  color: var(--quote-text-color);
+  margin: 1px 0 0 0;
+  transition: color 0.5s ease;
+}
+
+/* ── Slide 2: Research (Quantitative & Qualitative) CSS ───────────────── */
+.tracto-research-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  width: 100%;
+  max-width: var(--content-max-width, 1080px);
+  margin: 0 auto;
+  gap: 40px;
+  box-sizing: border-box;
+  padding: 0 20px;
+  overflow: visible;
+}
+
+.research-radar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align chart to the right of column to reduce visual gap */
+  justify-content: center;
+  width: 100%;
+  overflow: visible;
+}
+
+.radar-chart-card {
+  background: none;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 530px; /* Expanded for larger radar view */
+  margin-left: auto;
+  margin-right: 0;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.research-widgets-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 460px; /* Expanded slightly to balance chart */
+  margin-left: 0; /* Align widgets to the left of column to reduce visual gap */
+  margin-right: auto;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+.widget-card {
+  position: relative;
+  border: 1px solid transparent; /* Ultra-thin border for the gradient stroke */
+  background: 
+    linear-gradient(135deg, var(--card-bg-gradient-start), var(--card-bg-gradient-end)) padding-box, /* Translucent glass inner card */
+    linear-gradient(135deg, var(--card-border-color) 0%, rgba(var(--grid-base-color), 0.02) 100%) border-box; /* Frosted edge stroke */
+  background-size: 100% 100%, 200% 200%;
+  backdrop-filter: blur(25px) saturate(180%);
+  -webkit-backdrop-filter: blur(25px) saturate(180%);
+  border-radius: 16px; /* Smooth squircle corners */
+  padding: 20px 24px; /* Spacious, breathable padding */
+  box-shadow: 
+    var(--widget-card-shadow), 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.15); /* Sleek physical top reflection line */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  box-sizing: border-box;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, background 0.5s ease;
+}
+
+.widget-card:hover {
+  background: 
+    linear-gradient(135deg, var(--card-bg-hover-start), var(--card-bg-hover-end)) padding-box,
+    linear-gradient(135deg, #5AA4F9 0%, #00E5FF 35%, #34C759 70%, #00c79e 100%) border-box; /* Glowing color mix gradient */
+  background-size: 100% 100%, 300% 300%;
+  animation: border-glow-sweep 3s linear infinite; /* Moving stroke animation */
+  transform: translateX(6px);
+  box-shadow: 
+    var(--widget-card-hover-shadow), 
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.2); /* Subtle mixed colors drop shadow glow */
+}
+
+.widget-header {
+  display: flex;
+  align-items: center; /* Center badge vertically with the number */
+  gap: 12px; /* Extra breathing space between number and badge */
+  flex-wrap: wrap;
+}
+
+.widget-number {
+  font-family: var(--font-family);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-heading);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  transition: color 0.5s ease;
+}
+
+.widget-label {
+  font-family: var(--font-family);
+  font-size: 10px; /* Refined smaller tag size */
+  font-weight: var(--font-weight-semibold);
+  color: var(--widget-label-text, #30D158);
+  background: var(--widget-label-bg, rgba(48, 209, 88, 0.12)); /* Pill badge tag styling */
+  padding: 4px 10px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  display: inline-flex;
+  align-items: center;
+  line-height: 1.2;
+}
+
+.widget-heading {
+  font-family: var(--font-family);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-heading);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  transition: color 0.5s ease;
+}
+
+.widget-desc {
+  font-family: var(--font-family);
+  font-size: var(--font-size-base);
+  line-height: 1.55;
+  color: var(--text-primary);
+  margin: 0;
+  font-weight: var(--font-weight-regular);
+  transition: color 0.5s ease;
+}
+
+.chart-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.chart-title {
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 0.08em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.chart-subtitle {
+  font-family: var(--font-family);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 5px;
+  letter-spacing: 0.03em;
+}
+
+.radar-svg-wrapper {
+  width: 100%;
+  max-width: 480px; /* Expanded max size for larger radar */
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  position: relative;
+}
+
+.radar-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+
+.grid-polygon {
+  fill: none;
+  stroke: var(--radar-grid-stroke);
+  stroke-dasharray: 3 3;
+  stroke-width: 1px;
+  transition: stroke 0.5s ease;
+}
+
+.spoke-line {
+  stroke: var(--radar-spoke-stroke);
+  stroke-width: 1px;
+  transition: stroke 0.5s ease;
+}
+
+.grid-scale-label {
+  font-family: var(--font-family);
+  font-size: 11px;
+  fill: var(--radar-label-fill);
+  font-weight: 600;
+  pointer-events: none;
+  transform: translate(3px, 3px);
+  transition: fill 0.5s ease;
+}
+
+.radar-poly-user {
+  fill: var(--radar-user-fill);
+  stroke: var(--radar-user-stroke);
+  stroke-width: 2px;
+  transition: fill 0.3s ease, stroke 0.5s ease;
+  filter: drop-shadow(0 0 5px var(--radar-user-glow));
+}
+
+.radar-poly-care {
+  fill: var(--radar-care-fill);
+  stroke: var(--radar-care-stroke);
+  stroke-width: 2px;
+  transition: fill 0.3s ease, stroke 0.5s ease;
+  filter: drop-shadow(0 0 5px var(--radar-care-glow));
+}
+
+.marker-user {
+  fill: var(--radar-user-stroke);
+  stroke: #ffffff;
+  stroke-width: 1.5px;
+  transition: r 0.2s ease, fill 0.2s ease, stroke 0.5s ease;
+  cursor: pointer;
+}
+
+.marker-user:hover {
+  r: 6.5px;
+  fill: #ffffff;
+  stroke: var(--radar-user-stroke);
+}
+
+.marker-care {
+  fill: var(--radar-care-stroke);
+  stroke: #ffffff;
+  stroke-width: 1.5px;
+  transition: r 0.2s ease, fill 0.2s ease, stroke 0.5s ease;
+  cursor: pointer;
+}
+
+.marker-care:hover {
+  r: 6.5px;
+  fill: #ffffff;
+  stroke: var(--radar-care-stroke);
+}
+
+.axis-text {
+  font-family: var(--font-family);
+  fill: var(--radar-label-fill);
+  transition: fill 0.5s ease;
+}
+
+.axis-text .primary-label {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
+  fill: var(--radar-axis-primary-fill);
+  letter-spacing: 0.03em;
+  transition: fill 0.5s ease;
+}
+
+.axis-text .secondary-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-regular);
+  fill: var(--radar-axis-secondary-fill);
+  transition: fill 0.5s ease;
+}
+
+.chart-legend {
+  display: flex;
+  gap: 20px;
+  margin-top: 25px;
+  justify-content: center;
+  width: 100%;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-family);
+  font-size: 12px;
+  color: var(--radar-axis-secondary-fill);
+  font-weight: 500;
+  transition: color 0.5s ease;
+}
+
+.legend-line {
+  width: 24px;
+  height: 2px;
+  border-radius: 1px;
+  display: inline-block;
+  position: relative;
+}
+
+.legend-item.user .legend-line {
+  background-color: var(--radar-user-stroke);
+}
+
+.legend-item.user .legend-line::after {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: -2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid var(--radar-user-stroke);
+}
+
+.legend-item.care .legend-line {
+  background-color: var(--radar-care-stroke);
+}
+
+.legend-item.care .legend-line::after {
+  content: '';
+  position: absolute;
+  left: 9px;
+  top: -2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1px solid var(--radar-care-stroke);
+}
+
+/* ── Slide 2: Radar Zoom & Modal Overlay CSS ───────────────────────────── */
+
+/* Zoom trigger floating glass button */
+.radar-zoom-trigger {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(90, 164, 249, 0.08); /* Subtle blue glass background */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(90, 164, 249, 0.35); /* Glowing blue border */
+  color: var(--color-primary-blue); /* Theme blue icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.radar-zoom-trigger:hover {
+  background: rgba(90, 164, 249, 0.2);
+  border-color: rgba(90, 164, 249, 0.65);
+  color: #ffffff;
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(90, 164, 249, 0.45); /* Blue glowing hover shadow */
+}
+
+/* Modal Overlay Backdrop */
+.radar-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  z-index: 9999;
+  display: none; /* Controlled by GSAP display: flex */
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  box-sizing: border-box;
+  padding: 20px;
+}
+
+.radar-modal-overlay.active {
+  display: flex;
+  pointer-events: auto;
+}
+
+/* Modal premium card */
+.radar-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 760px; /* Wider card to accommodate labels */
+  background: linear-gradient(145deg, var(--card-bg-gradient-start) 0%, var(--card-bg-gradient-end) 100%);
+  border: 1px solid var(--card-border-color);
+  border-radius: 28px; /* Less rounded Apple style card */
+  padding: 40px;
+  box-shadow: 0 40px 100px rgba(0, 0, 0, var(--phone-shadow-opacity, 0.85)), inset 0 1px 0 var(--card-border-color);
+  box-sizing: border-box;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  opacity: 0; /* Controlled by GSAP */
+  transition: background 0.5s ease, border-color 0.5s ease;
+}
+
+/* Close button - circular circle button */
+.radar-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(var(--grid-base-color), 0.06);
+  border: 1px solid var(--card-border-color);
+  color: var(--btn-secondary-text);
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  line-height: 1;
+  padding: 0;
+  outline: none;
+}
+
+.radar-modal-close:hover {
+  background: rgba(var(--grid-base-color), 0.14);
+  border-color: var(--btn-secondary-hover-text);
+  color: var(--text-heading);
+  transform: scale(1.08);
+}
+
+/* Modal header titles */
+.radar-modal-header {
+  margin-bottom: 24px;
+  text-align: center;
+  width: 100%;
+}
+
+.radar-modal-title {
+  font-family: var(--font-family);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-heading);
+  letter-spacing: 0.08em;
+  margin: 0;
+  text-transform: uppercase;
+  transition: color 0.5s ease;
+}
+
+.radar-modal-subtitle {
+  font-family: var(--font-family);
+  font-size: 14px; /* Increased from 12px */
+  color: var(--radar-axis-secondary-fill); /* Slightly brighter for contrast / theme-dependent */
+  margin-top: 6px;
+  letter-spacing: 0.03em;
+  transition: color 0.5s ease;
+}
+
+/* Body / content SVG sizing */
+.radar-modal-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-svg-wrapper {
+  width: 100%;
+  max-width: 60%; /* Responsive scale relative to card size to prevent text overflow clipping */
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: visible;
+  position: relative;
+}
+
+.modal-radar-svg {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: block;
+}
+
+/* Higher visibility zoom text labels */
+.modal-axis-text {
+  font-family: var(--font-family);
+  fill: var(--radar-label-fill);
+  transition: fill 0.5s ease;
+}
+
+.modal-axis-text .primary-label {
+  font-size: 16px; /* High contrast zoomed layout text */
+  font-weight: 700;
+  fill: var(--radar-axis-primary-fill);
+  letter-spacing: 0.03em;
+  transition: fill 0.5s ease;
+}
+
+.modal-axis-text .secondary-label {
+  font-size: 13.5px;
+  font-weight: 400;
+  fill: var(--radar-axis-secondary-fill);
+  transition: fill 0.5s ease;
+}
+
+.modal-legend-container {
+  width: 100%;
+  margin-top: 24px;
+}
+
+/* Modal-specific active polygon colors */
+.modal-radar-poly-user {
+  fill: rgba(0, 229, 255, 0.14);
+  stroke: #00E5FF;
+  stroke-width: 2.5px;
+  filter: drop-shadow(0 0 8px rgba(0, 229, 255, 0.45));
+}
+
+.modal-radar-poly-care {
+  fill: rgba(52, 199, 89, 0.14);
+  stroke: #34C759;
+  stroke-width: 2.5px;
+  filter: drop-shadow(0 0 8px rgba(52, 199, 89, 0.45));
+}
+
+.modal-marker-user {
+  fill: #00E5FF;
+  stroke: #ffffff;
+  stroke-width: 1.5px;
+  cursor: pointer;
+  transition: r 0.2s ease, fill 0.2s ease;
+}
+
+.modal-marker-user:hover {
+  r: 7px;
+  fill: #ffffff;
+}
+
+.modal-marker-care {
+  fill: #34C759;
+  stroke: #ffffff;
+  stroke-width: 1.5px;
+  cursor: pointer;
+  transition: r 0.2s ease, fill 0.2s ease;
+}
+
+.modal-marker-care:hover {
+  r: 7px;
+  fill: #ffffff;
+}
+
+/* Hide zoom trigger on mobile view if it causes layout constraints */
+@media (max-width: 480px) {
+  .radar-zoom-trigger {
+    width: 32px;
+    height: 32px;
+    top: 8px;
+    right: 8px;
+  }
+  .radar-modal-card {
+    padding: 30px 16px 20px 16px;
+    border-radius: 20px;
+  }
+  .radar-modal-close {
+    top: 16px;
+    right: 16px;
+  }
+  .modal-axis-text .primary-label {
+    font-size: 12px;
+  }
+  .modal-axis-text .secondary-label {
+    font-size: 10px;
+  }
+  .modal-svg-wrapper {
+    max-width: 78%; /* Let the chart be larger on tiny screens */
+  }
+}
+
+/* Responsive Overrides */
+@media (max-width: 900px) {
+  .tracto-research-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 10px;
+    width: 100%;
+    margin-left: 0;
+    max-width: none;
+    position: relative;
+    left: auto;
+    transform: none;
+  }
+
+  .research-widgets-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .widget-card {
+    padding: 20px 24px;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .widget-card:hover {
+    transform: none;
+  }
+
+  .widget-header {
+    justify-content: flex-start;
+  }
+
+  .radar-chart-card {
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
+  .research-radar-section {
+    align-items: center;
+  }
+  
+  .axis-text .primary-label {
+    font-size: 13.5px; /* Increased 2px */
+  }
+  
+  .axis-text .secondary-label {
+    font-size: 11px; /* Increased 2px */
+  }
+
+  .speech-bubbles-container {
+    height: auto;
+    width: 100%;
+    margin-left: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+    padding: 20px 10px;
+  }
+
+  .quote-card,
+  .speech-bubbles-container .quote-card:nth-child(1),
+  .speech-bubbles-container .quote-card:nth-child(2),
+  .speech-bubbles-container .quote-card:nth-child(3),
+  .speech-bubbles-container .quote-card:nth-child(4),
+  .speech-bubbles-container .quote-card:nth-child(5),
+  .speech-bubbles-container .quote-card:nth-child(6),
+  .speech-bubbles-container .quote-card:nth-child(7),
+  .speech-bubbles-container .quote-card:nth-child(8),
+  .speech-bubbles-container .quote-card:nth-child(9) {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(25px) scale(0.92);
+  }
+}
+
+@media (max-width: 768px) {
+  .tracto-eyebrow {
+    font-size: 20px;
+  }
+  
+  .tracto-sub-eyebrow {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  
+  .tracto-description {
+    font-size: 24px;
+    line-height: 1.3;
+    margin-top: 36px;
+    padding: 0 10px;
+  }
+
+  .tracto-nav-bar {
+    margin: 30px 0 20px 0;
+  }
+
+  .tracto-nav-line {
+    width: 55px;
+  }
+}
+
+/* Moving gradient stroke animation keyframes */
+@keyframes border-glow-sweep {
+  0% {
+    background-position: 0% 0%, 0% 50%;
+  }
+  50% {
+    background-position: 0% 0%, 100% 50%;
+  }
+  100% {
+    background-position: 0% 0%, 0% 50%;
+  }
+}
+
+/* ── Slide 3: Empathy & Core Insight — Cinematic Video ───────────────── */
+
+.empathy-slide-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  gap: 28px;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+/* Cinematic video container — rounded frame with overlays */
+.empathy-cinema-frame {
+  position: relative;
+  width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #0a0a0a;
+  box-shadow:
+    0 40px 90px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(255, 255, 255, 0.06);
+  /* subtle animate-in state */
+  will-change: transform, opacity;
+}
+
+/* The video itself — full width, constrained height */
+.empathy-video-player {
+  display: block;
+  width: 100%;
+  max-height: 520px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+/* Dark gradient fade from bottom for depth */
+.cinema-overlay {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  pointer-events: none;
+  border-radius: 20px;
+}
+
+.cinema-overlay-bottom {
+  bottom: 0;
+  height: 55%;
+  background: linear-gradient(
+    to top,
+    rgba(9, 9, 8, 0.85) 0%,
+    rgba(9, 9, 8, 0.4) 45%,
+    transparent 100%
+  );
+}
+
+.cinema-overlay-top {
+  top: 0;
+  height: 30%;
+  background: linear-gradient(
+    to bottom,
+    rgba(9, 9, 8, 0.4) 0%,
+    transparent 100%
+  );
+}
+
+/* Floating glass play/pause button — bottom-right corner */
+.video-play-btn {
+  position: absolute;
+  bottom: 22px;
+  right: 22px;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.10);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  z-index: 10;
+  transition:
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.video-play-btn:hover {
+  transform: scale(1.12);
+  background: rgba(90, 164, 249, 0.25);
+  border-color: rgba(90, 164, 249, 0.6);
+  box-shadow: 0 6px 28px rgba(90, 164, 249, 0.4);
+}
+
+/* Affinity tag pills row */
+.empathy-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  width: 100%;
+  padding-bottom: 4px;
+}
+
+.empathy-tag {
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--chip-text);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-border);
+  border-radius: 100px;
+  padding: 7px 16px;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition:
+    color 0.3s ease,
+    background 0.3s ease,
+    border-color 0.3s ease,
+    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: default;
+  /* initial hidden state for GSAP stagger */
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.empathy-tag:hover {
+  color: var(--chip-hover-text);
+  background: var(--chip-hover-bg);
+  border-color: var(--chip-hover-border);
+  transform: translateY(-2px);
+}
+
+/* Responsive — mobile stacks cleanly */
+@media (max-width: 768px) {
+  .empathy-video-player {
+    max-height: 340px;
+  }
+
+  .video-play-btn {
+    bottom: 14px;
+    right: 14px;
+    width: 42px;
+    height: 38px;
+  }
+}
+
+/* ── Prevent Scroll Clipping on Shorter Screens ── */
+@media screen and (max-height: 850px) {
+  /* Header margins */
+  .tracto-sub-eyebrow {
+    margin-top: 15px;
+  }
+  .tracto-description {
+    margin-top: 25px;
+    font-size: clamp(18px, 2.5vw, 28px);
+  }
+  .tracto-tab-nav {
+    margin: 20px auto 20px auto;
+  }
+  .tracto-tab-item {
+    font-size: 14.5px;
+    padding: 6px 0;
+  }
+
+  /* Slide 1 - Speech Bubbles positioning and height */
+  .speech-bubbles-container {
+    height: auto;
+    gap: 16px;
+  }
+  .speech-bubbles-container .quote-card {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  /* Slide 2 - Radar chart and widgets */
+  .radar-svg-wrapper {
+    max-width: 330px;
+  }
+  .research-widgets-stack {
+    max-width: 380px;
+    gap: 12px;
+  }
+  .widget-card {
+    padding: 12px 16px;
+  }
+  .widget-number {
+    font-size: 30px;
+  }
+  .widget-desc {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+  .axis-text .primary-label {
+    font-size: 14px;
+  }
+  .axis-text .secondary-label {
+    font-size: 11.5px;
+  }
+
+  /* Slide 3 - Video */
+  .empathy-video-player {
+    max-height: 420px;
+  }
+
+  /* Slide 4 - Phone Mockups */
+  .mockup-phone-frame {
+    width: 230px;
+    height: 480px;
+    border-radius: 32px;
+  }
+  .phone-frame-wrapper {
+    padding-top: 50px;
+  }
+  .elder-sub-selector {
+    top: 6px;
+  }
+  .phone-fixed-top {
+    height: 70px;
+  }
+  .phone-floating-add {
+    bottom: 65px;
+    width: 42px;
+    height: 42px;
+  }
+  .mockup-phone-frame.theme-elder .phone-fixed-top {
+    height: 66px;
+  }
+  .mockup-phone-frame.theme-elder .phone-fixed-bottom {
+    height: 50px;
+  }
+  .mockup-phone-frame.theme-elder .phone-screen-viewport {
+    top: 67px;
+    height: calc(100% - 117px);
+  }
+  .mockup-phone-frame.theme-caregiver .phone-fixed-top {
+    height: 114px;
+    border-radius: 26px 26px 0 0;
+  }
+  .mockup-phone-frame.theme-caregiver .phone-fixed-bottom {
+    height: 48px;
+  }
+  .mockup-phone-frame.theme-caregiver .phone-screen-viewport {
+    top: 1px;
+    height: calc(100% - 2px);
+  }
+  .mockup-phone-frame.theme-caregiver .phone-scroll-content {
+    padding-top: 114px;
+    padding-bottom: 48px;
+  }
+}
+
+@media screen and (max-height: 720px) {
+  /* Header margins */
+  .tracto-sub-eyebrow {
+    margin-top: 10px;
+  }
+  .tracto-description {
+    margin-top: 15px;
+    font-size: clamp(16px, 2vw, 22px);
+  }
+  .tracto-tab-nav {
+    margin: 15px auto 15px auto;
+  }
+  .tracto-tab-item {
+    font-size: 13px;
+    padding: 4px 0;
+  }
+
+  /* Slide 1 - Speech Bubbles */
+  .speech-bubbles-container {
+    height: auto;
+    gap: 12px;
+  }
+  .speech-bubbles-container .quote-card {
+    padding: 8px 10px;
+    gap: 6px;
+  }
+
+  /* Slide 2 - Radar chart and widgets */
+  .radar-svg-wrapper {
+    max-width: 270px;
+  }
+  .research-widgets-stack {
+    max-width: 320px;
+    gap: 8px;
+  }
+  .widget-card {
+    padding: 8px 12px;
+    gap: 4px;
+  }
+  .widget-number {
+    font-size: 24px;
+  }
+  .widget-desc {
+    font-size: 12.5px;
+    line-height: 1.4;
+  }
+  .widget-heading {
+    font-size: 16px;
+  }
+  .axis-text .primary-label {
+    font-size: 12.5px;
+  }
+  .axis-text .secondary-label {
+    font-size: 10.5px;
+  }
+
+  /* Slide 3 - Video */
+  .empathy-video-player {
+    max-height: 330px;
+  }
+
+  /* Slide 4 - Phone Mockups */
+  .mockup-phone-frame {
+    width: 190px;
+    height: 400px;
+    border-radius: 28px;
+  }
+  .phone-frame-wrapper {
+    padding-top: 40px;
+  }
+  .elder-sub-selector {
+    top: 4px;
+  }
+  .phone-floating-add {
+    bottom: 57px;
+    width: 36px;
+    height: 36px;
+  }
+  .mockup-phone-frame.theme-elder .phone-fixed-top {
+    height: 55px;
+  }
+  .mockup-phone-frame.theme-elder .phone-fixed-bottom {
+    height: 42px;
+  }
+  .mockup-phone-frame.theme-elder .phone-screen-viewport {
+    top: 56px;
+    height: calc(100% - 98px);
+  }
+  .mockup-phone-frame.theme-caregiver .phone-fixed-top {
+    height: 95px;
+    border-radius: 18px 18px 0 0;
+  }
+  .mockup-phone-frame.theme-caregiver .phone-fixed-bottom {
+    height: 40px;
+  }
+  .mockup-phone-frame.theme-caregiver .phone-screen-viewport {
+    top: 1px;
+    height: calc(100% - 2px);
+  }
+  .mockup-phone-frame.theme-caregiver .phone-scroll-content {
+    padding-top: 95px;
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .empathy-tags-row {
+    gap: 8px;
+  }
+
+  .empathy-tag {
+    font-size: 12px;
+    padding: 6px 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .empathy-slide-layout {
+    gap: 18px;
+    padding: 0 10px;
+  }
+
+  .empathy-cinema-frame {
+    border-radius: 14px;
+  }
+
+  .empathy-video-player {
+    max-height: 240px;
+    border-radius: 14px;
+  }
+}
+
+/* ── Slide 4: Product Solution & Mockups ─────────────────────────────── */
+.solution-slide-layout {
+  display: grid;
+  grid-template-columns: 44% 56%;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 40px;
+  box-sizing: border-box;
+  padding: 0 20px;
+}
+
+.solution-info-panel {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.solution-eyebrow {
+  font-family: var(--font-family);
+  font-size: 12px;
+  font-weight: 600;
+  color: #34C759;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 8px;
+}
+
+.solution-headline {
+  font-family: var(--font-family);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-heading);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin: 0 0 18px 0;
+  transition: color 0.5s ease;
+}
+
+.solution-body {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.solution-body p {
+  font-family: var(--font-family);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin: 0;
+  transition: color 0.5s ease;
+}
+
+.solution-cta-row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.solution-btn {
+  font-family: var(--font-family);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 100px;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.solution-btn.btn-primary {
+  background: var(--color-primary-blue);
+  color: #ffffff;
+  border: 1px solid var(--color-primary-blue);
+}
+
+.solution-btn.btn-primary:hover {
+  background: transparent;
+  color: var(--color-primary-blue);
+  border-color: var(--color-primary-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(var(--color-primary-blue-rgb), 0.25);
+}
+
+.solution-btn.btn-secondary {
+  background: transparent;
+  color: var(--btn-secondary-text);
+  border: 1px solid var(--btn-secondary-border);
+}
+
+.solution-btn.btn-secondary:hover {
+  background: var(--btn-secondary-hover-bg);
+  border-color: var(--btn-secondary-hover-text);
+  transform: translateY(-2px);
+}
+
+/* Right Panel Layout */
+.solution-mockup-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* Master Tab Switcher */
+.mockup-tab-switcher {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(var(--grid-base-color), 0.05);
+  border: 1.5px solid var(--card-border-color);
+  border-radius: 100px;
+  padding: 4px;
+  margin-bottom: 24px;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+
+.switcher-btn {
+  font-family: var(--font-family);
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(var(--grid-base-color), 0.6);
+  background: transparent;
+  border: none;
+  border-radius: 100px;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.switcher-btn.active {
+  color: #ffffff;
+  background: var(--color-primary-blue, #5AA4F9);
+  box-shadow: 0 4px 12px rgba(90, 164, 249, 0.35);
+}
+
+.switcher-btn:hover:not(.active) {
+  color: var(--text-heading);
+  background: rgba(var(--grid-base-color), 0.06);
+}
+
+.phone-frame-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: 72px; /* Static space reserved at the top of the phone frame wrapper for the selector */
+}
+
+/* Phone Mockup Styling */
+.mockup-phone-frame {
+  position: relative;
+  width: 350px;
+  height: 720px;
+  border-radius: 46px;
+  background: #ffffff; /* White background to blend with screenshots */
+  box-sizing: border-box;
+  border: 10px solid #1c1c1e;
+  box-shadow: 
+    0 25px 65px rgba(0, 0, 0, var(--phone-shadow-opacity, 0.8)),
+    0 0 0 1px var(--card-border-color),
+    inset 0 0 0 1px rgba(var(--grid-base-color), 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* Fix corner bezel white pixels bleed bug in WebKit/Blink */
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  transition: box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+/* Notch / Dynamic Island */
+.phone-notch {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90px;
+  height: 16px;
+  background: #000000;
+  border-radius: 100px;
+  z-index: 100;
+}
+
+/* Fixed Header and Footer Overlay within Phone */
+.phone-fixed-top {
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  width: calc(100% - 2px);
+  height: 97px; /* Default/Fallback */
+  z-index: 10;
+  overflow: hidden;
+  border-radius: 28px 28px 0 0;
+  transition: height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.phone-header-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* Use fill to scale exactly to container aspect ratios */
+  display: block;
+}
+
+.phone-fixed-bottom {
+  position: absolute;
+  bottom: 1px;
+  left: 1px;
+  width: calc(100% - 2px);
+  height: 73px; /* Default/Fallback */
+  z-index: 10;
+  overflow: hidden;
+  border-radius: 0 0 28px 28px;
+  transition: height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.phone-footer-img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill; /* Use fill to scale exactly to container aspect ratios */
+  display: block;
+}
+
+/* Floating Action Button (FAB) for adding medicine */
+.phone-floating-add {
+  position: absolute;
+  bottom: 94px; /* Sitting perfectly 17px above the 77px bottom bar */
+  right: 18px;
+  width: 60px; /* Proportional high-density scale */
+  height: 60px;
+  z-index: 20; /* Floating layer on top of viewport */
+  cursor: pointer;
+  transform: scale(1);
+  will-change: transform, opacity;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+}
+
+.phone-floating-add:hover {
+  transform: scale(1.1);
+}
+
+.phone-floating-add:active {
+  transform: scale(0.94);
+}
+
+.phone-add-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Scrollable screen viewport (Confined strictly between header and footer) */
+.phone-screen-viewport {
+  position: absolute;
+  top: 98px; /* Default/Fallback */
+  left: 1px;
+  width: calc(100% - 2px);
+  height: calc(100% - 171px); /* Default/Fallback */
+  overflow: hidden;
+  cursor: grab;
+  transition: top 0.3s ease, height 0.3s ease, background-color 0.3s ease;
+}
+
+/* Phone Mockup Theme Styling */
+.mockup-phone-frame.theme-elder {
+  background: #111112; /* Matches dark theme to hide bleed */
+}
+.mockup-phone-frame.theme-elder .phone-fixed-top {
+  background: #111112;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  height: 101px; /* Scaled height based on elder top bar aspect ratio */
+}
+.mockup-phone-frame.theme-elder .phone-fixed-bottom {
+  background: #111112;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  height: 77px; /* Scaled height based on elder bottom tab bar aspect ratio */
+}
+.mockup-phone-frame.theme-elder .phone-screen-viewport {
+  background: #111112;
+  top: 102px;
+  height: calc(100% - 179px); /* 100% - 102px top - 77px bottom */
+}
+
+.mockup-phone-frame.theme-caregiver {
+  background: linear-gradient(to bottom, #111112 50%, #ffffff 50%); /* Gradient hides top black and bottom white bleed */
+}
+.mockup-phone-frame.theme-caregiver .phone-fixed-top {
+  background: linear-gradient(to bottom, #111112 57.7%, rgba(255, 255, 255, 0.72) 57.7%);
+  border-bottom: none; /* Removes the dark line separating top panel from scroll content */
+  height: 174px; /* Scaled height based on caregiver top panel aspect ratio */
+  border-radius: 36px 36px 0 0; /* Matches inner curve of the phone frame to prevent pixel gap */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.mockup-phone-frame.theme-caregiver .phone-fixed-top .phone-header-img {
+  opacity: 0.88;
+}
+.mockup-phone-frame.theme-caregiver .phone-fixed-bottom {
+  background: rgba(255, 255, 255, 0.72);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  height: 72px; /* Scaled height based on caregiver bottom tab aspect ratio */
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.mockup-phone-frame.theme-caregiver .phone-fixed-bottom .phone-footer-img {
+  opacity: 0.88;
+}
+.mockup-phone-frame.theme-caregiver .phone-screen-viewport {
+  background: transparent; /* Transparent allows the frame background gradient to show behind status bar transparent corners */
+  top: 1px;
+  height: calc(100% - 2px); /* Spans full height so content scrolls behind glassy top and bottom bars */
+}
+.mockup-phone-frame.theme-caregiver .phone-scroll-content {
+  padding-top: 174px;
+  padding-bottom: 72px;
+}
+
+.phone-scroll-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.phone-content-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Elder Sub-State Selector (Positioned Horizontally Above Phone) */
+.elder-sub-selector,
+.caregiver-sub-selector {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 8px;
+  z-index: 10;
+  opacity: 1;
+  pointer-events: auto;
+  height: 38px;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  overflow: visible;
+  max-width: 95%;
+  flex-wrap: nowrap;
+}
+
+.elder-sub-selector.hide-selector,
+.caregiver-sub-selector.hide-selector {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -10px);
+}
+
+.sub-sel-btn {
+  font-family: var(--font-family);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(var(--grid-base-color), 0.55);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 100px;
+  padding: 8px 18px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  outline: none;
+}
+
+.sub-sel-btn.active {
+  color: #ffffff;
+  background: #111111;
+  border-color: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  font-weight: var(--font-weight-bold);
+}
+
+/* Light mode — still black pill to match the request */
+html.light-mode .sub-sel-btn.active {
+  color: #ffffff;
+  background: #111111;
+  border-color: rgba(0, 0, 0, 0.15);
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.sub-sel-btn:hover:not(.active) {
+  color: var(--text-heading);
+  background: rgba(var(--grid-base-color), 0.06);
+  border-color: rgba(var(--grid-base-color), 0.12);
+}
+
+/* Responsive for Slide 4 */
+@media (max-width: 900px) {
+  .solution-slide-layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 10px;
+  }
+  
+  .solution-info-panel {
+    text-align: center;
+    align-items: center;
+  }
+  
+  .solution-cta-row {
+    justify-content: center;
+  }
+  
+  .elder-sub-selector {
+    margin-top: 0;
+    margin-bottom: 20px;
+    height: auto;
+    flex-wrap: wrap;
+  }
+  
+  .phone-frame-wrapper {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .solution-slide-layout {
+    gap: 28px;
+  }
+  
+  .solution-headline {
+    font-size: 26px;
+  }
+  
+  .solution-btn {
+    width: 100%;
+  }
+  
+  .mockup-phone-frame {
+    width: 250px;
+    height: 520px;
+    border-radius: 32px;
+  }
+}
+
+
+
+

@@ -1,0 +1,76 @@
+<div class="friction-slider-section">
+  <!-- Main Container -->
+  <div class="friction-slider-container">
+    <!-- Slider Viewport -->
+    <div class="friction-slider-viewport">
+      <!-- Horizontal Slide Track -->
+      <div class="friction-slider-track">
+        
+        <!-- Slide 1: Teapots (Double PNGs side-by-side) -->
+        <div class="friction-slide active" data-index="0" data-slide-index="0">
+          <div class="slide-media-wrapper double-media">
+            <!-- Left Teapot: Hot (with warm animation) -->
+            <div class="teapot-container hot">
+              <img src="images/hotteapot_final.png" alt="Hot Teapot (Quiet Failure)" class="slide-media-img teapot-img teapot-hot lazy-load" />
+            </div>
+            <!-- Right Teapot: Cold (other one) -->
+            <div class="teapot-container cold">
+              <img src="images/coldteapot.png" alt="Cold Teapot" class="slide-media-img teapot-img teapot-cold lazy-load" />
+            </div>
+          </div>
+          <!-- Caption Text -->
+          <div class="teapot-caption-box">
+            <p class="teapot-caption">
+              We don't question the things that quietly fail us.<br />
+              <span class="highlight-red">We just adapt</span>. That's where I start looking.
+            </p>
+          </div>
+        </div>
+
+        <!-- Slide 2: Cars (Double SVGs side-by-side) -->
+        <div class="friction-slide" data-index="1" data-slide-index="1">
+          <div class="slide-media-wrapper double-media">
+            <!-- Left Car Handle: Problem -->
+            <div class="teapot-container problem">
+              <img src="images/car_problem.svg" alt="Capacitive Door Handle (Problem)" class="slide-media-img car-img lazy-load" />
+            </div>
+            <!-- Right Car Handle: Best UX -->
+            <div class="teapot-container bestux">
+              <img src="images/car_bestUX.svg" alt="Mechanical Door Handle (Best UX)" class="slide-media-img car-img lazy-load" />
+            </div>
+          </div>
+          <!-- Caption Text -->
+          <div class="teapot-caption-box">
+            <p class="teapot-caption">
+              Modern isn't always easier.<br />
+              Sometimes <span class="highlight-red">elegance hides friction</span>.
+            </p>
+          </div>
+        </div>
+
+        <!-- Slide 3: Apple (Single Image) -->
+        <div class="friction-slide" data-index="2" data-slide-index="2">
+          <div class="slide-media-wrapper">
+            <div class="teapot-container">
+              <img src="images/apple.png" alt="Apple price sticker" class="slide-media-img apple-img lazy-load" />
+            </div>
+          </div>
+          <div class="teapot-caption-box">
+            <p class="teapot-caption">
+              We don't remember the sticker.<br />
+              We remember the tiny <span class="highlight-red">irritation we adapted</span> to.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Pagination Dots (Fixed at the bottom of the container) -->
+    <div class="teapot-pagination">
+      <span class="pagination-dot active" data-slide-to="0"></span>
+      <span class="pagination-dot" data-slide-to="1"></span>
+      <span class="pagination-dot" data-slide-to="2"></span>
+    </div>
+  </div>
+</div>

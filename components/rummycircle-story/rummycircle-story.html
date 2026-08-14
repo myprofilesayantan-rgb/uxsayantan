@@ -1,0 +1,116 @@
+<div class="story-overlay" id="rummycircle-story-modal" role="dialog" aria-modal="true">
+  <!-- Background Texture Grid Lines -->
+  <div class="story-bg-grid">
+    <div class="story-grid-line"></div>
+    <div class="story-grid-line"></div>
+    <div class="story-grid-line"></div>
+    <div class="story-grid-line"></div>
+    <div class="story-grid-line"></div>
+    <div class="story-grid-line"></div>
+    <div class="story-grid-line"></div>
+    <div class="story-grid-line"></div>
+    <div class="story-grid-line"></div>
+    <div class="story-grid-line"></div>
+    <div class="story-grid-line"></div>
+    <div class="story-grid-line"></div>
+  </div>
+
+  <!-- Main presentation stage (Left side) -->
+  <div class="story-theater-stage">
+    <header class="story-theater-header">
+      <div class="story-logo">Sayantan Ghosh<span>.</span></div>
+      <div style="display: flex; align-items: center; gap: 16px;">
+        <button class="story-header-cta" id="rc-dive-btn">
+          View Case Study
+          <svg xmlns="http://www.w3.org/2000/svg" height="15" width="15" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-left:4px;"><path d="M5 13h11.86l-5.43 5.43L13 20l8-8-8-8-1.41 1.41 5.43 5.43H5v2z"/></svg>
+        </button>
+        <button class="story-control-btn" id="rc-close-btn" aria-label="Close Presentation" style="border-radius:50%; width:40px; height:40px; margin: 0;">✕</button>
+      </div>
+    </header>
+
+    <div class="story-viewport-wrapper">
+      <!-- Floating ambient glow backing light -->
+      <div class="story-stage-glow"></div>
+
+      <div class="story-viewport" id="rc-slide-viewport">
+        <div class="theater-progress-bar">
+          <div class="theater-progress-fill" id="rc-progress-indicator"></div>
+        </div>
+
+        <!-- Preloader Container -->
+        <div class="story-loader" id="rc-modal-loader">
+          <div class="loader-spinner-container">
+            <div class="loader-spinner"></div>
+            <span class="loader-percentage" id="rc-pct-text">0%</span>
+          </div>
+          <p class="loader-insight" id="rc-insight-text">Initializing RummyCircle presentation...</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="story-theater-footer">
+      <div class="story-stage-controls">
+        <button class="story-control-btn" id="rc-prev-btn" aria-label="Previous Slide">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </button>
+        <button class="story-control-btn" id="rc-play-btn" aria-label="Play Autoplay">
+          <svg id="rc-play-icon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+        </button>
+        <button class="story-control-btn" id="rc-next-btn" aria-label="Next Slide">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        </button>
+      </div>
+      <span style="font-family: monospace; font-weight: 600;" id="rc-counter-label">Slide 01 / 08</span>
+    </footer>
+  </div>
+
+  <!-- Navigation Control Sidebar Dashboard (Right side) -->
+  <aside class="story-nav-sidebar">
+    <div class="sidebar-header-box">
+      <h3 class="sidebar-title">RummyCircle UX</h3>
+      <p style="font-size: var(--font-size-xs); color: var(--text-primary); line-height: 1.4; margin-top: -12px;">Real-money gaming UX architecture, table lobby redesign, and reward flow presentation.</p>
+    </div>
+
+    <div class="thumbnails-grid" id="rc-thumbnails-container">
+      <div class="thumbnail-card" data-slide-index="0">
+        <img src="RC web/1.png" alt="Thumb 1" />
+        <span class="thumbnail-number">01</span>
+      </div>
+      <div class="thumbnail-card locked" data-slide-index="1">
+        <img src="RC web/2.png" alt="Thumb 2" />
+        <span class="thumbnail-number">02</span>
+        <div class="thumbnail-lock-overlay"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+      </div>
+      <div class="thumbnail-card locked" data-slide-index="2">
+        <img src="RC web/3.png" alt="Thumb 3" />
+        <span class="thumbnail-number">03</span>
+        <div class="thumbnail-lock-overlay"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+      </div>
+      <div class="thumbnail-card locked" data-slide-index="3">
+        <img src="RC web/4.png" alt="Thumb 4" />
+        <span class="thumbnail-number">04</span>
+        <div class="thumbnail-lock-overlay"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+      </div>
+      <div class="thumbnail-card locked" data-slide-index="4">
+        <img src="RC web/5.png" alt="Thumb 5" />
+        <span class="thumbnail-number">05</span>
+        <div class="thumbnail-lock-overlay"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+      </div>
+      <div class="thumbnail-card locked" data-slide-index="5">
+        <img src="RC web/6.png" alt="Thumb 6" />
+        <span class="thumbnail-number">06</span>
+        <div class="thumbnail-lock-overlay"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+      </div>
+      <div class="thumbnail-card locked" data-slide-index="6">
+        <img src="RC web/7.png" alt="Thumb 7" />
+        <span class="thumbnail-number">07</span>
+        <div class="thumbnail-lock-overlay"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+      </div>
+      <div class="thumbnail-card locked" data-slide-index="7">
+        <img src="RC web/8.png" alt="Thumb 8" />
+        <span class="thumbnail-number">08</span>
+        <div class="thumbnail-lock-overlay"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg></div>
+      </div>
+    </div>
+  </aside>
+</div>

@@ -1,0 +1,37 @@
+/* Custom Cursor Styles */
+
+.custom-cursor-follower {
+  width: 24px;
+  height: 24px;
+  border: 1px solid var(--color-primary-blue);
+  border-radius: 50%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  transition: background-color 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+/* Hide custom cursor on mobile viewports to prevent event interference */
+@media (max-width: 768px) {
+  .custom-cursor-follower {
+    display: none !important;
+  }
+}
+
+.cursor-particle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background-color: var(--color-primary-blue);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 99999;
+  box-shadow: 0 0 6px var(--color-primary-blue), 0 0 10px var(--color-primary-blue);
+  will-change: transform, opacity;
+}

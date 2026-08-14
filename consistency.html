@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design System & Spacing Consistency Guide</title>
+  
+  <!-- Link the Live Design Tokens -->
+  <link rel="stylesheet" href="tokens.css">
+  
+  <style>
+    :root {
+      --docs-bg-grid: rgba(255, 255, 255, 0.02);
+      --docs-card-bg: rgba(255, 255, 255, 0.03);
+      --docs-card-border: rgba(255, 255, 255, 0.08);
+      --docs-text-muted: #AA9D9D;
+    }
+
+    html.light-mode {
+      --docs-bg-grid: rgba(0, 0, 0, 0.02);
+      --docs-card-bg: rgba(0, 0, 0, 0.02);
+      --docs-card-border: rgba(0, 0, 0, 0.08);
+      --docs-text-muted: #616161;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      font-family: var(--font-family);
+      margin: 0;
+      padding: var(--gap-section) var(--side-padding-fluid);
+      transition: background-color 0.5s ease, color 0.5s ease;
+      min-height: 100vh;
+      position: relative;
+    }
+
+    /* Grid lines representation */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(to right, var(--docs-bg-grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--docs-bg-grid) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      max-width: var(--content-max-width);
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid var(--docs-card-border);
+      padding-bottom: var(--gap-element);
+      margin-bottom: var(--gap-component);
+    }
+
+    .header-title h1 {
+      margin: 0 0 var(--gap-micro) 0;
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--text-heading);
+      letter-spacing: -0.02em;
+    }
+
+    .header-title p {
+      margin: 0;
+      font-size: var(--font-size-md);
+      color: var(--docs-text-muted);
+    }
+
+    .theme-toggle-container {
+      display: flex;
+      gap: var(--gap-micro);
+      align-items: center;
+    }
+
+    .btn-toggle {
+      background: var(--btn-secondary-hover-bg);
+      border: 1px solid var(--btn-secondary-border);
+      color: var(--text-heading);
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-toggle:hover {
+      background: var(--color-primary-blue);
+      color: var(--bg-primary);
+      border-color: var(--color-primary-blue);
+    }
+
+    .section-title {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-heading);
+      margin: var(--gap-component) 0 var(--gap-element) 0;
+      letter-spacing: -0.01em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--docs-card-border);
+    }
+
+    .grid-three {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--gap-element);
+    }
+
+    .card {
+      background: var(--docs-card-bg);
+      border: 1px solid var(--docs-card-border);
+      border-radius: 16px;
+      padding: var(--gap-micro);
+      box-shadow: var(--widget-card-shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--color-primary-blue);
+      box-shadow: var(--widget-card-hover-shadow);
+    }
+
+    .card h3 {
+      margin: 0 0 var(--gap-micro) 0;
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-heading);
+    }
+
+    /* Color Swatch Styling */
+    .color-swatch-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: var(--gap-micro);
+    }
+
+    .swatch-item {
+      display: flex;
+      flex-direction: column;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--docs-card-border);
+    }
+
+    .swatch-color {
+      height: 80px;
+      width: 100%;
+    }
+
+    .swatch-info {
+      padding: var(--gap-micro) calc(var(--gap-micro) / 2);
+      background: var(--docs-card-bg);
+      font-size: var(--font-size-xs);
+      text-align: center;
+    }
+
+    .swatch-label {
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-heading);
+      margin-bottom: 4px;
+    }
+
+    .swatch-value {
+      color: var(--docs-text-muted);
+    }
+
+    /* Typography Table */
+    .typo-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .typo-table th, .typo-table td {
+      text-align: left;
+      padding: var(--gap-micro) calc(var(--gap-micro) / 2);
+      border-bottom: 1px solid var(--docs-card-border);
+    }
+
+    .typo-table th {
+      color: var(--text-heading);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .typo-preview {
+      font-family: var(--font-family);
+      color: var(--text-heading);
+    }
+
+    /* Spacing Visualizers */
+    .spacing-visualizer {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-micro);
+    }
+
+    .spacing-row {
+      display: flex;
+      align-items: center;
+      gap: var(--gap-element);
+    }
+
+    .spacing-label {
+      width: 200px;
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--text-heading);
+    }
+
+    .spacing-bar-container {
+      flex: 1;
+      background: var(--docs-card-bg);
+      border-radius: 8px;
+      padding: 4px;
+      border: 1px dashed var(--docs-card-border);
+    }
+
+    .spacing-bar {
+      height: 24px;
+      border-radius: 6px;
+      background: linear-gradient(90deg, var(--color-primary-blue), #a47ef2);
+      display: flex;
+      align-items: center;
+      padding-left: 12px;
+      color: #151512;
+      font-weight: var(--font-weight-bold);
+      font-size: var(--font-size-xs);
+      box-shadow: 0 4px 10px rgba(90, 164, 249, 0.2);
+    }
+
+    .spacing-bar.section { width: var(--gap-section); }
+    .spacing-bar.component { width: var(--gap-component); }
+    .spacing-bar.element { width: var(--gap-element); }
+    .spacing-bar.micro { width: var(--gap-micro); }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--color-primary-blue);
+      text-decoration: none;
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      margin-bottom: var(--gap-micro);
+    }
+
+    .back-link:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <a href="index.html" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Back to Portfolio
+    </a>
+
+    <header>
+      <div class="header-title">
+        <h1>Design System Consistency Guide</h1>
+        <p>Live visualization and specification of tokens, colors, spacings, and layout principles.</p>
+      </div>
+      
+      <div class="theme-toggle-container">
+        <button class="btn-toggle" id="theme-toggle">
+          <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          Toggle Day / Night Mode
+        </button>
+      </div>
+    </header>
+
+    <!-- SECTION 1: Colors -->
+    <h2 class="section-title">1. Dynamic Color System</h2>
+    <div class="grid-three">
+      <div class="card">
+        <h3>Theme Backgrounds</h3>
+        <div class="color-swatch-list">
+          <div class="swatch-item">
+            <div class="swatch-color" style="background-color: var(--bg-primary);"></div>
+            <div class="swatch-info">
+              <div class="swatch-label">BG Primary</div>
+              <div class="swatch-value">var(--bg-primary)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-color" style="background-color: var(--docs-card-bg);"></div>
+            <div class="swatch-info">
+              <div class="swatch-label">Card Fill</div>
+              <div class="swatch-value">var(--docs-card-bg)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Brand Highlight Colors</h3>
+        <div class="color-swatch-list">
+          <div class="swatch-item">
+            <div class="swatch-color" style="background-color: var(--color-primary-blue);"></div>
+            <div class="swatch-info">
+              <div class="swatch-label">Primary Blue</div>
+              <div class="swatch-value">var(--color-primary-blue)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-color" style="background-color: var(--color-primary-green);"></div>
+            <div class="swatch-info">
+              <div class="swatch-label">Primary Green</div>
+              <div class="swatch-value">var(--color-primary-green)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-color" style="background-color: var(--color-text-red);"></div>
+            <div class="swatch-info">
+              <div class="swatch-label">System Red</div>
+              <div class="swatch-value">var(--color-text-red)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Typography Colors</h3>
+        <div class="color-swatch-list">
+          <div class="swatch-item">
+            <div class="swatch-color" style="background-color: var(--text-heading);"></div>
+            <div class="swatch-info">
+              <div class="swatch-label">Text Heading</div>
+              <div class="swatch-value">var(--text-heading)</div>
+            </div>
+          </div>
+          <div class="swatch-item">
+            <div class="swatch-color" style="background-color: var(--text-primary);"></div>
+            <div class="swatch-info">
+              <div class="swatch-label">Text Body</div>
+              <div class="swatch-value">var(--text-primary)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 2: Spacing Visualizer -->
+    <h2 class="section-title">2. Spacing Design System Tokens</h2>
+    <div class="card" style="margin-bottom: var(--gap-component);">
+      <div class="spacing-visualizer">
+        <div class="spacing-row">
+          <div class="spacing-label">
+            <strong>Section Spacing</strong>
+            <div style="font-size:12px; color:var(--docs-text-muted)">var(--gap-section)</div>
+          </div>
+          <div class="spacing-bar-container">
+            <div class="spacing-bar section">Section</div>
+          </div>
+          <div style="width: 80px; text-align: right; font-size:14px; color:var(--text-heading)">60px / 40px</div>
+        </div>
+
+        <div class="spacing-row">
+          <div class="spacing-label">
+            <strong>Component Spacing</strong>
+            <div style="font-size:12px; color:var(--docs-text-muted)">var(--gap-component)</div>
+          </div>
+          <div class="spacing-bar-container">
+            <div class="spacing-bar component">Component</div>
+          </div>
+          <div style="width: 80px; text-align: right; font-size:14px; color:var(--text-heading)">60px / 40px</div>
+        </div>
+
+        <div class="spacing-row">
+          <div class="spacing-label">
+            <strong>Element Spacing</strong>
+            <div style="font-size:12px; color:var(--docs-text-muted)">var(--gap-element)</div>
+          </div>
+          <div class="spacing-bar-container">
+            <div class="spacing-bar element">Element</div>
+          </div>
+          <div style="width: 80px; text-align: right; font-size:14px; color:var(--text-heading)">36px / 24px</div>
+        </div>
+
+        <div class="spacing-row">
+          <div class="spacing-label">
+            <strong>Micro Spacing</strong>
+            <div style="font-size:12px; color:var(--docs-text-muted)">var(--gap-micro)</div>
+          </div>
+          <div class="spacing-bar-container">
+            <div class="spacing-bar micro">Micro</div>
+          </div>
+          <div style="width: 80px; text-align: right; font-size:14px; color:var(--text-heading)">24px / 16px</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 3: Typography Scale -->
+    <h2 class="section-title">3. Typography Scales</h2>
+    <div class="card">
+      <table class="typo-table">
+        <thead>
+          <tr>
+            <th>Token Name</th>
+            <th>Value</th>
+            <th>Sample Preview</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>--font-size-hero</code></td>
+            <td>clamp(2rem, 5.5vw, 4.5rem)</td>
+            <td class="typo-preview" style="font-size: var(--font-size-hero); font-weight: var(--font-weight-bold); line-height:1.1;">Hero Heading</td>
+          </tr>
+          <tr>
+            <td><code>--font-size-5xl</code></td>
+            <td>clamp(20px, 3.5vw, 38px)</td>
+            <td class="typo-preview" style="font-size: var(--font-size-5xl); font-weight: var(--font-weight-semibold);">Featured Title</td>
+          </tr>
+          <tr>
+            <td><code>--font-size-3xl</code></td>
+            <td>32px</td>
+            <td class="typo-preview" style="font-size: var(--font-size-3xl); font-weight: var(--font-weight-semibold);">Section Header</td>
+          </tr>
+          <tr>
+            <td><code>--font-size-xl</code></td>
+            <td>24px</td>
+            <td class="typo-preview" style="font-size: var(--font-size-xl); font-weight: var(--font-weight-medium);">Sub-section Title</td>
+          </tr>
+          <tr>
+            <td><code>--font-size-base</code></td>
+            <td>16px</td>
+            <td class="typo-preview" style="font-size: var(--font-size-base); font-weight: var(--font-weight-regular);">Standard body copy used for descriptions and general interface text layouts.</td>
+          </tr>
+          <tr>
+            <td><code>--font-size-xs</code></td>
+            <td>12px</td>
+            <td class="typo-preview" style="font-size: var(--font-size-xs); font-weight: var(--font-weight-medium); letter-spacing: 0.1em; text-transform: uppercase;">Category Label</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <script>
+    // Live Theme Switching functionality synced to portfolio's storage key
+    const toggleBtn = document.getElementById('theme-toggle');
+    const themeIcon = document.getElementById('theme-icon');
+    const htmlEl = document.documentElement;
+
+    // Load initial theme state from localStorage
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      htmlEl.classList.add('light-mode');
+      updateIcon(true);
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      const isLight = htmlEl.classList.toggle('light-mode');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      updateIcon(isLight);
+    });
+
+    function updateIcon(isLight) {
+      if (isLight) {
+        // Sun Icon
+        themeIcon.innerHTML = `
+          <circle cx="12" cy="12" r="5"></circle>
+          <line x1="12" y1="1" x2="12" y2="3"></line>
+          <line x1="12" y1="21" x2="12" y2="23"></line>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+          <line x1="1" y1="12" x2="3" y2="12"></line>
+          <line x1="21" y1="12" x2="23" y2="12"></line>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        `;
+      } else {
+        // Moon Icon
+        themeIcon.innerHTML = `
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        `;
+      }
+    }
+  </script>
+</body>
+</html>
