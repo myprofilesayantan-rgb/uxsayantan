@@ -1605,183 +1605,91 @@ html.light-mode .tracto-description {
   background: rgba(var(--grid-base-color), 0.06);
 }
 
-.phone-frame-wrapper {
+/* ── Clean Screen Display Card (No Phone Bezel, No Notch, Slick Shadow) ── */
+.screen-display-card {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  padding-top: 72px; /* Static space reserved at the top of the phone frame wrapper for the selector */
-}
-
-/* Phone Mockup Styling */
-.mockup-phone-frame {
-  position: relative;
-  width: 350px;
-  height: 720px;
-  border-radius: 46px;
-  background: #ffffff; /* White background to blend with screenshots */
-  box-sizing: border-box;
-  border: 10px solid #1c1c1e;
+  max-width: 330px;
+  margin: 16px auto 0 auto;
+  border-radius: 22px;
+  overflow: hidden;
   box-shadow: 
-    0 25px 65px rgba(0, 0, 0, var(--phone-shadow-opacity, 0.8)),
-    0 0 0 1px var(--card-border-color),
-    inset 0 0 0 1px rgba(var(--grid-base-color), 0.1);
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  /* Fix corner bezel white pixels bleed bug in WebKit/Blink */
-  transform: translate3d(0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  transition: box-shadow 0.5s ease, border-color 0.5s ease;
-}
-
-/* Notch / Dynamic Island */
-.phone-notch {
-  position: absolute;
-  top: 8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90px;
-  height: 16px;
+    0 30px 80px rgba(0, 0, 0, 0.65), 
+    0 12px 32px rgba(0, 0, 0, 0.35),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
   background: #000000;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+html.light-mode .screen-display-card {
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.18), 
+    0 8px 24px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+}
+
+.screen-display-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 
+    0 40px 95px rgba(0, 0, 0, 0.75), 
+    0 16px 45px rgba(0, 0, 0, 0.45),
+    0 0 0 1px rgba(255, 255, 255, 0.14);
+}
+
+.clean-screen-img {
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+  object-fit: contain;
+  display: block;
+  border-radius: 22px;
+  transition: opacity 0.25s ease;
+}
+
+/* Sub-selector pills */
+.elder-sub-selector,
+.caregiver-sub-selector {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin: 12px 0 8px 0;
+  width: 100%;
+  max-width: 480px;
+}
+
+.hide-selector {
+  display: none !important;
+}
+
+.sub-sel-btn {
+  font-family: var(--font-family);
+  font-size: 0.74rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: rgba(var(--grid-base-color), 0.06);
+  border: 1px solid var(--card-border-color);
+  padding: 6px 14px;
   border-radius: 100px;
-  z-index: 100;
-}
-
-/* Fixed Header and Footer Overlay within Phone */
-.phone-fixed-top {
-  position: absolute;
-  top: 1px;
-  left: 1px;
-  width: calc(100% - 2px);
-  height: 97px; /* Default/Fallback */
-  z-index: 10;
-  overflow: hidden;
-  border-radius: 28px 28px 0 0;
-  transition: height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.phone-header-img {
-  width: 100%;
-  height: 100%;
-  object-fit: fill; /* Use fill to scale exactly to container aspect ratios */
-  display: block;
-}
-
-.phone-fixed-bottom {
-  position: absolute;
-  bottom: 1px;
-  left: 1px;
-  width: calc(100% - 2px);
-  height: 73px; /* Default/Fallback */
-  z-index: 10;
-  overflow: hidden;
-  border-radius: 0 0 28px 28px;
-  transition: height 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-}
-
-.phone-footer-img {
-  width: 100%;
-  height: 100%;
-  object-fit: fill; /* Use fill to scale exactly to container aspect ratios */
-  display: block;
-}
-
-/* Floating Action Button (FAB) for adding medicine */
-.phone-floating-add {
-  position: absolute;
-  bottom: 94px; /* Sitting perfectly 17px above the 77px bottom bar */
-  right: 18px;
-  width: 60px; /* Proportional high-density scale */
-  height: 60px;
-  z-index: 20; /* Floating layer on top of viewport */
   cursor: pointer;
-  transform: scale(1);
-  will-change: transform, opacity;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+  transition: all 0.25s ease;
+  white-space: nowrap;
+  outline: none;
 }
 
-.phone-floating-add:hover {
-  transform: scale(1.1);
+.sub-sel-btn:hover {
+  background: rgba(var(--grid-base-color), 0.12);
+  color: var(--text-heading);
 }
 
-.phone-floating-add:active {
-  transform: scale(0.94);
+.sub-sel-btn.active {
+  background: var(--color-primary-blue, #5AA4F9);
+  color: #ffffff;
+  border-color: var(--color-primary-blue, #5AA4F9);
+  box-shadow: 0 4px 14px rgba(90, 164, 249, 0.4);
 }
 
-.phone-add-img {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-/* Scrollable screen viewport (Confined strictly between header and footer) */
-.phone-screen-viewport {
-  position: absolute;
-  top: 98px; /* Default/Fallback */
-  left: 1px;
-  width: calc(100% - 2px);
-  height: calc(100% - 171px); /* Default/Fallback */
-  overflow: hidden;
-  cursor: grab;
-  transition: top 0.3s ease, height 0.3s ease, background-color 0.3s ease;
-}
-
-/* Phone Mockup Theme Styling */
-.mockup-phone-frame.theme-elder {
-  background: #111112; /* Matches dark theme to hide bleed */
-}
-.mockup-phone-frame.theme-elder .phone-fixed-top {
-  background: #111112;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  height: 101px; /* Scaled height based on elder top bar aspect ratio */
-}
-.mockup-phone-frame.theme-elder .phone-fixed-bottom {
-  background: #111112;
-  border-top: 1px solid rgba(255, 255, 255, 0.08);
-  height: 77px; /* Scaled height based on elder bottom tab bar aspect ratio */
-}
-.mockup-phone-frame.theme-elder .phone-screen-viewport {
-  background: #111112;
-  top: 102px;
-  height: calc(100% - 179px); /* 100% - 102px top - 77px bottom */
-}
-
-.mockup-phone-frame.theme-caregiver {
-  background: linear-gradient(to bottom, #111112 50%, #ffffff 50%); /* Gradient hides top black and bottom white bleed */
-}
-.mockup-phone-frame.theme-caregiver .phone-fixed-top {
-  background: linear-gradient(to bottom, #111112 57.7%, rgba(255, 255, 255, 0.72) 57.7%);
-  border-bottom: none; /* Removes the dark line separating top panel from scroll content */
-  height: 174px; /* Scaled height based on caregiver top panel aspect ratio */
-  border-radius: 36px 36px 0 0; /* Matches inner curve of the phone frame to prevent pixel gap */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-.mockup-phone-frame.theme-caregiver .phone-fixed-top .phone-header-img {
-  opacity: 0.88;
-}
-.mockup-phone-frame.theme-caregiver .phone-fixed-bottom {
-  background: rgba(255, 255, 255, 0.72);
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-  height: 72px; /* Scaled height based on caregiver bottom tab aspect ratio */
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-.mockup-phone-frame.theme-caregiver .phone-fixed-bottom .phone-footer-img {
-  opacity: 0.88;
-}
-.mockup-phone-frame.theme-caregiver .phone-screen-viewport {
-  background: transparent; /* Transparent allows the frame background gradient to show behind status bar transparent corners */
-  top: 1px;
-  height: calc(100% - 2px); /* Spans full height so content scrolls behind glassy top and bottom bars */
-}
-.mockup-phone-frame.theme-caregiver .phone-scroll-content {
-  padding-top: 174px;
-  padding-bottom: 72px;
-}
 
 .phone-scroll-content {
   width: 100%;

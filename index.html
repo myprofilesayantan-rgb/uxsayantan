@@ -846,48 +846,35 @@
                   </div>
                 </div>
 
-                <!-- Right Column: Smartphone Frame & Tab Switchers -->
+                <!-- Right Column: Clean Screen Viewer & Role Switchers -->
                 <div class="solution-mockup-panel">
-                  <!-- Master Tab Switcher (Elder / Caregiver) -->
+                  <!-- Master Role Switcher (Elder App / Caregiver App) -->
                   <div class="mockup-tab-switcher" id="mockup-tab-switcher">
                     <button class="switcher-btn active" data-mockup-tab="elder">Elder App</button>
                     <button class="switcher-btn" data-mockup-tab="caregiver">Caregiver App</button>
                   </div>
-                  <div class="phone-frame-wrapper">
-                    <!-- Elder Sub-State Selector (positioned horizontally above the phone) -->
-                    <div class="elder-sub-selector" id="elder-sub-selector">
-                      <button class="sub-sel-btn active" data-elder-state="normal">Daily Log</button>
-                      <button class="sub-sel-btn" data-elder-state="onroad">On Road (SOS)</button>
-                      <button class="sub-sel-btn" data-elder-state="notwell">Not Well</button>
-                    </div>
 
-                    <!-- Phone Device Frame -->
-                    <div class="mockup-phone-frame theme-elder">
-                      <!-- Dynamic Notch/Island -->
-                      <div class="phone-notch"></div>
+                  <!-- Sub-State Selectors for Elder App (6 screens) -->
+                  <div class="elder-sub-selector" id="elder-sub-selector">
+                    <button class="sub-sel-btn active" data-elder-state="home">Home</button>
+                    <button class="sub-sel-btn" data-elder-state="med_notify">Med Reminder</button>
+                    <button class="sub-sel-btn" data-elder-state="med_list">Med List</button>
+                    <button class="sub-sel-btn" data-elder-state="learning">AI Model</button>
+                    <button class="sub-sel-btn" data-elder-state="emergency">Emergency</button>
+                    <button class="sub-sel-btn" data-elder-state="help">Elder Help</button>
+                  </div>
 
-                      <!-- Fixed Top Bar -->
-                      <div class="phone-fixed-top">
-                        <img src="images/elder_topbar.png" alt="Top Bar" id="phone-top-asset" class="phone-header-img" />
-                      </div>
+                  <!-- Sub-State Selectors for Caregiver App (4 screens) -->
+                  <div class="caregiver-sub-selector hide-selector" id="caregiver-sub-selector">
+                    <button class="sub-sel-btn active" data-caregiver-state="home">Caregiver Home</button>
+                    <button class="sub-sel-btn" data-caregiver-state="sos">SOS Alert</button>
+                    <button class="sub-sel-btn" data-caregiver-state="sos_detail">SOS Detail</button>
+                    <button class="sub-sel-btn" data-caregiver-state="rescue">Rescue Map</button>
+                  </div>
 
-                      <!-- Scrollable Screen Content -->
-                      <div class="phone-screen-viewport">
-                        <div class="phone-scroll-content" id="phone-scroll-content">
-                          <img src="images/elder_mob.png" alt="Active Screen Content" id="phone-screen-asset" class="phone-content-img" />
-                        </div>
-                      </div>
-
-                      <!-- Floating Add Button -->
-                      <div class="phone-floating-add" id="phone-floating-add">
-                        <img src="images/addmedicine.png" alt="Add Medicine" class="phone-add-img" />
-                      </div>
-
-                      <!-- Fixed Bottom Bar -->
-                      <div class="phone-fixed-bottom">
-                        <img src="images/elder_bottomtabbar.png" alt="Bottom Bar" id="phone-bottom-asset" class="phone-footer-img" />
-                      </div>
-                    </div>
+                  <!-- Clean Screen Frame with Slick Drop Shadow -->
+                  <div class="screen-display-card">
+                    <img src="tracto mobileux/Elder _Home.png" alt="Tracto Mobile UX Screen" id="phone-screen-asset" class="clean-screen-img" />
                   </div>
                 </div>
               </div>

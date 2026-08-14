@@ -380,7 +380,7 @@ window.PortfolioTracto = {
       if (empathyVideo && !empathyVideo.paused) empathyVideo.pause();
     }
 
-    // ── Slide 4: Product Solution & Interactive Mockups ──────────────────
+    // ── Slide 4: Product Solution & Interactive Mobile UX Screens ────────
     const switcherBtns = container.querySelectorAll('.switcher-btn');
     const elderSubBtns = container.querySelectorAll('#elder-sub-selector .sub-sel-btn');
     const caregiverSubBtns = container.querySelectorAll('#caregiver-sub-selector .sub-sel-btn');
@@ -388,262 +388,43 @@ window.PortfolioTracto = {
     const caregiverSubSelector = container.querySelector('#caregiver-sub-selector');
     
     const phoneScreenAsset = container.querySelector('#phone-screen-asset');
-    const phoneTopAsset = container.querySelector('#phone-top-asset');
-    const phoneBottomAsset = container.querySelector('#phone-bottom-asset');
-    const phoneFloatingAdd = container.querySelector('#phone-floating-add');
-    
-    const phoneViewport = container.querySelector('.phone-screen-viewport');
-    const phoneScrollContent = container.querySelector('#phone-scroll-content');
     
     let activeTab = 'elder'; // 'elder' or 'caregiver'
-    let activeElderState = 'dashboard'; // 'dashboard', 'med_reminder', 'med_list', 'elder_safety'
-    let activeCaregiverState = 'dashboard'; // 'dashboard', 'caregiver_sos', 'rescue'
-    let slide4Tween = null;
-    let isSlide4Hovered = false;
+    let activeElderState = 'home';
+    let activeCaregiverState = 'home';
 
-    // Assets mapping
+    // All 10 screens mapped directly from `tracto mobileux/`
     const assets = {
       elder: {
-        top: 'images/elder_topbar.png',
-        bottom: 'images/elder_bottomtabbar.png',
-        screens: {
-          dashboard: 'images/elder_mob.png',
-          med_reminder: 'images/when not well.png',
-          med_list: 'images/elder_mob.png',
-          elder_safety: 'images/elder_onroad.png',
-          // Backward compatibility aliases
-          normal: 'images/elder_mob.png',
-          onroad: 'images/elder_onroad.png',
-          notwell: 'images/when not well.png'
-        }
+        home: 'tracto mobileux/Elder _Home.png',
+        med_notify: 'tracto mobileux/Elder- Med Push Notification.png',
+        med_list: 'tracto mobileux/Elder _Medlist.png',
+        learning: 'tracto mobileux/Elder _Learning Model.png',
+        emergency: 'tracto mobileux/Elder- Emergency_Contact.png',
+        help: 'tracto mobileux/Elder Help.png'
       },
       caregiver: {
-        top: 'images/caregiver_toppanel.png',
-        bottom: 'images/caregiver_bttomtab.png',
-        screens: {
-          dashboard: 'images/CG_alliswell.png',
-          caregiver_sos: 'images/elder_onroad.png',
-          rescue: 'images/screenplaceholder.png',
-          default: 'images/CG_alliswell.png'
-        }
+        home: 'tracto mobileux/Caregiver Home.png',
+        sos: 'tracto mobileux/Caregiver SOS.png',
+        sos_detail: 'tracto mobileux/Caregiver SOS-1.png',
+        rescue: 'tracto mobileux/Caregiver Rescue.png'
       }
     };
 
-    function getElderBottomAsset(state) {
-      return (state === 'elder_safety' || state === 'onroad') ? 'images/elder_bottomtabbar2.png' : 'images/elder_bottomtabbar.png';
-    }
-
-    function initAutoScroll() {
-      if (slide4Tween) {
-        slide4Tween.kill();
-        slide4Tween = null;
-      }
-      
-      // Fade out current content to avoid layout flick/jerk
-      gsap.killTweensOf([phoneScreenAsset, phoneTopAsset, phoneBottomAsset, phoneFloatingAdd]);
-      gsap.set([phoneScreenAsset, phoneTopAsset, phoneBottomAsset], { opacity: 0 });
-      if (phoneFloatingAdd) {
-        gsap.set(phoneFloatingAdd, { opacity: 0, scale: 0.8, pointerEvents: 'none' });
-      }
-
-      // Reset translation
-      gsap.set(phoneScrollContent, { y: 0 });
-
-      // Wait for image to load to get correct height
-      const img = phoneScreenAsset;
-      if (!img) return;
-
-      const startScroll = () => {
-        // Fade in new content smoothly
-        gsap.to([phoneScreenAsset, phoneTopAsset, phoneBottomAsset], {
-          opacity: 1,
-          duration: 0.35,
-          ease: 'power2.out'
-        });
-
-        if (activeTab === 'elder' && phoneFloatingAdd) {
-          gsap.to(phoneFloatingAdd, {
-            opacity: 1,
-            scale: 1,
-            duration: 0.35,
-            ease: 'back.out(1.5)',
-            pointerEvents: 'auto'
-          });
-        }
-
-        const viewportHeight = phoneViewport.clientHeight;
-        const contentHeight = phoneScrollContent.scrollHeight;
-        const scrollLimit = contentHeight - viewportHeight;
-
-        if (scrollLimit > 0) {
-          // Duration based on scroll limit to keep speed consistent (e.g. 35px per sec)
-          const duration = scrollLimit / 35; 
-          
-          slide4Tween = gsap.to(phoneScrollContent, {
-            y: -scrollLimit,
-            duration: duration,
-            ease: 'sine.inOut',
-            yoyo: true,
-            repeat: -1,
-            paused: isSlide4Hovered // Start paused if mouse is already hovering
-          });
-        }
-      };
-
-      if (img.complete) {
-        startScroll();
-      } else {
-        img.onload = startScroll;
-      }
-    }
-
-    function resumeAutoScroll() {
-      isSlide4Hovered = false;
-      if (!slide4Tween) return;
-      
-      const viewportHeight = phoneViewport.clientHeight;
-      const contentHeight = phoneScrollContent.scrollHeight;
-      const scrollLimit = contentHeight - viewportHeight;
-      if (scrollLimit <= 0) return;
-
-      const currentY = gsap.getProperty(phoneScrollContent, 'y') || 0;
-      const destY = (currentY < -scrollLimit / 2) ? -scrollLimit : 0;
-      const remainingDistance = Math.abs(destY - currentY);
-      const duration = remainingDistance / 35;
-      
-      slide4Tween = gsap.timeline();
-      slide4Tween.to(phoneScrollContent, {
-        y: destY,
-        duration: duration,
-        ease: 'sine.inOut',
+    function updateScreenDisplay(newSrc) {
+      if (!phoneScreenAsset || !newSrc) return;
+      gsap.to(phoneScreenAsset, {
+        opacity: 0,
+        duration: 0.15,
+        ease: 'power1.out',
         onComplete: () => {
-          // Start the infinite yoyo loop
-          slide4Tween = gsap.to(phoneScrollContent, {
-            y: destY === 0 ? -scrollLimit : 0,
-            duration: scrollLimit / 35,
-            ease: 'sine.inOut',
-            yoyo: true,
-            repeat: -1
-          });
+          phoneScreenAsset.src = newSrc;
+          gsap.to(phoneScreenAsset, { opacity: 1, duration: 0.25, ease: 'power1.in' });
         }
       });
     }
 
-    function handleWheel(e) {
-      const viewportHeight = phoneViewport.clientHeight;
-      const contentHeight = phoneScrollContent.scrollHeight;
-      const scrollLimit = contentHeight - viewportHeight;
-      if (scrollLimit <= 0) return;
-
-      e.preventDefault(); // Prevent page scrolling while hovering phone viewport
-      
-      // Get current Y translation from GSAP
-      let currentY = gsap.getProperty(phoneScrollContent, 'y') || 0;
-      // Adjust by deltaY
-      let newY = currentY - e.deltaY;
-      // Clamp between -scrollLimit and 0
-      newY = Math.max(-scrollLimit, Math.min(0, newY));
-
-      // Pause tween if it exists, and update position smoothly
-      if (slide4Tween) slide4Tween.pause();
-      gsap.to(phoneScrollContent, {
-        y: newY,
-        duration: 0.2,
-        ease: 'power2.out'
-      });
-    }
-
-    let touchStartY = 0;
-    let touchStartContentY = 0;
-
-    function handleTouchStart(e) {
-      touchStartY = e.touches[0].clientY;
-      touchStartContentY = gsap.getProperty(phoneScrollContent, 'y') || 0;
-      if (slide4Tween) slide4Tween.pause();
-    }
-
-    function handleTouchMove(e) {
-      e.preventDefault(); // Prevent page scrolling
-
-      const viewportHeight = phoneViewport.clientHeight;
-      const contentHeight = phoneScrollContent.scrollHeight;
-      const scrollLimit = contentHeight - viewportHeight;
-      if (scrollLimit <= 0) return;
-
-      const deltaY = e.touches[0].clientY - touchStartY;
-      let newY = touchStartContentY + deltaY;
-      newY = Math.max(-scrollLimit, Math.min(0, newY));
-
-      gsap.set(phoneScrollContent, { y: newY });
-    }
-
-    // Mouse click and drag controls
-    let isDragging = false;
-    let dragStartY = 0;
-    let dragStartContentY = 0;
-
-    function handleMouseDown(e) {
-      const viewportHeight = phoneViewport.clientHeight;
-      const contentHeight = phoneScrollContent.scrollHeight;
-      const scrollLimit = contentHeight - viewportHeight;
-      if (scrollLimit <= 0) return;
-
-      isDragging = true;
-      dragStartY = e.clientY;
-      dragStartContentY = gsap.getProperty(phoneScrollContent, 'y') || 0;
-      if (slide4Tween) slide4Tween.pause();
-      phoneViewport.style.cursor = 'grabbing';
-    }
-
-    function handleMouseMove(e) {
-      if (!isDragging) return;
-      e.preventDefault();
-
-      const viewportHeight = phoneViewport.clientHeight;
-      const contentHeight = phoneScrollContent.scrollHeight;
-      const scrollLimit = contentHeight - viewportHeight;
-      if (scrollLimit <= 0) return;
-
-      const deltaY = e.clientY - dragStartY;
-      let newY = dragStartContentY + deltaY;
-      newY = Math.max(-scrollLimit, Math.min(0, newY));
-
-      gsap.set(phoneScrollContent, { y: newY });
-    }
-
-    function handleMouseUpOrLeave() {
-      if (!isDragging) return;
-      isDragging = false;
-      phoneViewport.style.cursor = 'grab';
-      resumeAutoScroll();
-    }
-
-    if (phoneViewport) {
-      phoneViewport.addEventListener('mouseenter', () => {
-        isSlide4Hovered = true;
-        if (slide4Tween) slide4Tween.pause();
-      }, { passive: true });
-
-      phoneViewport.addEventListener('mouseleave', () => {
-        if (!isDragging) resumeAutoScroll();
-      }, { passive: true });
-
-      phoneViewport.addEventListener('wheel', handleWheel, { passive: false });
-
-      // Touch support
-      phoneViewport.addEventListener('touchstart', handleTouchStart, { passive: true });
-      phoneViewport.addEventListener('touchmove', handleTouchMove, { passive: false });
-      phoneViewport.addEventListener('touchend', () => {
-        resumeAutoScroll();
-      }, { passive: true });
-
-      // Mouse drag support
-      phoneViewport.addEventListener('mousedown', handleMouseDown);
-      window.addEventListener('mousemove', handleMouseMove);
-      window.addEventListener('mouseup', handleMouseUpOrLeave);
-    }
-
-    // Switch between Elder and Caregiver
+    // Switch between Elder App and Caregiver App
     switcherBtns.forEach(btn => {
       btn.addEventListener('click', () => {
         const tab = btn.getAttribute('data-mockup-tab');
@@ -651,47 +432,22 @@ window.PortfolioTracto = {
         
         activeTab = tab;
         
-        // Update active class on tab buttons
         switcherBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         
-        const phoneFrame = container.querySelector('.mockup-phone-frame');
-        
-        // Transition images & themes
         if (activeTab === 'caregiver') {
-          // Hide elder selector, show caregiver selector
           if (elderSubSelector) elderSubSelector.classList.add('hide-selector');
           if (caregiverSubSelector) caregiverSubSelector.classList.remove('hide-selector');
           
-          if (phoneFrame) {
-            phoneFrame.classList.remove('theme-elder');
-            phoneFrame.classList.add('theme-caregiver');
-          }
-          
-          // Swap image assets based on activeCaregiverState
-          const cgScreen = assets.caregiver.screens[activeCaregiverState] || assets.caregiver.screens.dashboard || assets.caregiver.screens.default;
-          phoneScreenAsset.src = cgScreen;
-          phoneTopAsset.src = assets.caregiver.top;
-          phoneBottomAsset.src = assets.caregiver.bottom;
+          const screen = assets.caregiver[activeCaregiverState] || assets.caregiver.home;
+          updateScreenDisplay(screen);
         } else {
-          // Show elder selector, hide caregiver selector
           if (elderSubSelector) elderSubSelector.classList.remove('hide-selector');
           if (caregiverSubSelector) caregiverSubSelector.classList.add('hide-selector');
           
-          if (phoneFrame) {
-            phoneFrame.classList.remove('theme-caregiver');
-            phoneFrame.classList.add('theme-elder');
-          }
-          
-          // Swap image assets based on current elder sub-state
-          const elderScreen = assets.elder.screens[activeElderState] || assets.elder.screens.dashboard;
-          phoneScreenAsset.src = elderScreen;
-          phoneTopAsset.src = assets.elder.top;
-          phoneBottomAsset.src = getElderBottomAsset(activeElderState);
+          const screen = assets.elder[activeElderState] || assets.elder.home;
+          updateScreenDisplay(screen);
         }
-        
-        // Reset and restart scroll
-        initAutoScroll();
       });
     });
 
@@ -703,17 +459,11 @@ window.PortfolioTracto = {
         
         activeElderState = state;
         
-        // Update active class on sub-selector buttons
         elderSubBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         
-        // Swap screen asset
-        const screen = assets.elder.screens[activeElderState] || assets.elder.screens.dashboard;
-        phoneScreenAsset.src = screen;
-        phoneBottomAsset.src = getElderBottomAsset(activeElderState);
-        
-        // Reset and restart scroll
-        initAutoScroll();
+        const screen = assets.elder[activeElderState] || assets.elder.home;
+        updateScreenDisplay(screen);
       });
     });
 
@@ -725,24 +475,19 @@ window.PortfolioTracto = {
         
         activeCaregiverState = state;
         
-        // Update active class on sub-selector buttons
         caregiverSubBtns.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         
-        // Swap screen asset
-        const screen = assets.caregiver.screens[activeCaregiverState] || assets.caregiver.screens.dashboard || assets.caregiver.screens.default;
-        phoneScreenAsset.src = screen;
-        
-        // Reset and restart scroll
-        initAutoScroll();
+        const screen = assets.caregiver[activeCaregiverState] || assets.caregiver.home;
+        updateScreenDisplay(screen);
       });
     });
 
     function playSlide4Solution() {
-      // 1. Reset states
+      // Reset states to default
       activeTab = 'elder';
-      activeElderState = 'dashboard';
-      activeCaregiverState = 'dashboard';
+      activeElderState = 'home';
+      activeCaregiverState = 'home';
       
       switcherBtns.forEach(b => {
         if (b.getAttribute('data-mockup-tab') === 'elder') b.classList.add('active');
@@ -750,29 +495,24 @@ window.PortfolioTracto = {
       });
       
       elderSubBtns.forEach(b => {
-        if (b.getAttribute('data-elder-state') === 'dashboard') b.classList.add('active');
+        if (b.getAttribute('data-elder-state') === 'home') b.classList.add('active');
         else b.classList.remove('active');
       });
 
       caregiverSubBtns.forEach(b => {
-        if (b.getAttribute('data-caregiver-state') === 'dashboard') b.classList.add('active');
+        if (b.getAttribute('data-caregiver-state') === 'home') b.classList.add('active');
         else b.classList.remove('active');
       });
-
-      const phoneFrame = container.querySelector('.mockup-phone-frame');
-      if (phoneFrame) {
-        phoneFrame.classList.remove('theme-caregiver');
-        phoneFrame.classList.add('theme-elder');
-      }
 
       if (elderSubSelector) elderSubSelector.classList.remove('hide-selector');
       if (caregiverSubSelector) caregiverSubSelector.classList.add('hide-selector');
 
-      phoneScreenAsset.src = assets.elder.screens.dashboard;
-      phoneTopAsset.src = assets.elder.top;
-      phoneBottomAsset.src = getElderBottomAsset('dashboard');
+      if (phoneScreenAsset) {
+        phoneScreenAsset.src = assets.elder.home;
+        gsap.set(phoneScreenAsset, { opacity: 1 });
+      }
 
-      // 2. Animate left column elements
+      // Animate left column elements
       const eyebrow = container.querySelector('.solution-eyebrow');
       const headline = container.querySelector('.solution-headline');
       const paragraphs = container.querySelectorAll('.solution-body p');
@@ -781,7 +521,6 @@ window.PortfolioTracto = {
 
       gsap.killTweensOf([eyebrow, headline, paragraphs, ctas, phoneWrapper]);
 
-      // Set initial states
       gsap.set([eyebrow, headline, paragraphs, ctas], { opacity: 0, x: -30 });
       gsap.set(phoneWrapper, { opacity: 0, scale: 0.95, y: 20 });
 
