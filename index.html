@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- ðŸŒ“ Instant Theme Restoration Script
-       Restores the user's previously selected theme preference from localStorage
-       and applies the .light-mode class immediately before HTML rendering to prevent FOUC (flash of unstyled content). -->
+  <!-- 🌙 Instant Theme Restoration Script -->
   <script type="text/javascript">
     (function() {
       try {
@@ -18,11 +17,42 @@
     })();
   </script>
 
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- 📱 Mobile & Tablet Auto-Detection & Redirection Script -->
+  <script type="text/javascript">
+    (function() {
+      try {
+        var urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('desktop') === 'true') {
+          return;
+        }
+        
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        var isMobileUA = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet/i.test(userAgent);
+        var isIpadOS = (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
+        function checkAndRedirect() {
+          var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+          if (isMobileUA || isIpadOS || width <= 768) {
+            window.location.href = "https://myprofilesayantan-rgb.github.io/mobile-chat/";
+          }
+        }
+
+        // Check immediately on load
+        checkAndRedirect();
+
+        // Check on resize (for responsive mode testing)
+        window.addEventListener('resize', function() {
+          var params = new URLSearchParams(window.location.search);
+          if (params.get('desktop') !== 'true') {
+            checkAndRedirect();
+          }
+        });
+      } catch (e) {}
+    })();
+  </script>
 
   <!-- Primary SEO Metadata -->
-  <title>Sayantan Ghosh | Senior UX & Product Designer Portfolio</title>
+  <title>Sayantan Ghosh | Senior UX &amp; Product Designer Portfolio</title>
   <meta name="description" content="Portfolio of Sayantan Ghosh, a Senior UX & Product Designer in India with 22+ years of experience. Specializing in IxDF interaction design, AiUX workflows, B2B SaaS, and Healthcare ecosystems." />
   <meta name="keywords" content="Sayantan Ghosh, UX Designer India, Senior UX Designer, Product Designer India, IxDF, Interaction Design Foundation, AiUX workflow, AI UX Design, AI-driven UX, Healthcare UX, SaaS UX Design, B2B UX, IIT Roorkee UX" />
   <meta name="author" content="Sayantan Ghosh" />
@@ -42,7 +72,7 @@
   <meta name="twitter:description" content="Explore the UX portfolio of Sayantan Ghosh: 22+ years of experience shaping B2B SaaS, healthcare systems, and advanced AiUX workflows." />
   <meta name="twitter:image" content="images/sayantan_pic.png" />
 
-  <!-- JSON-LD Person Rich Schema Markup (Structured Search Data) -->
+  <!-- JSON-LD Person Rich Schema Markup -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -52,11 +82,10 @@
     "url": "https://in.linkedin.com/in/uxsayantan",
     "image": "images/sayantan_pic.png",
     "sameAs": [
-      "https://in.linkedin.com/in/uxsayantan",
-      "https://medium.com/@myprofile.sayantan/"
+      "https://in.linkedin.com/in/uxsayantan"
     ],
     "email": "myprofile.sayantan@gmail.com",
-    "telephone": "+91-9959-629-041",
+    "telephone": "+91-93465-79316",
     "description": "Senior UX & Product Designer with 22+ years of experience specializing in B2B SaaS, Healthcare design ecosystems, IxDF interaction models, and AiUX workflows.",
     "alumniOf": {
       "@type": "EducationalOrganization",
@@ -78,40 +107,92 @@
   </script>
 
   <link rel="icon" type="image/png" href="images/sayantan_pic.png" />
-  <!-- Baseline & Responsive Styles -->
+  
+  <!-- Core Baseline & Component Stylesheets -->
   <link rel="stylesheet" href="desktop.css?v=1.1" />
   <link rel="stylesheet" href="responsive.css?v=1.1" />
-  <!-- Header Component Stylesheet -->
   <link rel="stylesheet" href="components/header/header.css?v=1.1" />
-  <!-- Hero Component Stylesheet -->
   <link rel="stylesheet" href="components/hero/hero.css?v=1.1" />
-  <!-- Logos Component Stylesheet -->
   <link rel="stylesheet" href="components/logos/logos.css?v=1.1" />
-  <!-- Scrolling Marquee Stylesheet -->
   <link rel="stylesheet" href="components/marquee/marquee.css?v=1.1" />
-  <!-- Custom Cursor Stylesheet (Disabled for UX precision) -->
-  <!-- <link rel="stylesheet" href="components/cursor/cursor.css?v=1.1" /> -->
-  <!-- Hidden Friction Component Stylesheet -->
   <link rel="stylesheet" href="components/hidden-friction/hidden-friction.css?v=1.1" />
-  <!-- Tracto Component Stylesheet -->
   <link rel="stylesheet" href="components/tracto/tracto.css?v=1.1" />
-  <!-- Skills Logos Stylesheet -->
   <link rel="stylesheet" href="components/skills-logos/skills-logos.css?v=1.3" />
-  <!-- Product Story Overlay Stylesheet -->
   <link rel="stylesheet" href="components/product-story/product-story.css?v=1.1" />
-  <!-- About Component Stylesheet -->
   <link rel="stylesheet" href="components/about/about.css?v=1.1" />
-  <!-- Final Statement Component Stylesheet -->
   <link rel="stylesheet" href="components/statement/statement.css?v=1.1" />
-  <!-- Outcomes Component Stylesheet -->
   <link rel="stylesheet" href="components/outcomes/outcomes.css?v=1.0" />
-  <!-- Custom Context Menu Stylesheet -->
-  <link rel="stylesheet" href="components/context-menu/context-menu.css?v=1.1" />
-  <!-- GSAP (latest CDN) -->
+  <link rel="stylesheet" href="components/qr-modal/qr-modal.css?v=1.1" />
+
+  <!-- 🤖 Floating AI Action Button Guaranteed Inline Styles -->
+  <style>
+    .floating-ai-btn {
+      position: fixed !important;
+      bottom: 32px !important;
+      right: 32px !important;
+      width: 72px !important;
+      height: 72px !important;
+      border-radius: 50% !important;
+      border: 1px solid rgba(255, 255, 255, 0.3) !important;
+      cursor: pointer !important;
+      z-index: 999999 !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      overflow: hidden !important;
+      opacity: 1 !important;
+      visibility: visible !important;
+      background: #111115 !important;
+      box-shadow: 0 12px 42px rgba(138, 43, 226, 0.75), 0 0 36px rgba(255, 42, 133, 0.6), 0 0 18px rgba(0, 242, 254, 0.45) !important;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease !important;
+    }
+
+    .floating-ai-btn:hover {
+      transform: scale(1.1) translateY(-3px) !important;
+      box-shadow: 0 16px 54px rgba(138, 43, 226, 0.9), 0 0 46px rgba(255, 42, 133, 0.75) !important;
+    }
+
+    .floating-ai-btn::before {
+      content: '' !important;
+      position: absolute !important;
+      top: -50% !important;
+      left: -50% !important;
+      width: 200% !important;
+      height: 200% !important;
+      border-radius: 50% !important;
+      background: conic-gradient(
+        from 0deg,
+        #ff2a85 0%,
+        #8a2be2 25%,
+        #00f2fe 50%,
+        #4169e1 75%,
+        #ff2a85 100%
+      ) !important;
+      animation: spinLiquid 2.5s linear infinite !important;
+      z-index: 0 !important;
+      filter: blur(6px) !important;
+    }
+
+    .floating-ai-btn svg {
+      width: 32px !important;
+      height: 32px !important;
+      fill: #ffffff !important;
+      z-index: 2 !important;
+      position: relative !important;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5)) !important;
+    }
+
+    @keyframes spinLiquid {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+
+  <!-- GSAP Animation Library -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 
-  <!-- Microsoft Clarity Tracking Code -->
+  <!-- Microsoft Clarity Tracking -->
   <script type="text/javascript">
       (function(c,l,a,r,i,t,y){
           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -122,25 +203,17 @@
 </head>
 <body>
 
+  <!-- Header Section -->
   <section id="section-header" class="section-container component-header">
-
     <nav class="header-nav">
-      <!-- Left side: Name Logo -->
       <a href="#app" class="header-logo">Sayantan Ghosh</a>
-      
-      <!-- Center: Nav Links -->
       <div class="header-links">
         <a href="#work" class="header-link">Work</a>
         <a href="#about" class="header-link">About</a>
-        <a href="https://medium.com/@myprofile.sayantan/" target="_blank" rel="noopener noreferrer" class="header-link">Medium</a>
         <a href="https://in.linkedin.com/in/uxsayantan" target="_blank" rel="noopener noreferrer" class="header-link">LinkedIn</a>
       </div>
-
-      <!-- Right side: Actions wrapper (Theme Toggle + Phone Link) -->
       <div class="header-actions">
-        <!-- 🌙 Modern Day/Night Theme Toggler Button -->
         <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle light and dark mode">
-          <!-- Sun Icon (visible in light mode) -->
           <svg class="sun-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <circle cx="12" cy="12" r="5"></circle>
             <line x1="12" y1="1" x2="12" y2="3"></line>
@@ -152,31 +225,25 @@
             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
           </svg>
-          <!-- Moon Icon (visible in dark mode) -->
           <svg class="moon-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
           </svg>
         </button>
-
-        <a href="tel:+919959629041" class="header-phone">
+        <a href="tel:+919346579316" class="header-phone">
           <svg viewBox="0 0 24 24" fill="none" class="phone-icon">
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-          </svg>+91 995 962 9041
+          </svg>+91 93465 79316
         </a>
       </div>
     </nav>
   </section>
 
-  <!-- Collapsible About Section Panel (Pushes content down) -->
+  <!-- Collapsible About Section Panel -->
   <section id="section-about" class="about-section">
     <div class="about-wrapper">
       <div class="about-grid">
-        
-        <!-- Left Column: Background Card + Contacts -->
         <div class="about-left-col">
           <div class="about-card">
-            
-            <!-- Experience Item -->
             <div class="about-card-item">
               <div class="about-card-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -189,8 +256,6 @@
                 <span class="card-item-desc">B2B, B2C, SaaS, Gaming, Healthcare, Productivity and more</span>
               </div>
             </div>
-
-            <!-- Education Item -->
             <div class="about-card-item">
               <div class="about-card-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -203,8 +268,6 @@
                 <span class="card-item-desc">Executive PG in UX, IIT Roorkee</span>
               </div>
             </div>
-
-            <!-- Certification Item -->
             <div class="about-card-item">
               <div class="about-card-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -217,60 +280,45 @@
                 <span class="card-item-desc">AI for Designers</span>
               </div>
             </div>
-
           </div>
-
-          <!-- Contact Details box -->
           <div class="about-contact-box">
-            <span class="about-contact-item">+91 9959 629 041</span>
+            <span class="about-contact-item">+91 93465 79316</span>
             <span class="about-contact-item">
               <a href="mailto:myprofile.sayantan@gmail.com" class="contact-link">myprofile.sayantan@gmail.com</a>
             </span>
           </div>
         </div>
-
-        <!-- Right Column: Paragraph Text -->
         <div class="about-right-col">
           <p class="about-editorial-text">
             With 22 years in design &mdash; 9 focused on UX &mdash; I build products from the inside out: starting with real research, uncovering behavioral patterns that never appear in briefs, and designing systems that work for actual people in actual situations. My work spans B2B SaaS, Healthcare, Gaming, and enterprise tools across companies including Rummy Circle, Blue Dart, and projects delivered through Google and Cisco. I combine UX research, product thinking, and AI-assisted workflows to move from insight to interface faster, without losing depth. I am at my best when the problem is complex, the users are underserved, and there is room to challenge the initial brief.
           </p>
         </div>
-
       </div>
     </div>
   </section>
 
+  <!-- Main App Container -->
   <div id="app">
-    <!-- Above the fold viewport container -->
-    <div class="above-fold-container">
-
-    <!-- Hero Section (Inlined to work on file:// protocol) -->
+    
+    <!-- Hero Section -->
     <section id="section-hero" class="section-container component-hero">
       <div class="hero-wrapper">
-        <!-- Top Row: Avatar and Text Content -->
         <div class="hero-main-row">
-          <!-- Left Side: Profile Picture (2x asset scaled proportionally) -->
           <div class="hero-avatar-box">
             <img src="images/sayantan_pic.png" alt="Sayantan Ghosh" class="hero-avatar" />
           </div>
-
-          <!-- Right Side: Content Box -->
           <div class="hero-content">
             <h1 class="hero-heading">
               Senior UX &amp; Product Designer with 22+ years of experience. From behavioral research to production-ready interfaces.
             </h1>
-            
-            <!-- Signature Graphic (2x asset scaled proportionally) -->
             <div class="hero-signature-box">
               <img src="images/signature.png" alt="Sayantan Ghosh Signature" class="hero-signature" />
             </div>
           </div>
         </div>
 
-        <!-- Bottom Row: CTA buttons (centered) -->
         <div class="hero-cta-box">
           <div class="hero-cta-wrapper">
-            <!-- Fancy AI Callout -->
             <div class="hero-callout" id="smartbi-callout">
               <span class="callout-close">&times;</span>
               <p class="callout-text">
@@ -278,7 +326,6 @@
               </p>
               <div class="callout-arrow"></div>
             </div>
-
             <a href="https://myprofilesayantan-rgb.github.io/Smart-BI/" target="_blank" rel="noopener noreferrer" class="hero-cta btn-primary" id="hero-product-btn">
               SmartBI &mdash; BI Dashboard Design System <span class="hero-cta-arrow"><svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:middle;margin-left:4px;"><path d="M5 13h11.86l-5.43 5.43L13 20l8-8-8-8-1.41 1.41 5.43 5.43H5v2z"/></svg></span>
             </a>
@@ -290,19 +337,15 @@
       </div>
     </section>
 
-    <!-- Component Placeholders (Will inline as we implement) -->
-    <!-- Logos Section (Inlined to work on file:// protocol) -->
+    <!-- Logos Section -->
     <section id="section-logos" class="section-container component-logos">
       <div class="logos-wrapper">
-        <!-- Group 1: Rummy Circle (Solo) -->
         <div class="logo-group solo">
           <div class="logo-item rc-logo">
             <img src="images/rc_b&w.png" alt="Rummy Circle" class="logo-img bw" />
             <img src="images/rc_color.png" alt="Rummy Circle" class="logo-img color" />
           </div>
         </div>
-
-        <!-- Group 2: Worked through tenXengage (Google & Cisco) -->
         <div class="logo-group combined">
           <span class="group-label">Worked through tenXengage</span>
           <div class="group-logos">
@@ -316,8 +359,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Group 3: Worked through Hurix Systems (National Geographic & McGraw Hill) -->
         <div class="logo-group combined">
           <span class="group-label">Worked through Hurix Systems</span>
           <div class="group-logos">
@@ -331,8 +372,6 @@
             </div>
           </div>
         </div>
-
-        <!-- Group 4: Blue Dart (Solo) -->
         <div class="logo-group solo">
           <div class="logo-item bluedart-logo">
             <img src="images/bluedart_b&w.png" alt="Blue Dart" class="logo-img bw" />
@@ -340,15 +379,12 @@
           </div>
         </div>
       </div>
-
-      <!-- Centered Mouse Scroll Icon -->
       <div class="scroll-indicator">
         <img src="images/mousescroll_ico.png" alt="Scroll Down" class="scroll-icon" />
       </div>
-      </section>
-    </div>
+    </section>
 
-    <!-- Anchor for Work Navigation (Offsets sticky header) -->
+    <!-- Work Anchor -->
     <div id="work" style="scroll-margin-top: var(--header-height, 60px);"></div>
 
     <!-- Outcomes Section -->
@@ -356,8 +392,6 @@
       <div class="outcomes-wrapper">
         <span class="outcomes-eyebrow">Project Outcomes</span>
         <div class="outcomes-grid">
-
-          <!-- Card 1: tenXengage -->
           <div class="outcome-card" id="outcome-tenxengage">
             <span class="outcome-tag">Enterprise B2B &middot; UX Architecture</span>
             <h3 class="outcome-title">tenXengage</h3>
@@ -394,7 +428,6 @@
             </div>
           </div>
 
-          <!-- Card 2: RummyCircle -->
           <div class="outcome-card" id="outcome-rummycircle">
             <span class="outcome-tag">Gaming UX &middot; Product Design</span>
             <h3 class="outcome-title">RummyCircle</h3>
@@ -427,7 +460,6 @@
             </div>
           </div>
 
-          <!-- Card 3: SmartBI -->
           <div class="outcome-card" id="outcome-smartbi">
             <span class="outcome-tag">B2B SaaS &middot; Design System</span>
             <h3 class="outcome-title">SmartBI</h3>
@@ -459,7 +491,6 @@
               </a>
             </div>
           </div>
-
         </div>
       </div>
     </section>
@@ -476,7 +507,6 @@
           have lost from online care systems.
         </p>
 
-        <!-- Step Navigation Bar -->
         <div class="tracto-tab-nav">
           <div class="tracto-tab-items">
             <button class="tracto-tab-item active" data-slide-to="0">The real voice of user</button>
@@ -489,16 +519,11 @@
           </div>
         </div>
 
-        <!-- Slider Viewport & Track -->
         <div class="tracto-slider-viewport">
           <div class="tracto-slider-track">
             
-            <!-- Slide 1: Voice of the Customer (Speech Bubbles) -->
             <div class="tracto-slide active" data-slide-index="0">
-
-
               <div class="speech-bubbles-container">
-                <!-- Quote 1: Elder 1 -->
                 <div class="quote-card notification-card">
                   <div class="quote-avatar-wrapper">
                     <img src="images/userpain_perphoto.png" alt="Elder Avatar" class="quote-avatar" />
@@ -513,7 +538,6 @@
                   </div>
                 </div>
 
-                <!-- Quote 2: Caregiver 1 -->
                 <div class="quote-card notification-card caregiver-quote">
                   <div class="quote-avatar-wrapper">
                     <img src="images/caregiver1.png" alt="Caregiver Avatar" class="quote-avatar" />
@@ -528,7 +552,6 @@
                   </div>
                 </div>
 
-                <!-- Quote 3: Elder 2 -->
                 <div class="quote-card notification-card">
                   <div class="quote-avatar-wrapper">
                     <img src="images/userpain_perphoto2.png" alt="Elder Avatar" class="quote-avatar" />
@@ -543,7 +566,6 @@
                   </div>
                 </div>
 
-                <!-- Quote 4: Caregiver 2 -->
                 <div class="quote-card notification-card caregiver-quote">
                   <div class="quote-avatar-wrapper">
                     <img src="images/caregiver2.png" alt="Caregiver Avatar" class="quote-avatar" />
@@ -558,7 +580,6 @@
                   </div>
                 </div>
 
-                <!-- Quote 5: Elder 3 -->
                 <div class="quote-card notification-card">
                   <div class="quote-avatar-wrapper">
                     <img src="images/userpain_perphoto3.png" alt="Elder Avatar" class="quote-avatar" />
@@ -573,7 +594,6 @@
                   </div>
                 </div>
 
-                <!-- Quote 6: Caregiver 3 -->
                 <div class="quote-card notification-card caregiver-quote">
                   <div class="quote-avatar-wrapper">
                     <img src="images/caregiver3.png" alt="Caregiver Avatar" class="quote-avatar" />
@@ -588,7 +608,6 @@
                   </div>
                 </div>
 
-                <!-- Quote 7: Elder 4 -->
                 <div class="quote-card notification-card">
                   <div class="quote-avatar-wrapper">
                     <img src="images/userpain_perphoto4.png" alt="Elder Avatar" class="quote-avatar" />
@@ -603,7 +622,6 @@
                   </div>
                 </div>
 
-                <!-- Quote 8: Caregiver 4 -->
                 <div class="quote-card notification-card caregiver-quote">
                   <div class="quote-avatar-wrapper">
                     <img src="images/caregiver4.png" alt="Caregiver Avatar" class="quote-avatar" />
@@ -618,7 +636,6 @@
                   </div>
                 </div>
 
-                <!-- Quote 9: Elder 5 -->
                 <div class="quote-card notification-card">
                   <div class="quote-avatar-wrapper">
                     <img src="images/userpain_perphoto5.png" alt="Elder Avatar" class="quote-avatar" />
@@ -635,14 +652,11 @@
               </div>
             </div>
 
-            <!-- Slide 2: Research (Quantitative & Qualitative) -->
             <div class="tracto-slide" data-slide-index="1">
               <div class="tracto-research-layout">
-                <!-- Left Column: Radar Chart (Floating Transparently) -->
                 <div class="research-radar-section">
                   <div class="radar-chart-card">
                     <div class="radar-svg-wrapper">
-                      <!-- Floating Zoom Trigger -->
                       <button class="radar-zoom-trigger" id="radar-zoom-btn" title="Zoom Chart" aria-label="Zoom Chart">
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                           <circle cx="11" cy="11" r="8"></circle>
@@ -658,76 +672,57 @@
                             <stop offset="100%" stop-color="rgba(0,0,0,0)" />
                           </radialGradient>
                         </defs>
-                        
-                        <!-- Glow Background circle -->
                         <circle cx="250" cy="250" r="160" fill="url(#radar-glow)" />
 
-                        <!-- Concentric Pentagon Grid Lines (10, 8, 6, 4, 2) -->
                         <polygon class="grid-polygon" points="250,90 392.7,193.7 338.2,361.4 161.8,361.4 107.3,193.7" />
                         <polygon class="grid-polygon" points="250,122 364.2,205 320.6,339.1 179.4,339.1 135.8,205" />
                         <polygon class="grid-polygon" points="250,154 335.6,216.2 302.9,316.8 197.1,316.8 164.4,216.2" />
                         <polygon class="grid-polygon" points="250,186 307,227.5 285.3,294.6 214.7,294.6 193,227.5" />
                         <polygon class="grid-polygon" points="250,218 278.5,238.7 267.6,272.3 232.4,272.3 221.5,238.7" />
 
-                        <!-- Grid scale labels (10, 8, 6, 4, 2) -->
                         <text x="250" y="85" text-anchor="middle" class="grid-scale-label">10</text>
                         <text x="250" y="117" text-anchor="middle" class="grid-scale-label">8</text>
                         <text x="250" y="149" text-anchor="middle" class="grid-scale-label">6</text>
                         <text x="250" y="181" text-anchor="middle" class="grid-scale-label">4</text>
                         <text x="250" y="213" text-anchor="middle" class="grid-scale-label">2</text>
 
-                        <!-- Spokes / Axes -->
                         <line x1="250" y1="250" x2="250" y2="90" class="spoke-line" />
                         <line x1="250" y1="250" x2="392.7" y2="193.7" class="spoke-line" />
                         <line x1="250" y1="250" x2="338.2" y2="361.4" class="spoke-line" />
                         <line x1="250" y1="250" x2="161.8" y2="361.4" class="spoke-line" />
                         <line x1="250" y1="250" x2="107.3" y2="193.7" class="spoke-line" />
 
-                        <!-- Dynamic Polygons (Initially points centered around 250,250 for GSAP expansion animation) -->
                         <polygon class="radar-poly-user" points="250,250 250,250 250,250 250,250 250,250" />
                         <polygon class="radar-poly-care" points="250,250 250,250 250,250 250,250 250,250" />
 
-                        <!-- Dynamic Markers / Vertex dots (Managed by GSAP) -->
-                        <!-- User Needs markers -->
                         <circle cx="250" cy="250" r="4.5" class="marker-user" />
                         <circle cx="250" cy="250" r="4.5" class="marker-user" />
                         <circle cx="250" cy="250" r="4.5" class="marker-user" />
                         <circle cx="250" cy="250" r="4.5" class="marker-user" />
                         <circle cx="250" cy="250" r="4.5" class="marker-user" />
 
-                        <!-- Care Eco markers -->
                         <circle cx="250" cy="250" r="4.5" class="marker-care" />
                         <circle cx="250" cy="250" r="4.5" class="marker-care" />
                         <circle cx="250" cy="250" r="4.5" class="marker-care" />
                         <circle cx="250" cy="250" r="4.5" class="marker-care" />
                         <circle cx="250" cy="250" r="4.5" class="marker-care" />
 
-                        <!-- Axis labels positioned visually around SVG center (250, 250) -->
-                        <!-- Axis 1 (Top) -->
                         <text class="axis-text top-axis" x="250" y="42" text-anchor="middle">
                           <tspan x="250" dy="0" class="primary-label">Health &amp; Routine Needs</tspan>
                           <tspan x="250" dy="15" class="secondary-label">(Chronic Illness &amp; Adherence)</tspan>
                         </text>
-
-                        <!-- Axis 2 (Top-Right) -->
                         <text class="axis-text right-top-axis" x="422" y="195" text-anchor="start">
                           <tspan x="422" dy="0" class="primary-label">Emotional Well-being</tspan>
                           <tspan x="422" dy="15" class="secondary-label">(Independence vs Burden)</tspan>
                         </text>
-
-                        <!-- Axis 3 (Bottom-Right) -->
                         <text class="axis-text right-bottom-axis" x="366" y="388" text-anchor="start">
                           <tspan x="366" dy="0" class="primary-label">Social &amp; Group Connection</tspan>
                           <tspan x="366" dy="15" class="secondary-label">(Community Engagement)</tspan>
                         </text>
-
-                        <!-- Axis 4 (Bottom-Left) -->
                         <text class="axis-text left-bottom-axis" x="134" y="388" text-anchor="end">
                           <tspan x="134" dy="0" class="primary-label">Care Circle Support</tspan>
                           <tspan x="134" dy="15" class="secondary-label">(Family Assistance &amp; Peace)</tspan>
                         </text>
-
-                        <!-- Axis 5 (Top-Left) -->
                         <text class="axis-text left-top-axis" x="78" y="195" text-anchor="end">
                           <tspan x="78" dy="0" class="primary-label">Safety &amp; Peace of Mind</tspan>
                           <tspan x="78" dy="15" class="secondary-label">(Crisis &amp; SOS Urgency)</tspan>
@@ -735,7 +730,6 @@
                       </svg>
                     </div>
 
-                    <!-- Legend -->
                     <div class="chart-legend">
                       <div class="legend-item user">
                         <span class="legend-line"></span>
@@ -749,9 +743,7 @@
                   </div>
                 </div>
 
-                <!-- Bottom Section: Data Matrix iPhone Widgets -->
                 <div class="research-widgets-stack">
-                  <!-- Widget 1 -->
                   <div class="widget-card">
                     <div class="widget-header">
                       <span class="widget-number">+30</span>
@@ -759,8 +751,6 @@
                     </div>
                     <p class="widget-desc">Across 6 elder behaviour categories</p>
                   </div>
-                  
-                  <!-- Widget 2 -->
                   <div class="widget-card">
                     <div class="widget-header">
                       <span class="widget-number">20+</span>
@@ -768,8 +758,6 @@
                     </div>
                     <p class="widget-desc">Conducted using three complementary methods &mdash; interviewing during the activity, debriefing after the activity, and silent observation. Captures decisions in the moment, not reconstructed memory.</p>
                   </div>
-                  
-                  <!-- Widget 3 -->
                   <div class="widget-card">
                     <div class="widget-header">
                       <span class="widget-heading">Affinity Mapping</span>
@@ -780,12 +768,8 @@
               </div>
             </div>
 
-
-            <!-- Slide 3: Empathy & Core Insight â€” Cinematic Video -->
             <div class="tracto-slide" data-slide-index="2">
               <div class="empathy-slide-layout">
-
-                <!-- Cinematic Video Frame -->
                 <div class="empathy-cinema-frame">
                   <video
                     id="empathy-video"
@@ -798,12 +782,8 @@
                   >
                     <source src="images/elderphoto.mp4" type="video/mp4" />
                   </video>
-
-                  <!-- Gradient overlays for cinematic depth -->
                   <div class="cinema-overlay cinema-overlay-bottom"></div>
                   <div class="cinema-overlay cinema-overlay-top"></div>
-
-                  <!-- Floating Glass Play / Pause button -->
                   <button class="video-play-btn" id="video-play-toggle" aria-label="Toggle Play">
                     <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
                       <path d="M8 5v14l11-7z"/>
@@ -813,8 +793,6 @@
                     </svg>
                   </button>
                 </div>
-
-                <!-- Affinity Tag Pills -->
                 <div class="empathy-tags-row">
                   <span class="empathy-tag">Confident but scared</span>
                   <span class="empathy-tag">Surveillance over independence</span>
@@ -822,14 +800,11 @@
                   <span class="empathy-tag">Dignity over dependency</span>
                   <span class="empathy-tag">Trust, slowly withdrawn from life</span>
                 </div>
-
               </div>
             </div>
 
-            <!-- Slide 4: Product Solution & Interactive Mockups -->
             <div class="tracto-slide" data-slide-index="3">
               <div class="solution-slide-layout">
-                <!-- Left Column: Copy & CTAs -->
                 <div class="solution-info-panel">
                   <span class="solution-eyebrow">THE SYSTEM</span>
                   <h4 class="solution-headline">So we designed for this specific tension.</h4>
@@ -846,15 +821,11 @@
                   </div>
                 </div>
 
-                <!-- Right Column: Clean Screen Viewer & Role Switchers -->
                 <div class="solution-mockup-panel">
-                  <!-- Master Role Switcher (Elder App / Caregiver App) -->
                   <div class="mockup-tab-switcher" id="mockup-tab-switcher">
                     <button class="switcher-btn active" data-mockup-tab="elder">Elder App</button>
                     <button class="switcher-btn" data-mockup-tab="caregiver">Caregiver App</button>
                   </div>
-
-                  <!-- Sub-State Selectors for Elder App (6 screens) -->
                   <div class="elder-sub-selector" id="elder-sub-selector">
                     <button class="sub-sel-btn active" data-elder-state="home">Home</button>
                     <button class="sub-sel-btn" data-elder-state="med_notify">Med Reminder</button>
@@ -863,16 +834,12 @@
                     <button class="sub-sel-btn" data-elder-state="emergency">Emergency</button>
                     <button class="sub-sel-btn" data-elder-state="help">Elder Help</button>
                   </div>
-
-                  <!-- Sub-State Selectors for Caregiver App (4 screens) -->
                   <div class="caregiver-sub-selector hide-selector" id="caregiver-sub-selector">
                     <button class="sub-sel-btn active" data-caregiver-state="home">Caregiver Home</button>
                     <button class="sub-sel-btn" data-caregiver-state="sos">SOS Alert</button>
                     <button class="sub-sel-btn" data-caregiver-state="sos_detail">SOS Detail</button>
                     <button class="sub-sel-btn" data-caregiver-state="rescue">Rescue Map</button>
                   </div>
-
-                  <!-- Clean Screen Frame with Slick Drop Shadow -->
                   <div class="screen-display-card">
                     <img src="tracto mobileux/Elder _Home.png" alt="Tracto Mobile UX Screen" id="phone-screen-asset" class="clean-screen-img" />
                   </div>
@@ -885,80 +852,61 @@
       </div>
     </section>
 
-    <!-- Skills & Tools Logos Section -->
+    <!-- Skills Section -->
     <section id="section-skills" class="section-container component-skills">
       <div class="skills-wrapper">
-        <span class="skills-label">Tools & Technologies</span>
+        <span class="skills-label">Tools &amp; Technologies</span>
         <div class="skills-divider"></div>
         <div class="skills-logo-strip">
-
-          <!-- 1. Antigravity -->
           <div class="skill-logo-item">
             <img src="images/antygravity.png" alt="Antigravity" class="skill-logo-img" />
           </div>
-
-          <!-- 2. Gemini -->
           <div class="skill-logo-item">
             <img src="images/Gemini.png" alt="Google Gemini" class="skill-logo-img" />
           </div>
-
-          <!-- 3. Claude -->
           <div class="skill-logo-item">
             <img src="images/calude.png" alt="Claude" class="skill-logo-img" />
           </div>
-
-          <!-- 4. Framer -->
           <div class="skill-logo-item">
             <img src="images/framer.png" alt="Framer" class="skill-logo-img" />
           </div>
-
-          <!-- 5. UX Pilot -->
           <div class="skill-logo-item">
             <img src="images/uxpiot.png" alt="UX Pilot" class="skill-logo-img" />
           </div>
-
-          <!-- 6. Figma -->
           <div class="skill-logo-item">
             <img src="images/figma.png" alt="Figma" class="skill-logo-img" />
           </div>
-
-          <!-- 7. Miro -->
           <div class="skill-logo-item">
             <img src="images/miro.png" alt="Miro" class="skill-logo-img" />
           </div>
-
         </div>
       </div>
     </section>
 
+    <!-- Hidden Friction Image Section -->
     <section id="section-hidden-friction-image" class="section-container">
       <div class="image-wrapper text-center">
         <img src="images/hidden_friction.svg" alt="Hidden Friction" class="friction-img-dark" />
         <img src="images/hidden_friction_w.svg" alt="Hidden Friction" class="friction-img-light" />
       </div>
     </section>
+
+    <!-- Hidden Friction Slider Section -->
     <section id="section-featured" class="section-container component-featured">
-      <!-- Teapots Section -->
       <div class="friction-slider-section">
         <div class="friction-slider-container">
-          <!-- Slider Viewport -->
           <div class="friction-slider-viewport">
-            <!-- Horizontal Slide Track -->
             <div class="friction-slider-track">
               
-              <!-- Slide 1: Teapots (Double PNGs side-by-side) -->
               <div class="friction-slide active" data-index="0" data-slide-index="0">
                 <div class="slide-media-wrapper double-media">
-                  <!-- Left Teapot: Hot (with warm animation) -->
                   <div class="teapot-container hot">
-                    <img src="images/hotteapot_final.png" alt="Hot Teapot (Quiet Failure)" class="slide-media-img teapot-img teapot-hot lazy-load" />
+                    <img src="images/hotteapot_final.png" alt="Hot Teapot" class="slide-media-img teapot-img teapot-hot lazy-load" />
                   </div>
-                  <!-- Right Teapot: Cold (other one) -->
                   <div class="teapot-container cold">
                     <img src="images/coldteapot.png" alt="Cold Teapot" class="slide-media-img teapot-img teapot-cold lazy-load" />
                   </div>
                 </div>
-                <!-- Caption Text -->
                 <div class="teapot-caption-box">
                   <p class="teapot-caption">
                     We don't question the things that quietly fail us.<br />
@@ -967,19 +915,15 @@
                 </div>
               </div>
 
-              <!-- Slide 2: Cars (Double SVGs side-by-side) -->
               <div class="friction-slide" data-index="1" data-slide-index="1">
                 <div class="slide-media-wrapper double-media">
-                  <!-- Left Car Handle: Problem -->
                   <div class="teapot-container problem">
-                    <img src="images/car_problem.svg" alt="Capacitive Door Handle (Problem)" class="slide-media-img car-img lazy-load" />
+                    <img src="images/car_problem.svg" alt="Capacitive Door Handle" class="slide-media-img car-img lazy-load" />
                   </div>
-                  <!-- Right Car Handle: Best UX -->
                   <div class="teapot-container bestux">
-                    <img src="images/car_bestUX.svg" alt="Mechanical Door Handle (Best UX)" class="slide-media-img car-img lazy-load" />
+                    <img src="images/car_bestUX.svg" alt="Mechanical Door Handle" class="slide-media-img car-img lazy-load" />
                   </div>
                 </div>
-                <!-- Caption Text -->
                 <div class="teapot-caption-box">
                   <p class="teapot-caption">
                     Modern isn't always easier.<br />
@@ -988,7 +932,6 @@
                 </div>
               </div>
 
-              <!-- Slide 3: Apple (Single Image) -->
               <div class="friction-slide" data-index="2" data-slide-index="2">
                 <div class="slide-media-wrapper">
                   <div class="teapot-container">
@@ -1006,7 +949,6 @@
             </div>
           </div>
 
-          <!-- Pagination Dots (Fixed at the bottom of the container) -->
           <div class="teapot-pagination">
             <span class="pagination-dot active" data-slide-to="0"></span>
             <span class="pagination-dot" data-slide-to="1"></span>
@@ -1016,7 +958,7 @@
       </div>
     </section>
 
-    <!-- Final Statement Section (Slick typewriter reveal) -->
+    <!-- Final Statement Section -->
     <section id="section-statement" class="section-container component-statement">
       <div class="statement-wrapper">
         <div class="statement-text-container">
@@ -1026,14 +968,14 @@
       </div>
     </section>
 
-    <!-- Semantic Footer Section (Copyright information) -->
+    <!-- Footer -->
     <footer class="footer-container">
-      <p class="footer-copyright">© 2026 Sayantan Ghosh. All rights reserved.</p>
+      <p class="footer-copyright">&copy; 2026 Sayantan Ghosh. All rights reserved.</p>
     </footer>
 
   </div>
-  
-  <!-- Zoom Modal Overlay -->
+
+  <!-- Tracto Radar Zoom Modal Overlay -->
   <div class="radar-modal-overlay" id="radar-zoom-modal" aria-hidden="true">
     <div class="radar-modal-card">
       <button class="radar-modal-close" id="radar-modal-close-btn" aria-label="Close Zoom View">✕</button>
@@ -1050,76 +992,61 @@
                 <stop offset="100%" stop-color="rgba(0,0,0,0)" />
               </radialGradient>
             </defs>
-            
-            <!-- Glow Background circle -->
             <circle cx="250" cy="250" r="160" fill="url(#modal-radar-glow)" />
 
-            <!-- Concentric Pentagon Grid Lines (10, 8, 6, 4, 2) -->
             <polygon class="grid-polygon" points="250,90 392.7,193.7 338.2,361.4 161.8,361.4 107.3,193.7" />
             <polygon class="grid-polygon" points="250,122 364.2,205 320.6,339.1 179.4,339.1 135.8,205" />
             <polygon class="grid-polygon" points="250,154 335.6,216.2 302.9,316.8 197.1,316.8 164.4,216.2" />
             <polygon class="grid-polygon" points="250,186 307,227.5 285.3,294.6 214.7,294.6 193,227.5" />
             <polygon class="grid-polygon" points="250,218 278.5,238.7 267.6,272.3 232.4,272.3 221.5,238.7" />
 
-            <!-- Grid scale labels (10, 8, 6, 4, 2) -->
             <text x="250" y="85" text-anchor="middle" class="grid-scale-label">10</text>
             <text x="250" y="117" text-anchor="middle" class="grid-scale-label">8</text>
             <text x="250" y="149" text-anchor="middle" class="grid-scale-label">6</text>
             <text x="250" y="181" text-anchor="middle" class="grid-scale-label">4</text>
             <text x="250" y="213" text-anchor="middle" class="grid-scale-label">2</text>
 
-            <!-- Spokes / Axes -->
             <line x1="250" y1="250" x2="250" y2="90" class="spoke-line" />
             <line x1="250" y1="250" x2="392.7" y2="193.7" class="spoke-line" />
             <line x1="250" y1="250" x2="338.2" y2="361.4" class="spoke-line" />
             <line x1="250" y1="250" x2="161.8" y2="361.4" class="spoke-line" />
             <line x1="250" y1="250" x2="107.3" y2="193.7" class="spoke-line" />
 
-            <!-- Dynamic Polygons (Initially points centered around 250,250 for GSAP expansion animation) -->
             <polygon class="modal-radar-poly-user" points="250,250 250,250 250,250 250,250 250,250" />
             <polygon class="modal-radar-poly-care" points="250,250 250,250 250,250 250,250 250,250" />
 
-            <!-- Dynamic Markers / Vertex dots (Managed by GSAP) -->
-            <!-- User Needs markers -->
             <circle cx="250" cy="250" r="5" class="modal-marker-user" />
             <circle cx="250" cy="250" r="5" class="modal-marker-user" />
             <circle cx="250" cy="250" r="5" class="modal-marker-user" />
             <circle cx="250" cy="250" r="5" class="modal-marker-user" />
             <circle cx="250" cy="250" r="5" class="modal-marker-user" />
 
-            <!-- Care Eco markers -->
             <circle cx="250" cy="250" r="5" class="modal-marker-care" />
             <circle cx="250" cy="250" r="5" class="modal-marker-care" />
             <circle cx="250" cy="250" r="5" class="modal-marker-care" />
             <circle cx="250" cy="250" r="5" class="modal-marker-care" />
             <circle cx="250" cy="250" r="5" class="modal-marker-care" />
 
-            <!-- Axis labels positioned visually around SVG center (250, 250) -->
-            <!-- Axis 1 (Top) -->
             <text class="modal-axis-text top-axis" x="250" y="42" text-anchor="middle">
               <tspan x="250" dy="0" class="primary-label">Health &amp; Routine Needs</tspan>
               <tspan x="250" dy="16" class="secondary-label">(Chronic Illness &amp; Adherence)</tspan>
             </text>
 
-            <!-- Axis 2 (Top-Right) -->
             <text class="modal-axis-text right-top-axis" x="422" y="195" text-anchor="start">
               <tspan x="422" dy="0" class="primary-label">Emotional Well-being</tspan>
               <tspan x="422" dy="16" class="secondary-label">(Independence vs Burden)</tspan>
             </text>
 
-            <!-- Axis 3 (Bottom-Right) -->
             <text class="modal-axis-text right-bottom-axis" x="366" y="388" text-anchor="start">
               <tspan x="366" dy="0" class="primary-label">Social &amp; Group Connection</tspan>
               <tspan x="366" dy="16" class="secondary-label">(Community Engagement)</tspan>
             </text>
 
-            <!-- Axis 4 (Bottom-Left) -->
             <text class="modal-axis-text left-bottom-axis" x="134" y="388" text-anchor="end">
               <tspan x="134" dy="0" class="primary-label">Care Circle Support</tspan>
               <tspan x="134" dy="16" class="secondary-label">(Family Assistance &amp; Peace)</tspan>
             </text>
 
-            <!-- Axis 5 (Top-Left) -->
             <text class="modal-axis-text left-top-axis" x="78" y="195" text-anchor="end">
               <tspan x="78" dy="0" class="primary-label">Safety &amp; Peace of Mind</tspan>
               <tspan x="78" dy="16" class="secondary-label">(Crisis &amp; SOS Urgency)</tspan>
@@ -1127,7 +1054,6 @@
           </svg>
         </div>
         
-        <!-- Legend -->
         <div class="modal-legend-container">
           <div class="chart-legend">
             <div class="legend-item user">
@@ -1140,37 +1066,60 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
   </div>
 
-  <!-- Placeholder Section for Scrolling Test -->
-   <!-- Initialize Background Grid -->
+  <!-- 🤖 Floating AI Action Button (Bottom Right) -->
+  <button id="floating-ai-btn" class="floating-ai-btn" aria-label="Open AI Assistant QR Code">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/>
+    </svg>
+  </button>
+
+  <!-- 💬 AI Tooltip Bubble -->
+  <div id="ai-tooltip-bubble" class="ai-tooltip-bubble">
+    <svg class="tooltip-icon" viewBox="0 0 24 24"><path d="M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z"/></svg>
+    <span>Scan to try AI Voice Portfolio on Mobile</span>
+    <div class="tooltip-arrow"></div>
+  </div>
+
+  <!-- 📲 QR Code Modal Overlay -->
+  <div id="qr-modal" class="qr-modal-overlay">
+    <div class="qr-modal-content">
+      <button id="qr-close-btn" class="qr-close-btn" aria-label="Close Modal">&times;</button>
+      <div class="qr-modal-header">
+        <h3 class="qr-modal-title">Experience Mobile AI UX</h3>
+        <p class="qr-modal-desc">Scan this QR code with your mobile camera to launch the interactive voice-over AI experience.</p>
+      </div>
+      <div class="qr-code-outer-card">
+        <div id="qr-code-container" class="qr-code-wrapper"></div>
+        <div class="qr-scan-hint">
+          <span class="qr-pulse-dot"></span>
+          <span>Scan with Phone Camera</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Modules -->
   <script src="loader.js?v=1.1"></script>
-  
-  <!-- Component Scripts (Standard scripts to bypass local CORS rules) -->
   <script src="components/header/header.js?v=1.1"></script>
   <script src="components/hero/hero.js?v=1.1"></script>
   <script src="components/logos/logos.js?v=1.1"></script>
   <script src="components/marquee/marquee.js?v=1.1"></script>
   <script src="components/cursor/cursor.js?v=1.1"></script>
-  <!-- Hidden Friction Component Script -->
   <script src="components/hidden-friction/hidden-friction.js?v=1.1"></script>
-  <!-- Skills Logos Component Script (no JS needed â€” CSS only) -->
-  <!-- Tracto Component Script -->
   <script src="components/tracto/tracto.js?v=1.1"></script>
-  <!-- Custom Context Menu Script -->
-  <script src="components/context-menu/context-menu.js?v=1.1"></script>
-  <!-- About Component Script -->
   <script src="components/about/about.js?v=1.1"></script>
-  <!-- Final Statement Component Script -->
   <script src="components/statement/statement.js?v=1.1"></script>
-  <!-- Product Story Overlay Component Script -->
   <script src="components/product-story/product-story.js?v=1.1"></script>
-  <!-- tenXengage Story Overlay Component Script -->
   <script src="components/tenxengage-story/tenxengage-story.js?v=1.1"></script>
-  <!-- RummyCircle Story Overlay Component Script -->
   <script src="components/rummycircle-story/rummycircle-story.js?v=1.1"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+  <script src="components/qr-modal/qr-modal.js?v=1.1"></script>
   
-  <!-- Boot Components -->
+  <!-- Boot Components Initialization -->
   <script>
     PortfolioHeader.init(document.getElementById('section-header'));
     PortfolioHero.init(document.getElementById('section-hero'), () => {
@@ -1180,14 +1129,13 @@
     PortfolioFriction.init(document.getElementById('section-featured'));
     PortfolioTracto.init(document.getElementById('section-tracto'));
     PortfolioCursor.init();
-    PortfolioContextMenu.init();
     PortfolioAbout.init(document.getElementById('section-about'));
     PortfolioStatement.init(document.getElementById('section-statement'));
     ProductStoryModal.init();
     TenxengageStoryModal.init();
     RummycircleStoryModal.init();
+    QRModal.init();
 
-    // â”€â”€ Preload Tracto Phone Mockup Images into browser disk cache â”€â”€â”€â”€â”€â”€â”€â”€â”€
     (function preloadTractoAssets() {
       [
         'images/elder_topbar.png',
@@ -1206,11 +1154,9 @@
       });
     })();
 
-    // â”€â”€ Scroll-Triggered Entrance Animations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     if (typeof gsap !== "undefined" && typeof ScrollTrigger !== "undefined") {
       gsap.registerPlugin(ScrollTrigger);
 
-      // 1. Fade-in and slide-up the hidden_friction.svg image
       gsap.fromTo(
         '#section-hidden-friction-image img',
         { opacity: 0, y: 30 },
@@ -1227,8 +1173,6 @@
         }
       );
 
-
-      // 2. Stagger-reveal outcome cards
       gsap.fromTo(
         '#section-outcomes .outcome-card',
         { opacity: 0, y: 30 },
@@ -1246,7 +1190,6 @@
         }
       );
 
-      // 3. Stagger-reveal skills logos, clearing props on completion for hover transitions
       gsap.fromTo(
         '#section-skills .skill-logo-item',
         { opacity: 0, y: 20 },
@@ -1265,12 +1208,8 @@
             gsap.set('#section-skills .skill-logo-item', { clearProps: "opacity,transform" });
             document.querySelectorAll('#section-skills .skill-logo-item').forEach(item => {
               item.classList.add('animated');
-              
-              // Seed random duration between 3.2s and 5.8s for smooth, slow float
               const randomDuration = (3.2 + Math.random() * 2.6).toFixed(2);
-              // Seed random negative delay between -5.8s and 0s to start animation mid-cycle (prevents synchronized jumps!)
               const randomDelay = (-1 * Math.random() * randomDuration).toFixed(2);
-              
               item.style.setProperty('--bounce-duration', `${randomDuration}s`);
               item.style.setProperty('--bounce-delay', `${randomDelay}s`);
             });
@@ -1280,10 +1219,9 @@
     }
   </script>
 
-  <!-- ðŸŽ¨ Inline SVG Filters for Light Mode Asset Color Correction -->
+  <!-- Inline SVG Filters for Light Mode Asset Color Correction -->
   <svg style="display: none;" aria-hidden="true">
     <defs>
-      <!-- Converts white text to black while keeping the yellow symbol exactly brand yellow (subtraction method) -->
       <filter id="netgeo-light-filter">
         <feColorMatrix type="matrix" values="
           1  0 -1  0  0

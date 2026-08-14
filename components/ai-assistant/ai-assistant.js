@@ -59,8 +59,8 @@ window.PortfolioAiAssistant = {
     },
     Communication: {
       title: "Get In Touch",
-      text: "I am ready for strategic new opportunities! You can <span class='highlight-blue'>call me directly at +91 995 962 9041</span> or email me at <span class='highlight-green'>myprofile.sayantan@gmail.com</span>. Tapping the action buttons below will connect you with me instantly!",
-      speech: "I am ready for strategic new opportunities! You can call me directly at +91 995 962 9041 or email me at myprofile.sayantan@gmail.com. Tapping the action buttons below will connect you with me instantly!",
+      text: "I am ready for strategic new opportunities! You can <span class='highlight-blue'>call me directly at +91 934 657 9316</span> or email me at <span class='highlight-green'>myprofile.sayantan@gmail.com</span>. Tapping the action buttons below will connect you with me instantly!",
+      speech: "I am ready for strategic new opportunities! You can call me directly at +91 934 657 9316 or email me at myprofile.sayantan@gmail.com. Tapping the action buttons below will connect you with me instantly!",
       hasActions: true
     }
   },
@@ -127,9 +127,9 @@ window.PortfolioAiAssistant = {
       this.orbCaption.innerText = "Press to start conversation";
     } 
     else if (state === 'welcome') {
-      this.container.classList.add('state-welcome');
+      this.container.classList.add('state-welcome', 'state-qa');
       this.screens.welcome.classList.add('active');
-      this.orbCaption.innerText = "Press to start conversation";
+      this.orbCaption.innerText = "Select a capsule pill above!";
     }
     else if (state === 'answer') {
       this.container.classList.add('state-answer');
@@ -200,7 +200,7 @@ window.PortfolioAiAssistant = {
     if (data.hasActions) {
       htmlContent += `
         <div class="ai-answer-actions">
-          <a href="tel:+919959629041" class="ai-answer-btn primary">
+          <a href="tel:+919346579316" class="ai-answer-btn primary">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width: 13px; height: 13px; transform: scaleX(-1);"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
             Call Sayantan
           </a>

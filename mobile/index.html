@@ -2,296 +2,145 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mobile Experience | Sayantan Ghosh UX Portfolio</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Sayantan Ghosh | Mobile Conversational AI UX Portfolio</title>
   
+  <!-- Primary SEO & Social Metadata -->
+  <meta name="description" content="Interactive Voice-over AI Resume & Portfolio of Sayantan Ghosh, Senior UX & Product Designer." />
+  <meta name="theme-color" content="#151512" />
+
   <!-- Google Fonts: Inter & Space Grotesk -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" />
 
-  <style>
-    :root {
-      --bg-color: #06050b;
-      --color-primary: #7c3aed; /* Vibrant Purple */
-      --color-secondary: #0ea5e9; /* Electric Blue */
-      --text-primary: #ffffff;
-      --text-secondary: #94a3b8;
-      --font-title: 'Space Grotesk', sans-serif;
-      --font-body: 'Inter', sans-serif;
-    }
+  <!-- Core Tokens & AI Assistant Styles -->
+  <link rel="stylesheet" href="../tokens.css?v=1.1" />
+  <link rel="stylesheet" href="../components/ai-assistant/ai-assistant.css?v=1.1" />
 
-    * {
-      box-sizing: border-box;
+  <style>
+    /* Mobile-First Page Overrides */
+    html, body {
       margin: 0;
       padding: 0;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-primary);
-      font-family: var(--font-body);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 24px;
-      overflow: hidden;
-      position: relative;
-    }
-
-    /* Premium dotted background grid */
-    body::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
-      background-image: 
-        radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-      background-size: 24px 24px;
-      z-index: -1;
-      pointer-events: none;
-    }
-
-    /* Drifting glowing ambient blobs */
-    .bg-glow-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      background-color: #151512;
       overflow: hidden;
-      z-index: -2;
-      pointer-events: none;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .glow-blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.3;
-      will-change: transform;
-    }
-
-    .blob-1 {
-      width: 300px;
-      height: 300px;
-      background-color: var(--color-primary);
-      top: -100px;
-      left: -100px;
-      animation: float-blob-1 15s ease-in-out infinite alternate;
-    }
-
-    .blob-2 {
-      width: 250px;
-      height: 250px;
-      background-color: var(--color-secondary);
-      bottom: -80px;
-      right: -80px;
-      animation: float-blob-2 18s ease-in-out infinite alternate;
-    }
-
-    @keyframes float-blob-1 {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(40px, 60px) scale(1.15); }
-    }
-
-    @keyframes float-blob-2 {
-      0% { transform: translate(0, 0) scale(1.1); }
-      100% { transform: translate(-50px, -30px) scale(0.9); }
-    }
-
-    /* Glassmorphic card design */
-    .card {
-      background: rgba(15, 13, 28, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 28px;
-      padding: 40px 24px;
-      max-width: 380px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      animation: card-appear 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-      position: relative;
-    }
-
-    @keyframes card-appear {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    /* Pulse/waveform animated voice waveform */
-    .audio-wave {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      height: 48px;
-      margin-bottom: 28px;
-    }
-
-    .audio-wave .bar {
-      display: block;
-      width: 4px;
-      height: 8px;
-      background: linear-gradient(to top, var(--color-primary), var(--color-secondary));
-      border-radius: 4px;
-      animation: wave 1.2s ease-in-out infinite alternate;
-    }
-
-    .audio-wave .bar-1 { height: 16px; animation-delay: 0.1s; }
-    .audio-wave .bar-2 { height: 32px; animation-delay: 0.3s; }
-    .audio-wave .bar-3 { height: 48px; animation-delay: 0.5s; }
-    .audio-wave .bar-4 { height: 24px; animation-delay: 0.2s; }
-    .audio-wave .bar-5 { height: 40px; animation-delay: 0.4s; }
-    .audio-wave .bar-6 { height: 20px; animation-delay: 0.6s; }
-    .audio-wave .bar-7 { height: 12px; animation-delay: 0.15s; }
-
-    @keyframes wave {
-      0% { transform: scaleY(0.25); }
-      100% { transform: scaleY(1.05); }
-    }
-
-    h1 {
-      font-family: var(--font-title);
-      font-size: 22px;
-      font-weight: 700;
-      line-height: 1.35;
-      margin-bottom: 16px;
-      color: #ffffff;
-      letter-spacing: -0.01em;
-    }
-
-    .accent-gradient {
-      background: linear-gradient(135deg, #a78bfa 0%, #38bdf8 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      display: block;
-      margin-top: 4px;
-    }
-
-    p {
-      font-size: 14.5px;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-bottom: 32px;
-      font-weight: 400;
-    }
-
-    .btn-container {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .btn {
+    .desktop-switch-btn {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 14px 24px;
-      border-radius: 14px;
-      font-family: var(--font-title);
-      font-size: 14px;
-      font-weight: 600;
+      gap: 4px;
+      font-size: 0.72rem;
+      color: #94a3b8;
       text-decoration: none;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-      cursor: pointer;
-      width: 100%;
+      padding: 4px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.04);
+      transition: all 0.2s ease;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--color-primary) 0%, #6d28d9 100%);
+    .desktop-switch-btn:hover {
       color: #ffffff;
-      border: none;
-      box-shadow: 0 8px 20px rgba(124, 58, 237, 0.25);
-    }
-
-    .btn-primary:active {
-      transform: scale(0.98);
-      box-shadow: 0 4px 10px rgba(124, 58, 237, 0.25);
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.03);
-      color: #ffffff;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
-
-    .btn-secondary:active {
-      background: rgba(255, 255, 255, 0.06);
-      transform: scale(0.98);
-    }
-
-    .btn svg {
-      margin-right: 8px;
-      width: 16px;
-      height: 16px;
-      fill: currentColor;
+      background: rgba(255, 255, 255, 0.1);
     }
   </style>
 </head>
 <body>
 
-  <!-- Glow effects -->
-  <div class="bg-glow-container">
-    <div class="glow-blob blob-1"></div>
-    <div class="glow-blob blob-2"></div>
-  </div>
-
-  <!-- Content Card -->
-  <div class="card">
+  <!-- 🤖 AI Conversational Assistant Container -->
+  <div id="ai-assistant-container" class="ai-assistant-container state-intro">
     
-    <!-- Pulse Sound Wave Visualizer -->
-    <div class="audio-wave" aria-hidden="true">
-      <span class="bar bar-1"></span>
-      <span class="bar bar-2"></span>
-      <span class="bar bar-3"></span>
-      <span class="bar bar-4"></span>
-      <span class="bar bar-5"></span>
-      <span class="bar bar-6"></span>
-      <span class="bar bar-7"></span>
-    </div>
-
-    <h1>
-      Mobile Experience
-      <span class="accent-gradient">In Progress</span>
-    </h1>
-
-    <p>
-      I'm currently crafting an immersive <strong>Voice-over Resume</strong> experience tailored specifically for mobile viewports. It will be live soon! In the meantime, please visit this website on a desktop computer for the full portfolio experience.
-    </p>
-
-    <!-- CTAs -->
-    <div class="btn-container">
-      <a href="https://in.linkedin.com/in/uxsayantan" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-        <!-- LinkedIn icon -->
-        <svg viewBox="0 0 24 24">
-          <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-        </svg>
-        Let's Connect
+    <!-- 1. Header -->
+    <header class="ai-mobile-header">
+      <div class="ai-mobile-title">
+        <h1 class="ai-mobile-logo">AI UX | SAYANTAN GHOSH</h1>
+        <span class="ai-mobile-sub">Interactive Voice Portfolio</span>
+      </div>
+      <a href="../index.html?desktop=true" class="desktop-switch-btn" title="View Desktop Version">
+        💻 Desktop Site
       </a>
+    </header>
+
+    <!-- 2. Main Content Viewport -->
+    <main class="ai-content-viewport">
       
-      <a href="mailto:myprofile.sayantan@gmail.com" class="btn btn-secondary">
-        <!-- Envelope mail icon -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="fill:none;">
-          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-          <polyline points="22,6 12,13 2,6"></polyline>
+      <!-- Panel 1: Intro -->
+      <div id="ai-screen-intro" class="ai-screen-panel ai-screen-intro active">
+        <div class="ai-intro-avatar-box">
+          <img src="../images/sayantan_pic.png" alt="Sayantan Ghosh" class="ai-intro-avatar" />
+        </div>
+        <p class="ai-intro-quote">"Hi! I'm San—Sayantan's AI voice assistant. Tap the glowing orb below to start our conversation!"</p>
+      </div>
+
+      <!-- Panel 2: Welcome & QA Capsule Stack -->
+      <div id="ai-screen-welcome" class="ai-screen-panel ai-screen-welcome">
+        <h2 class="ai-welcome-hi">Hi.</h2>
+        <p class="ai-welcome-text">Tap any capsule pill below to hear Sayantan's experience & design philosophy:</p>
+        
+        <div class="ai-qa-stack">
+          <div class="ai-qa-row">
+            <button class="ai-capsule-chip" data-topic="Professional">💼 Professional Experience</button>
+            <button class="ai-capsule-chip" data-topic="Educational">🎓 Education & Academy</button>
+          </div>
+          <div class="ai-qa-row">
+            <button class="ai-capsule-chip" data-topic="Personal">💡 About Sayantan</button>
+            <button class="ai-capsule-chip" data-topic="Skill">🛠️ Core Skills & Tools</button>
+          </div>
+          <div class="ai-qa-row">
+            <button class="ai-capsule-chip" data-topic="Thinking">🧠 UX Thinking Process</button>
+            <button class="ai-capsule-chip" data-topic="Projects">🚀 Featured Case Study</button>
+          </div>
+          <div class="ai-qa-row">
+            <button class="ai-capsule-chip" data-topic="Communication">📞 Get In Touch</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Panel 3: Answer View -->
+      <div id="ai-screen-answer" class="ai-screen-panel ai-screen-answer">
+        <div class="ai-answer-card">
+          <span id="ai-answer-title" class="ai-answer-title"></span>
+          <div id="ai-answer-content" class="ai-answer-content"></div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- 3. Bottom Siri/Gemini Controls & Breathing Orb -->
+    <footer class="ai-bottom-controls">
+      <div id="ai-siri-orb" class="ai-siri-orb" role="button" aria-label="Toggle Voice AI Assistant">
+        <svg class="ai-mic-icon" viewBox="0 0 24 24">
+          <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+          <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+          <line x1="12" y1="19" x2="12" y2="23"></line>
+          <line x1="8" y1="23" x2="16" y2="23"></line>
         </svg>
-        Email Me
-      </a>
-    </div>
+        <div class="ai-stop-square"></div>
+      </div>
+      <span id="ai-orb-caption" class="ai-orb-caption">Press orb to start voice conversation</span>
+      
+      <button id="ai-back-pill" class="ai-back-pill" aria-label="Back to topic menu">
+        <svg viewBox="0 0 24 24">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+    </footer>
 
   </div>
 
+  <!-- AI Assistant Logic -->
+  <script src="../components/ai-assistant/ai-assistant.js?v=1.1"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.PortfolioAiAssistant) {
+        PortfolioAiAssistant.init(document.getElementById('ai-assistant-container'));
+      }
+    });
+  </script>
 </body>
 </html>
